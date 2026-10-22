@@ -2,21 +2,43 @@
 
 # Panorama Graph
 
-**A estrutura da organização, dos times à arquitetura, para agentes de IA consultarem e citarem.** Operações estruturadas pelo MCP e pelo REST respondem quem é dono de quê, como os sistemas se ligam e o que roda em cada ambiente, e cada afirmação vem com a fonte e a evidência de onde saiu.
+**Uma visão da organização e da arquitetura para agentes de IA consultarem e citarem.** Quem são as pessoas e os times, de que cada time é dono, quais componentes existem, como se ligam e o que roda em cada ambiente, com a fonte e a evidência de cada resposta.
 
-## Propósito
+## O problema
 
-Agentes de IA que planejam e constroem software numa empresa não sabem o que já existe nela. Sem esse contexto, tratam cada iniciativa como se começasse do zero: supõem a stack, inventam integrações e deixam em branco o dono e o time. A wiki responde **como se deve fazer**. O Panorama Graph responde **o que existe, quem é dono e como as partes se ligam**, e diz de onde veio cada resposta, para o agente citar em vez de supor.
+Agentes de IA que planejam, especificam e constroem software numa empresa não sabem o que já existe nela. Sem esse contexto, cada iniciativa começa do zero: o agente supõe a stack, inventa integrações, assume um provedor de nuvem que a empresa não usa e deixa em branco quem é dono do quê.
+
+O primeiro reflexo é dar ao agente acesso aos repositórios e deixar que ele leia. Não funciona:
+
+- **Escala e custo.** Uma organização tem centenas de repositórios. Cada pergunta viraria uma varredura, e o contexto do agente é o recurso mais caro que há.
+- **O código não diz tudo.** A versão efetiva de cada dependência, a interface depois das anotações e configurações, a coleção realmente mapeada: isso só se resolve no build. O que está em produção, e em que versão, não está no código.
+- **Há peças que não aparecem em código.** Gateways, brokers, bancos gerenciados e compartilhados, regras de roteamento: existem na plataforma, em manifestos de infraestrutura ou num CMDB, muitas vezes em nenhum repositório que o time veja.
+- **A organização não está no código.** Em que time uma pessoa está, como os times se agrupam e quem é dono de cada componente vive no diretório corporativo e no catálogo de serviços.
+
+E o que o agente deduz lendo é um palpite sem proveniência: ele não sabe dizer de onde tirou, nem separar o que viu do que supôs. A wiki e os golden paths respondem **como se deve fazer**. Falta quem responda **o que existe, quem é dono e como as partes se ligam**, de um jeito que o agente possa **citar em vez de supor**.
+
+Um exemplo do contexto que faz diferença: ao atender uma pessoa, o agente precisa saber em que time ela trabalha, onde esse time está na organização e quais componentes são relevantes para ela: o que o time é dono, o que esses componentes consomem, quem os consome, que bancos e eventos tocam. Com isso, uma iniciativa nova já nasce ligada ao que existe.
+
+## A proposta
+
+O Panorama Graph é um **grafo da arquitetura e da estrutura organizacional**, alimentado pelas fontes que a organização já tem e consultado pelos agentes por operações feitas para eles.
+
+**Por que um grafo.** As perguntas que importam são perguntas de relação e de caminho: "o que é relevante para esta pessoa" atravessa pessoa, time, componentes do time, APIs que eles oferecem e quem as consome; "quais frontends dependem de X" passa por intermediários; "quem mais acessa este banco" parte de um recurso e volta aos componentes. Num grafo, a vizinhança de um nó e o caminho entre dois nós são as operações naturais. E várias fontes falam do mesmo nó (o catálogo diz quem é o dono, o build diz o que o componente consome, o cluster diz onde ele roda): num grafo cada fonte grava a sua própria relação, lado a lado com as outras, e a divergência fica visível.
+
+**Por que não entregar o banco ao agente.** Um banco de grafo com uma linguagem de consulta parece flexível, mas o agente gasta contexto descobrindo o esquema, erra a consulta, traz resultados grandes demais e não aplica as regras que tornam a resposta correta: o que ainda vale e o que já saiu, a versão que roda em cada ambiente, a proveniência de cada fato. Por isso o grafo oferece **operações com nome, parâmetros e resposta definidos**, uma para cada tipo de pergunta, servidas por MCP aos agentes e por REST a qualquer outro consumidor. Cada operação já aplica vigência, ambiente e limite de tamanho, e devolve a fonte de cada relação. A consulta livre existe, só de leitura e cercada, como válvula de escape para o que nenhuma operação cobre.
+
+O agente não ganha um banco. Ganha algo mais parecido com um colega que responde perguntas e diz de onde tirou cada resposta.
+
+### O que ele guarda e como se comporta
 
 - **Visão dos times:** níveis da organização, grupos e pessoas, e quem é dono de cada domínio, sistema, componente e API.
 - **Visão da arquitetura:** domínios, sistemas e componentes; APIs, endpoints, eventos e contratos; bancos e quem os acessa; bibliotecas e tecnologias; rotas de entrada e o que roda, em que versão, em cada ambiente.
-- **Operações estruturadas:** consultas com nome, parâmetros e resposta definidos num contrato versionado, em vez de texto livre. As respostas são pequenas e diretas, pensadas para caber no contexto de um agente. Para o que nenhuma consulta cobre, há o `graph_query`, em Cypher só de leitura.
-- **Citação da fonte em cada afirmação:** toda relação traz uma afirmação por fonte, com a fonte, a evidência (`repo@sha:caminho`), o estado (`observed`, `inferred` ou `confirmed`), se ainda vale (`current` ou `stale`) e quando foi vista. Fato sem proveniência é recusado na entrada.
+- **Citação da fonte em cada afirmação:** toda relação traz uma afirmação por fonte, com a evidência (`repo@sha:caminho`), o estado (`observed`, `inferred` ou `confirmed`), se ainda vale (`current` ou `stale`) e quando foi vista. Fato sem proveniência é recusado na entrada.
 - **Fontes que discordam ficam lado a lado:** uma fonte não sobrescreve a outra, e a divergência entre elas é consultável (`fact_divergences`).
 - **Retrato atual que se corrige sozinho:** cada fonte envia o retrato completo do seu escopo, e o que deixou de ser afirmado vira `stale`, com a última data vista, em vez de ficar no grafo como se ainda valesse.
 - **Dependência separada do caminho de rede:** quem depende de quem (`CONSUMES`, `CALLS`) não se confunde com por onde a requisição passa (`ROUTES`), e um gateway no meio não esconde a dependência real.
 - **Alimentado pelo que já existe:** os dados vêm do build (plugin Gradle, SBOM, OpenAPI, AsyncAPI, Pact), do cluster e dos exports da organização, por adaptadores à parte. O que um agente deduz entra como `inferred` e nunca vira verdade sozinho.
-- **Também para pessoas:** um console mostra o mesmo grafo, com as fontes e as divergências, para quem precisa conferir e confiar no que os agentes consultam.
+- **Também para pessoas:** um console web mostra o mesmo grafo, com as fontes e as divergências, para quem precisa conferir e confiar no que os agentes consultam.
 
 O que ele não é (portal de desenvolvedor, APM, CMDB, catálogo de dados) e as inspirações estão no [PROPOSITO.md](api/PROPOSITO.md).
 
@@ -51,7 +73,7 @@ As mesmas operações estão no MCP (`/mcp`) e no REST (`POST /v1/queries/<opera
 
 ## O repositório
 
-Tudo fica neste repositório, um workspace do Bun: uma mudança no modelo chega à API, ao SDK, aos adaptadores e ao console no mesmo commit.
+O repositório é um workspace do Bun com a API, o console, o SDK e os adaptadores. Uma mudança no modelo chega a todos eles no mesmo commit.
 
 | Pasta | O que é |
 |---|---|
@@ -95,7 +117,7 @@ A API ainda não tem autenticação (está no [roadmap](ROADMAP.md)): exponha-a 
 
 ## Licença
 
-[Sustainable Use License 1.0](LICENSE), que vale para todo o repositório, inclusive o SDK publicado. Empresas podem usar e modificar o grafo para os próprios fins internos, e qualquer pessoa pode usá-lo para fins pessoais ou não comerciais. Vender o grafo, ou oferecê-lo a terceiros como produto ou serviço pago, não é permitido. A redistribuição só pode ser gratuita e para fins não comerciais, sempre com a licença junto.
+Todo o repositório, inclusive o SDK publicado, está sob a [Sustainable Use License 1.0](LICENSE). Em resumo: você pode usar e modificar o Panorama Graph dentro da sua organização, ou para uso pessoal e não comercial, sem pagar nada. O que a licença não permite é vendê-lo ou oferecê-lo a terceiros como produto ou serviço. Se redistribuir, faça-o de graça, para fins não comerciais, mantendo a licença e os avisos de autoria. O texto completo, que é o que vale, está no arquivo [LICENSE](LICENSE).
 
 ## Desenvolver
 
@@ -105,4 +127,4 @@ bun run lint         # tsc em todos os projetos
 bun run test         # testes de todos os projetos (a API precisa do Neo4j de teste: bun run test:db:up em api/)
 ```
 
-Cada projeto também roda sozinho na própria pasta (`bun run lint`, `bun test`, `bun run dev`). O `gradle-plugin` usa o próprio wrapper (`./gradlew build`).
+Para trabalhar num projeto só, entre na pasta dele e use os mesmos comandos (`bun run lint`, `bun test`, `bun run dev`). O `gradle-plugin` fica fora do workspace e tem o próprio wrapper: `./gradlew build`.
