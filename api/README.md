@@ -63,7 +63,7 @@ O cliente decide pelo `code`, não pela mensagem. Um código novo é mudança co
 
 ## Ingestão
 
-O modelo (tipos de nó e de relação, pares válidos, formato das chaves) está em `GET /v1/schema` e, para leitura, no [MODELO.md](MODELO.md), com o que é fixo, o que é livre e como o modelo muda.
+O modelo (tipos de nó e de relação, pares válidos, formato das chaves) está em `GET /v1/schema` e, para leitura, no [MODELO.md](MODELO.md), com o que é fixo, o que é livre e como o modelo muda. Para escrever um adaptador sem o SDK (o ciclo de uma carga, as receitas de chave e um exemplo de cada relação), veja o [ADAPTADOR.md](ADAPTADOR.md).
 
 | Endpoint | O que faz |
 |---|---|
@@ -81,8 +81,8 @@ POST /v1/ingest
   "evidenceBase": "https://pact-broker.example.com/pacts/provider/product-api/consumer/checkout-api",
   "nodes": [],
   "relations": [
-    { "type": "CONSUMES", "from": "component:checkout-api", "to": "api:product-api/http" },
-    { "type": "CALLS", "from": "component:checkout-api", "to": "endpoint:product-api/GET /products/{id}",
+    { "type": "CONSUMES", "from": "component:example/checkout/checkout-api", "to": "api:product-api/http" },
+    { "type": "CALLS", "from": "component:example/checkout/checkout-api", "to": "endpoint:product-api/GET /products/{}",
       "evidence": "#interaction-1" }
   ]
 }

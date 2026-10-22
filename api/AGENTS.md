@@ -13,7 +13,7 @@ Este arquivo diz **como trabalhar** na API. As regras do repositório inteiro es
 - **Produto à parte.** Não depende de nenhum consumidor nem do ACME Bank. Nada específico de uma organização entra no código: o ACME Bank é só dado.
 - **Base e API, sem carga.** Leitura de fontes (GitLab, Pact, SBOM, Kubernetes...) é adaptador, em [adapters/](https://github.com/panorama-graph/adapters/blob/main/AGENTS.md). Aqui só se guarda, valida e serve fatos.
 - **As regras de [proveniência e ciclo de vida](PROVENIENCIA.md) são contrato.** Fato sem `source`, `evidence`, `state` e `observedAt` é recusado; `inferred` nunca derruba `observed`; só uma pessoa confirma.
-- **O modelo é fechado.** Um tipo de nó ou de relação novo é uma mudança versionada do modelo e nunca algo aceito de um adaptador. A mudança passa por `src/model/model.ts`, sobe `MODEL_VERSION`, regera o [MODELO.md](MODELO.md) (`bun run modelo:write`, a referência para quem adota), com a versão registrada na tabela de versões do modelo, na mesma entrega.
+- **O modelo é fechado.** Um tipo de nó ou de relação novo é uma mudança versionada do modelo e nunca algo aceito de um adaptador. A mudança passa por `src/model/model.ts`, sobe `MODEL_VERSION`, regera o [MODELO.md](MODELO.md) (`bun run modelo:write`, a referência para quem adota), com a versão registrada na tabela de versões do modelo, na mesma entrega. Relação nova ou par novo ganha o exemplo de carga em `scripts/adaptador.ts` e o [ADAPTADOR.md](ADAPTADOR.md) regerado (`bun run adaptador:write`); o teste recusa relação ou par sem exemplo.
 - **Tipos no Cypher só pelo modelo.** Labels e tipos de relação são interpolados no Cypher (sem APOC), o que só é seguro porque vêm da lista fechada de `model.ts`. Nunca interpole texto vindo do payload.
 - **Código fora do grafo.** Só ponteiros `repo@sha:caminho:linha` como evidência.
 - **Consulta sempre com os fatos.** Toda relação devolvida por uma ferramenta traz as afirmações (`facts`) com a proveniência, uma por fonte e escopo. Nunca colapse fontes nem esconda a divergência para deixar a resposta mais leve. `stale` só vem com `includeStale`.
@@ -42,7 +42,7 @@ Este arquivo diz **como trabalhar** na API. As regras do repositório inteiro es
 | `src/mcp/` | Servidor MCP (`server.ts`, que registra as ferramentas de `query/tools.ts`) e a rota `POST /mcp` (`route.ts`), por Streamable HTTP sem sessão. |
 | `src/api/` | Rotas REST: saúde e, em `/v1` (`rest.ts`), `/schema`, `/ingest`, `/nodes` e `/queries` (o contrato e as consultas, com CORS só para `CORS_ORIGINS`). O OpenAPI fica em `/v1/openapi.json`. |
 | `src/errors.ts` | `ApiError(status, mensagem, detalhes, código)`, os códigos estáveis (`ErrorCode`) e o formato único do erro (`errorBody`), usado pelo REST e pelo MCP. |
-| `contract/`, `scripts/` | Snapshots do contrato das consultas por versão (`contract.ts`, `bun run contract:write`) e do OpenAPI do REST (`openapi.ts`, `bun run openapi:write`), o gerador do SDK (`sdk.ts`, `bun run sdk:generate`) e as tabelas do MODELO.md (`modelo.ts`, `bun run modelo:write`). |
+| `contract/`, `scripts/` | Snapshots do contrato das consultas por versão (`contract.ts`, `bun run contract:write`) e do OpenAPI do REST (`openapi.ts`, `bun run openapi:write`), o gerador do SDK (`sdk.ts`, `bun run sdk:generate`) as tabelas do MODELO.md (`modelo.ts`, `bun run modelo:write`) e o catálogo de relações do ADAPTADOR.md (`adaptador.ts`, `bun run adaptador:write`). |
 | `test/` | Testes (`bun test`). `setup.ts` é carregado antes de todos. |
 
 ## Como o grafo guarda os fatos

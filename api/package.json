@@ -12,7 +12,8 @@
     "contract:write": "bun scripts/contract.ts",
     "openapi:write": "bun scripts/openapi.ts",
     "sdk:generate": "bun scripts/sdk.ts",
-    "modelo:write": "bun scripts/modelo.ts"
+    "modelo:write": "bun scripts/modelo.ts",
+    "adaptador:write": "bun scripts/adaptador.ts"
   },
   "dependencies": {
     "@fastify/swagger": "^8.15.0",

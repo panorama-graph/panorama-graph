@@ -171,7 +171,7 @@ docker compose run --rm carga             # envia; a API valida cada retrato con
 
 Abra o console e busque `product-api`: a ficha mostra o dono, o consumidor e o banco, e o selo de fontes mostra as três fontes. Quando um adaptador passar a cobrir um assunto, o retrato correspondente sai do YAML (com as listas vazias, enviado uma última vez) e os fatos manuais viram `stale`.
 
-Sem o `graph-seed`, o mesmo retrato vai em JSON para `POST /v1/ingest` (veja o [README da API](api/README.md#ingestão)).
+Sem o `graph-seed`, o mesmo retrato vai em JSON para `POST /v1/ingest`: o [ADAPTADOR.md](api/ADAPTADOR.md) mostra o formato e um exemplo de carga para cada relação.
 
 ## Desenvolver
 

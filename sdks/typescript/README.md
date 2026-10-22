@@ -45,7 +45,7 @@ const snapshot: Snapshot = {
 await graph.ingest(snapshot);
 ```
 
-As receitas de chave (`componentKey`, `endpointKey`, `libraryKey`...) são as mesmas em todos os produtores: com elas, fatos de fontes diferentes caem no mesmo nó. APIs e tópicos versionados seguem uma convenção, com funções próprias: `pathVersion` (o primeiro segmento do caminho), `splitServiceVersion` (o nome do serviço exposto na infraestrutura, `servico-xpto-v2`), `topicVersion` e `normalizeInterfaceVersion` (`1` e `V1` viram `v1`). `httpApiKey` recebe a versão da API; `endpointKey`, só a do código, nunca a do host (veja [Versões de APIs e tópicos](../../api/MODELO.md#versões-de-apis-e-tópicos)). `nodeTypeFromKey` diz o tipo do nó pelo prefixo, segundo o modelo (`NODE_TYPES`).
+As receitas de chave (`componentKey`, `endpointKey`, `libraryKey`...) são as mesmas em todos os produtores: com elas, fatos de fontes diferentes caem no mesmo nó. APIs e tópicos versionados seguem uma convenção, com funções próprias: `pathVersion` (o primeiro segmento do caminho), `splitServiceVersion` (o nome do serviço exposto na infraestrutura, `servico-xpto-v2`), `topicVersion` e `normalizeInterfaceVersion` (`1` e `V1` viram `v1`). `httpApiKey` recebe a versão da API; `endpointKey`, só a do código, nunca a do host (veja [Versões de APIs e tópicos](../../api/MODELO.md#versões-de-apis-e-tópicos)). `nodeTypeFromKey` diz o tipo do nó pelo prefixo, segundo o modelo (`NODE_TYPES`). Os casos de [sdks/key-recipes.json](../key-recipes.json) são o contrato das receitas: o SDK se confere contra eles, e um SDK em outra linguagem também.
 
 ## Erros
 

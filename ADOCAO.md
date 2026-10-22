@@ -33,7 +33,7 @@ Fatos de fontes diferentes só se encontram quando chegam à mesma chave. Antes 
 | **Identificadores de grupos e pessoas** | O identificador curto da fonte (`group:<id>`, `person:<login>`) | Os donos do catálogo (`OWNED_BY`) apontam para os grupos do diretório |
 | **Fonte de cada assunto** | O sistema de onde o fato vem (`directory`, `service-catalog`), e não quem o carrega | Quem consulta vê a fonte de cada fato. A carga à mão usa desde já a fonte do adaptador que vai substituí-la |
 
-As receitas de todas as chaves estão no [MODELO.md](api/MODELO.md#receitas-de-chave). Um adaptador próprio as obtém do SDK (`@panorama-graph/sdk`), e não as monta à mão.
+As receitas de todas as chaves estão no [MODELO.md](api/MODELO.md#receitas-de-chave). Um adaptador próprio as obtém do SDK (`@panorama-graph/sdk`), e não as monta à mão; sem o SDK, segue as regras do [ADAPTADOR.md](api/ADAPTADOR.md#receitas-de-chave).
 
 ## 2. Preparar a instalação
 
@@ -180,7 +180,7 @@ Para as fontes que só a organização tem (diretório de pessoas, catálogo, CM
 
 Adaptador pronto, ele substitui a carga à mão do mesmo assunto: o retrato correspondente sai do YAML. Como os dois usam a mesma fonte e o mesmo escopo, o primeiro envio do adaptador já substitui o retrato manual; se a fonte ou o escopo mudarem, envie o retrato antigo uma última vez com as listas vazias, para os fatos manuais virarem `stale`.
 
-Uma linguagem diferente de TypeScript também serve: o contrato é o `POST /v1/ingest` e o modelo em `GET /v1/schema`. Sem o SDK, porém, as receitas de chave precisam ser reproduzidas exatamente.
+Uma linguagem diferente de TypeScript também serve: o contrato é o `POST /v1/ingest` e o modelo em `GET /v1/schema`. Sem o SDK, as receitas de chave precisam ser reproduzidas exatamente: o [ADAPTADOR.md](api/ADAPTADOR.md) traz o ciclo de uma carga, as receitas como regras (com os casos de teste em [sdks/key-recipes.json](sdks/key-recipes.json)) e um exemplo de carga para cada relação.
 
 ## 5. Conferir
 

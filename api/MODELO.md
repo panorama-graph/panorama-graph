@@ -133,7 +133,7 @@ Os pares são validados pelo tipo do nó, e não pelo `kind`: `ROUTES` exige um 
 
 ### Receitas de chave
 
-Fontes diferentes só falam do mesmo nó se usarem a mesma chave. O [SDK](../sdks/typescript/README.md) tem as receitas (`@panorama-graph/sdk`, `keys`), e os adaptadores as usam. Ao montar retratos à mão, siga as mesmas:
+Fontes diferentes só falam do mesmo nó se usarem a mesma chave. O [SDK](../sdks/typescript/README.md) tem as receitas (`@panorama-graph/sdk`, `keys`), e os adaptadores as usam. Ao montar retratos à mão, siga as mesmas; sem o SDK, as regras de normalização e os casos de teste estão no [ADAPTADOR.md](ADAPTADOR.md#receitas-de-chave):
 
 | Nó | Chave | Exemplo |
 |---|---|---|
@@ -207,7 +207,7 @@ Uma chave diferente para a mesma coisa vira um nó duplicado. Ele se resolve com
 | Infraestrutura | `Environment`, `Resource`, `IN_ENVIRONMENT`, `RUNS`, `INSTANCE_OF`, `ROUTES`, `REACHES_VIA` | Os manifestos do cluster. Sem adaptador do produto: um adaptador próprio (o `example-seed` é o modelo) ou o `graph-seed` |
 | Configuração de cada serviço | `USES_RESOURCE`, `HOSTED_ON` (banco no servidor, tópico no broker) | A configuração de implantação. Sem adaptador: `graph-seed` |
 
-O uso de cada adaptador está no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Uma fonte que nenhum adaptador lê entra por um adaptador próprio da organização (o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed) é o ponto de partida: lê os exports, traduz com as receitas do SDK e publica), pelo `graph-seed` (YAML) ou direto pelo `POST /v1/ingest` (veja o [README da API](README.md#ingestão)).
+O uso de cada adaptador está no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Uma fonte que nenhum adaptador lê entra por um adaptador próprio da organização (o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed) é o ponto de partida: lê os exports, traduz com as receitas do SDK e publica), pelo `graph-seed` (YAML) ou direto pelo `POST /v1/ingest` (veja o [ADAPTADOR.md](ADAPTADOR.md), com um exemplo de carga para cada relação).
 
 ## Quando algo não cabe no modelo
 

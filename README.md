@@ -93,6 +93,7 @@ O que alimenta o grafo fica em repositórios próprios, que dependem só do que 
 - [MODELO.md](api/MODELO.md): nós e relações, o que é fixo e o que é livre, e o que fazer quando algo não cabe.
 - [ROADMAP.md](ROADMAP.md): o que já existe e o que vem pela frente.
 - [PROVENIENCIA.md](api/PROVENIENCIA.md): as regras de proveniência e ciclo de vida dos fatos.
+- [ADAPTADOR.md](api/ADAPTADOR.md): escrever um adaptador sem o SDK, com as receitas de chave e um exemplo de carga para cada relação.
 - [PROPOSITO.md](api/PROPOSITO.md): por que existe e o que não é.
 - [ADOCAO.md](ADOCAO.md): levar o grafo a uma organização (convenções, ordem de implantação, pipeline, cluster e conferência).
 - [AGENTS.md](AGENTS.md): como trabalhar no repositório.
