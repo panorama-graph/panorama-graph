@@ -1,0 +1,4 @@
+# Dependências içadas para a raiz, como em cada projeto antes do workspace: os projetos usam pacotes que chegam
+# por outros (ex.: bun-types, pelo @types/bun).
+[install]
+linker = "hoisted"

@@ -1,0 +1,62 @@
+{
+    "format": "panorama-graph-data-access/2",
+    "datasets": [
+        {
+            "name": "products",
+            "store": "document",
+            "kind": "collection",
+            "type": "org.acme.credit.productcatalog.product.out.persistence.entity.ProductDocument",
+            "declaredIn": "project",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/entity/ProductDocument.java"
+        },
+        {
+            "name": "sequences",
+            "store": "document",
+            "kind": "collection",
+            "type": "org.acme.credit.productcatalog.product.out.persistence.entity.ProductCodeSequenceDocument",
+            "declaredIn": "project",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/entity/ProductCodeSequenceDocument.java"
+        }
+    ],
+    "accesses": [
+        {
+            "dataset": "sequences",
+            "store": "document",
+            "operation": "read-write",
+            "via": "org.springframework.data.mongodb.core.MongoTemplate#findAndModify",
+            "caller": "org.acme.credit.productcatalog.product.out.persistence.MongoProductCodeGenerator#nextCode",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/MongoProductCodeGenerator.java",
+            "line": 31
+        },
+        {
+            "dataset": "products",
+            "store": "document",
+            "operation": "write",
+            "via": "org.acme.credit.productcatalog.product.out.persistence.springdata.SpringDataProductRepository#save",
+            "caller": "org.acme.credit.productcatalog.product.out.persistence.MongoProductRepository#save",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/MongoProductRepository.java",
+            "line": 24
+        },
+        {
+            "dataset": "products",
+            "store": "document",
+            "operation": "read",
+            "via": "org.acme.credit.productcatalog.product.out.persistence.springdata.SpringDataProductRepository#findById",
+            "caller": "org.acme.credit.productcatalog.product.out.persistence.MongoProductRepository#findById",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/MongoProductRepository.java",
+            "line": 29
+        },
+        {
+            "dataset": "products",
+            "store": "document",
+            "operation": "read",
+            "via": "org.springframework.data.mongodb.core.MongoTemplate#find",
+            "caller": "org.acme.credit.productcatalog.product.out.persistence.springdata.SpringDataProductRepositoryImpl#findSlice",
+            "source": "src/main/java/org/acme/credit/productcatalog/product/out/persistence/springdata/SpringDataProductRepositoryImpl.java",
+            "line": 33
+        }
+    ],
+    "unresolved": [
+        
+    ]
+}

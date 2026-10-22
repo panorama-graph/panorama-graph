@@ -1,0 +1,64 @@
+# Inventário da infraestrutura compartilhada, como o time de plataforma o mantém: os ambientes, o cluster e o
+# namespace de cada um, o que a plataforma instala em todos eles e as rotas de entrada. Cada item diz onde o
+# cluster o declara (workload, variável), e é isso que vira a evidência do fato.
+# O dev reproduz a infraestrutura compartilhada e o ingress-nginx do cluster de desenvolvimento; stage e prd espelham o dev.
+environments:
+  - { name: dev, stage: development, description: Desenvolvimento, cluster: acme-dev, namespace: dev }
+  - { name: stage, stage: staging, description: Homologação, cluster: acme-stage, namespace: stage }
+  - { name: prd, stage: production, description: Produção, cluster: acme-prd, namespace: prd }
+
+# O mesmo conjunto em todos os ambientes.
+services:
+  - name: mongodb
+    type: database-server
+    description: MongoDB
+    engine: { name: mongodb, version: "8.0" }
+    workload: statefulsets/mongodb
+    component: acme/infra/mongodb
+
+  - name: postgresql
+    type: database-server
+    description: PostgreSQL das aplicações (um schema por serviço)
+    engine: { name: postgresql, version: "17" }
+    workload: statefulsets/postgresql
+    component: acme/infra/postgresql
+    databases:
+      - { name: acme, description: "Banco das aplicações, um schema por serviço", declaredIn: "statefulsets/postgresql#env.POSTGRES_DB" }
+
+  - name: kafka
+    type: broker
+    description: Kafka
+    engine: { name: kafka, version: "7.7.1" }
+    workload: statefulsets/kafka
+    component: acme/infra/kafka
+
+  - name: redis
+    type: cache
+    description: Redis das aplicações (cache, idempotência e limite de taxa)
+    engine: { name: redis, version: "7.4" }
+    workload: statefulsets/redis
+    component: acme/infra/redis
+
+  - name: ingress-nginx
+    type: ingress
+    description: Ingress controller (classe nginx)
+    engine: { name: ingress-nginx }
+    namespace: ingress-nginx
+    workload: deployments/ingress-nginx-controller
+
+  - name: apicurio-postgresql
+    type: database-server
+    description: PostgreSQL do Apicurio Registry e do execution-plane
+    engine: { name: postgresql, version: "17" }
+    workload: statefulsets/apicurio-postgresql
+    component: acme/infra/postgresql
+    databases:
+      - name: executionplanedb
+        description: Banco do execution-plane (schema execution_plane)
+        declaredIn: "jobs/execution-plane-postgresql-bootstrap#env.APP_DB_NAME"
+        hostDeclaredIn: "jobs/execution-plane-postgresql-bootstrap#env.BOOTSTRAP_HOST"
+
+# Rotas de entrada em cada ambiente; {environment} vira o nome do ambiente.
+routes:
+  - { ingress: ingress-nginx, name: product-catalog-api, host: "product-catalog-api.{environment}.acmebank.example", path: /, component: acme/credito/product-catalog-api }
+  - { ingress: ingress-nginx, name: loan-simulation-api, host: "loan-simulation-api.{environment}.acmebank.example", path: /, component: acme/credito/loan-simulation-api }

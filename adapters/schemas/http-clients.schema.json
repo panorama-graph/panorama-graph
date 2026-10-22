@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:panorama-graph:format:panorama-graph-http-clients:2",
+  "title": "Clientes HTTP do componente",
+  "description": "http-clients.json: os clientes HTTP declarados no código e as operações que cada um chama. Lista vazia é afirmação: o componente não chama ninguém.",
+  "type": "object",
+  "required": ["format", "clients"],
+  "properties": {
+    "format": { "const": "panorama-graph-http-clients/2" },
+    "clients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["group", "operations"],
+        "properties": {
+          "group": { "type": "string", "minLength": 1, "description": "Nome do destino na infraestrutura (ex.: product-api-v1)" },
+          "service": { "type": "string", "minLength": 1, "description": "Serviço de destino, sem a versão que vai no host; liga o cliente à API. Sem ele, vale `group`" },
+          "version": { "type": "string", "description": "Versão que vai no host, quando há (1 ou v1); com `service`, liga o cliente à API daquela versão" },
+          "type": { "type": "string", "description": "Tipo do cliente no código (ex.: com.example.checkout.CatalogClient)" },
+          "source": { "type": "string", "description": "Arquivo do cliente, relativo à raiz do repositório; é a evidência das relações. Sem ele, a evidência é o ponto do artefato" },
+          "baseUrlProperty": { "type": "string", "description": "Propriedade de configuração com a URL base" },
+          "operations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["method", "path"],
+              "properties": {
+                "method": { "type": "string", "pattern": "^[A-Za-z]+$", "description": "Método HTTP" },
+                "path": { "type": "string", "pattern": "^/", "description": "Caminho com variáveis entre chaves (ex.: /products/{id})" },
+                "version": { "type": "string", "description": "Versão da API no código que a operação chama (2 ou v2), quando o caminho não a traz (cabeçalho, media type...). Sem ela, vale o primeiro segmento do caminho (/v2/...)" },
+                "function": { "type": "string", "description": "Função ou método do cliente que faz a chamada" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

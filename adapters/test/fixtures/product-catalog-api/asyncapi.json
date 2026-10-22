@@ -1,0 +1,268 @@
+{
+  "asyncapi": "3.1.0",
+  "info": {
+    "title": "product-catalog",
+    "version": "unspecified",
+    "x-generator": "springwolf"
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "credit.product-catalog.product-created": {
+      "address": "credit.product-catalog.product-created",
+      "messages": {
+        "org.acme.credit.productcatalog.product.event.ProductCreatedEvent": {
+          "$ref": "#/components/messages/org.acme.credit.productcatalog.product.event.ProductCreatedEvent"
+        }
+      },
+      "bindings": { }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HeadersNotDocumented": {
+        "title": "HeadersNotDocumented",
+        "type": "object",
+        "properties": { },
+        "description": "There can be headers, but they are not explicitly documented.",
+        "examples": [
+          { }
+        ]
+      },
+      "org.acme.credit.productcatalog.product.event.ProductCreatedEvent": {
+        "title": "ProductCreatedEvent",
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string"
+          },
+          "occurredAt": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/org.acme.credit.productcatalog.product.event.ProductEventProductPayload"
+          }
+        },
+        "examples": [
+          {
+            "eventId": "string",
+            "occurredAt": "string",
+            "product": {
+              "amortizationMethods": [
+                "SAC"
+              ],
+              "capitalizationRegime": "PRE_FIXED",
+              "code": 0,
+              "description": "string",
+              "gracePeriodDays": {
+                "max": 0,
+                "min": 0
+              },
+              "id": "string",
+              "indexer": "IPCA",
+              "name": "string",
+              "periodicities": [
+                "MONTHLY"
+              ],
+              "productType": "INSTALLMENT_LOAN",
+              "requestedAmount": {
+                "max": "string",
+                "min": "string"
+              },
+              "status": "DRAFT",
+              "termMonths": {
+                "max": 0,
+                "min": 0
+              }
+            }
+          }
+        ]
+      },
+      "org.acme.credit.productcatalog.product.event.ProductEventAmountRangePayload": {
+        "title": "ProductEventAmountRangePayload",
+        "type": "object",
+        "properties": {
+          "max": {
+            "type": "string"
+          },
+          "min": {
+            "type": "string"
+          }
+        },
+        "examples": [
+          {
+            "max": "string",
+            "min": "string"
+          }
+        ]
+      },
+      "org.acme.credit.productcatalog.product.event.ProductEventIntegerRangePayload": {
+        "title": "ProductEventIntegerRangePayload",
+        "type": "object",
+        "properties": {
+          "max": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "min": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "examples": [
+          {
+            "max": 0,
+            "min": 0
+          }
+        ]
+      },
+      "org.acme.credit.productcatalog.product.event.ProductEventProductPayload": {
+        "title": "ProductEventProductPayload",
+        "type": "object",
+        "properties": {
+          "amortizationMethods": {
+            "title": "List",
+            "type": "array",
+            "items": {
+              "title": "ProductEventAmortizationMethod",
+              "type": "string",
+              "enum": [
+                "SAC",
+                "PRICE",
+                "SAM"
+              ]
+            }
+          },
+          "capitalizationRegime": {
+            "title": "ProductEventCapitalizationRegime",
+            "type": "string",
+            "enum": [
+              "PRE_FIXED",
+              "POST_FIXED"
+            ]
+          },
+          "code": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "description": {
+            "type": "string"
+          },
+          "gracePeriodDays": {
+            "$ref": "#/components/schemas/org.acme.credit.productcatalog.product.event.ProductEventIntegerRangePayload"
+          },
+          "id": {
+            "type": "string"
+          },
+          "indexer": {
+            "title": "ProductEventIndexer",
+            "type": "string",
+            "enum": [
+              "IPCA",
+              "SELIC",
+              "CDI",
+              "TR"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "periodicities": {
+            "title": "List",
+            "type": "array",
+            "items": {
+              "title": "ProductEventInstallmentPeriodicity",
+              "type": "string",
+              "enum": [
+                "MONTHLY",
+                "QUARTERLY",
+                "ANNUAL"
+              ]
+            }
+          },
+          "productType": {
+            "title": "ProductEventProductType",
+            "type": "string",
+            "const": "INSTALLMENT_LOAN"
+          },
+          "requestedAmount": {
+            "$ref": "#/components/schemas/org.acme.credit.productcatalog.product.event.ProductEventAmountRangePayload"
+          },
+          "status": {
+            "title": "ProductEventStatus",
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "ACTIVE",
+              "DELETED"
+            ]
+          },
+          "termMonths": {
+            "$ref": "#/components/schemas/org.acme.credit.productcatalog.product.event.ProductEventIntegerRangePayload"
+          }
+        },
+        "examples": [
+          {
+            "amortizationMethods": [
+              "SAC"
+            ],
+            "capitalizationRegime": "PRE_FIXED",
+            "code": 0,
+            "description": "string",
+            "gracePeriodDays": {
+              "max": 0,
+              "min": 0
+            },
+            "id": "string",
+            "indexer": "IPCA",
+            "name": "string",
+            "periodicities": [
+              "MONTHLY"
+            ],
+            "productType": "INSTALLMENT_LOAN",
+            "requestedAmount": {
+              "max": "string",
+              "min": "string"
+            },
+            "status": "DRAFT",
+            "termMonths": {
+              "max": 0,
+              "min": 0
+            }
+          }
+        ]
+      }
+    },
+    "messages": {
+      "org.acme.credit.productcatalog.product.event.ProductCreatedEvent": {
+        "headers": {
+          "$ref": "#/components/schemas/HeadersNotDocumented"
+        },
+        "payload": {
+          "schemaFormat": "application/vnd.aai.asyncapi+json;version=3.1.0",
+          "schema": {
+            "$ref": "#/components/schemas/org.acme.credit.productcatalog.product.event.ProductCreatedEvent"
+          }
+        },
+        "name": "org.acme.credit.productcatalog.product.event.ProductCreatedEvent",
+        "title": "ProductCreatedEvent",
+        "bindings": { }
+      }
+    }
+  },
+  "operations": {
+    "credit.product-catalog.product-created_send_publish": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/credit.product-catalog.product-created"
+      },
+      "title": "credit.product-catalog.product-created_send",
+      "description": "Produto criado no catalogo",
+      "bindings": { },
+      "messages": [
+        {
+          "$ref": "#/channels/credit.product-catalog.product-created/messages/org.acme.credit.productcatalog.product.event.ProductCreatedEvent"
+        }
+      ]
+    }
+  }
+}

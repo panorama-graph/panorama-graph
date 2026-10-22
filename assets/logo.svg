@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" role="img" aria-label="Panorama Graph">
+  <g transform="translate(4 4)">
+    <path d="M5 55 Q32 45 59 55" fill="none" stroke="#93c5fd" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M10 40 L22 24 L32 33 L44 14 L55 32 L32 33" fill="none" stroke="#334155" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <g fill="#ffffff" stroke="#2563eb" stroke-width="3.5">
+      <circle cx="10" cy="40" r="4.5"/>
+      <circle cx="22" cy="24" r="4.5"/>
+      <circle cx="32" cy="33" r="4.5"/>
+      <circle cx="55" cy="32" r="4.5"/>
+    </g>
+    <circle cx="44" cy="14" r="6" fill="#2563eb"/>
+  </g>
+  <text x="80" y="47" font-family="Inter, Roboto, 'Segoe UI', system-ui, sans-serif" font-size="30" letter-spacing="-0.5">
+    <tspan font-weight="700" fill="#334155">Panorama</tspan><tspan font-weight="400" fill="#2563eb"> Graph</tspan>
+  </text>
+</svg>

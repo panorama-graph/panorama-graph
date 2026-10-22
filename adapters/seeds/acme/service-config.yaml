@@ -1,0 +1,57 @@
+# Recursos que cada serviço usa em cada ambiente, lidos da configuração implantada (valores do release Helm).
+# O dev transcreve o deploy/values-dev.yaml de cada serviço; stage e prd espelham o dev.
+snapshots:
+  - source: service-config
+    scope: { component: acme/credito/product-catalog-api, environment: dev }
+    evidenceBase: "helm://acme-dev/dev/product-catalog-api#"
+    nodes:
+      - { key: "resource:dev/mongodb/product-catalog", kind: database, name: product-catalog, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:dev/mongodb/product-catalog", to: "resource:dev/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:dev/mongodb/product-catalog", access: read-write, evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:dev/kafka", access: write, evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+      - { type: HOSTED_ON, from: "topic:credit.product-catalog.product-created", to: "resource:dev/kafka", evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+  - source: service-config
+    scope: { component: acme/credito/loan-simulation-api, environment: dev }
+    evidenceBase: "helm://acme-dev/dev/loan-simulation-api#"
+    nodes:
+      - { key: "resource:dev/mongodb/loan-simulation-api", kind: database, name: loan-simulation-api, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:dev/mongodb/loan-simulation-api", to: "resource:dev/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/loan-simulation-api", to: "resource:dev/mongodb/loan-simulation-api", access: read-write, evidence: env.MONGODB_URI }
+  - source: service-config
+    scope: { component: acme/credito/product-catalog-api, environment: stage }
+    evidenceBase: "helm://acme-stage/stage/product-catalog-api#"
+    nodes:
+      - { key: "resource:stage/mongodb/product-catalog", kind: database, name: product-catalog, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:stage/mongodb/product-catalog", to: "resource:stage/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:stage/mongodb/product-catalog", access: read-write, evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:stage/kafka", access: write, evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+      - { type: HOSTED_ON, from: "topic:credit.product-catalog.product-created", to: "resource:stage/kafka", evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+  - source: service-config
+    scope: { component: acme/credito/loan-simulation-api, environment: stage }
+    evidenceBase: "helm://acme-stage/stage/loan-simulation-api#"
+    nodes:
+      - { key: "resource:stage/mongodb/loan-simulation-api", kind: database, name: loan-simulation-api, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:stage/mongodb/loan-simulation-api", to: "resource:stage/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/loan-simulation-api", to: "resource:stage/mongodb/loan-simulation-api", access: read-write, evidence: env.MONGODB_URI }
+  - source: service-config
+    scope: { component: acme/credito/product-catalog-api, environment: prd }
+    evidenceBase: "helm://acme-prd/prd/product-catalog-api#"
+    nodes:
+      - { key: "resource:prd/mongodb/product-catalog", kind: database, name: product-catalog, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:prd/mongodb/product-catalog", to: "resource:prd/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:prd/mongodb/product-catalog", access: read-write, evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/product-catalog-api", to: "resource:prd/kafka", access: write, evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+      - { type: HOSTED_ON, from: "topic:credit.product-catalog.product-created", to: "resource:prd/kafka", evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+  - source: service-config
+    scope: { component: acme/credito/loan-simulation-api, environment: prd }
+    evidenceBase: "helm://acme-prd/prd/loan-simulation-api#"
+    nodes:
+      - { key: "resource:prd/mongodb/loan-simulation-api", kind: database, name: loan-simulation-api, evidence: env.MONGODB_URI }
+    relations:
+      - { type: HOSTED_ON, from: "resource:prd/mongodb/loan-simulation-api", to: "resource:prd/mongodb", evidence: env.MONGODB_URI }
+      - { type: USES_RESOURCE, from: "component:acme/credito/loan-simulation-api", to: "resource:prd/mongodb/loan-simulation-api", access: read-write, evidence: env.MONGODB_URI }

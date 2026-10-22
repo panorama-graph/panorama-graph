@@ -1,0 +1,233 @@
+{
+  "consumer": {
+    "name": "loan-simulation-api"
+  },
+  "interactions": [
+    {
+      "description": "a request to fetch a missing product",
+      "providerStates": [
+        {
+          "name": "product missing-product does not exist"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/products/missing-product"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "a request to fetch product product-1",
+      "providerStates": [
+        {
+          "name": "product product-1 exists"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/products/product-1"
+      },
+      "response": {
+        "body": {
+          "amortizationMethods": [
+            "SAC",
+            "PRICE"
+          ],
+          "capitalizationRegime": "POST_FIXED",
+          "code": 1001,
+          "description": "Produto inicial",
+          "gracePeriodDays": {
+            "max": 90,
+            "min": 30
+          },
+          "id": "product-1",
+          "indexer": "CDI",
+          "name": "Consignado INSS",
+          "periodicities": [
+            "MONTHLY",
+            "QUARTERLY"
+          ],
+          "productType": "INSTALLMENT_LOAN",
+          "requestedAmount": {
+            "max": 50000.0,
+            "min": 1000.0
+          },
+          "status": "DRAFT",
+          "termMonths": {
+            "max": 48,
+            "min": 6
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+            "$.amortizationMethods[0]": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "SAC|PRICE|SAM"
+                }
+              ]
+            },
+            "$.amortizationMethods[1]": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "SAC|PRICE|SAM"
+                }
+              ]
+            },
+            "$.capitalizationRegime": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.code": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            },
+            "$.description": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.gracePeriodDays.max": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.gracePeriodDays.min": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.indexer": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.periodicities[0]": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "MONTHLY|QUARTERLY|ANNUAL"
+                }
+              ]
+            },
+            "$.periodicities[1]": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "MONTHLY|QUARTERLY|ANNUAL"
+                }
+              ]
+            },
+            "$.productType": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.requestedAmount.max": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.requestedAmount.min": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.status": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.termMonths.max": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.termMonths.min": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.6.18"
+    },
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "product-catalog"
+  }
+}

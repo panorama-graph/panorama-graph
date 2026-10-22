@@ -1,0 +1,13 @@
+# O que a orders-api usa em dev, pelas variáveis de conexão dos values do Helm (só servidor e nome, sem credencial).
+snapshots:
+  - source: service-config
+    scope: { component: shop/orders-api, environment: dev }
+    evidenceBase: "shop/orders-api@3f2c9e1a7b5d4c3e2f1a0b9c8d7e6f5a4b3c2d1e:deploy/values-dev.yaml#"
+    nodes:
+      - { key: resource:dev/postgres/orders, kind: database, name: orders, evidence: env.SPRING_DATASOURCE_URL }
+    relations:
+      - { type: HOSTED_ON, from: resource:dev/postgres/orders, to: resource:dev/postgres, evidence: env.SPRING_DATASOURCE_URL }
+      - { type: USES_RESOURCE, from: component:shop/orders-api, to: resource:dev/postgres/orders, access: read-write, evidence: env.SPRING_DATASOURCE_URL }
+      - { type: USES_RESOURCE, from: component:shop/orders-api, to: resource:dev/kafka, access: read-write, evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+      - { type: HOSTED_ON, from: topic:shop.orders.order-placed, to: resource:dev/kafka, evidence: env.KAFKA_BOOTSTRAP_SERVERS }
+      - { type: HOSTED_ON, from: topic:shop.payments.payment-confirmed, to: resource:dev/kafka, evidence: env.KAFKA_BOOTSTRAP_SERVERS }

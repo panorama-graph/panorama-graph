@@ -1,0 +1,4920 @@
+{
+  "version": 1,
+  "tools": [
+    {
+      "name": "api_consumers",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "allVersions": {
+          "type": "boolean",
+          "required": false
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "endpoint": {
+          "type": "string",
+          "required": false
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "target": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ApiConsumersResult"
+      }
+    },
+    {
+      "name": "architecture_overview",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "component": {
+          "type": "string",
+          "required": false
+        },
+        "depth": {
+          "type": "number",
+          "required": false
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "required": false
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "team": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ArchitectureOverviewResult"
+      }
+    },
+    {
+      "name": "component_compare",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "component": {
+          "type": "string",
+          "required": true
+        },
+        "from": {
+          "type": "string",
+          "required": false
+        },
+        "to": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ComponentCompareResult"
+      }
+    },
+    {
+      "name": "component_dependencies",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "component": {
+          "type": "string",
+          "required": true
+        },
+        "depth": {
+          "type": "number",
+          "required": false
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "direction": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "both",
+            "in",
+            "out"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "kind": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "bff",
+            "frontend",
+            "infra",
+            "job",
+            "library",
+            "service"
+          ]
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ComponentDependenciesResult"
+      }
+    },
+    {
+      "name": "component_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "component": {
+          "type": "string",
+          "required": true
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ComponentGetResult"
+      }
+    },
+    {
+      "name": "component_libraries",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "component": {
+          "type": "string",
+          "required": true
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "transitive": {
+          "type": "boolean",
+          "required": false
+        },
+        "unused": {
+          "type": "boolean",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ComponentLibrariesResult"
+      }
+    },
+    {
+      "name": "components_list",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "domain": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "kind": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "bff",
+            "frontend",
+            "infra",
+            "job",
+            "library",
+            "service"
+          ]
+        },
+        "team": {
+          "type": "string",
+          "required": false
+        },
+        "technology": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ComponentsListResult"
+      }
+    },
+    {
+      "name": "contract_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "endpoint": {
+          "type": "string",
+          "required": false
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "target": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/ContractGetResult"
+      }
+    },
+    {
+      "name": "dataset_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "dataset": {
+          "type": "string",
+          "required": true
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/DatasetGetResult"
+      }
+    },
+    {
+      "name": "fact_divergences",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "limit": {
+          "type": "number",
+          "required": false
+        },
+        "node": {
+          "type": "string",
+          "required": false
+        },
+        "relationType": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "AT_LEVEL",
+            "BUILT_WITH",
+            "CALLS",
+            "CONSUMES",
+            "DEPENDS_ON",
+            "DEPLOYED_IN",
+            "HAS_ENDPOINT",
+            "HOSTED_IN",
+            "HOSTED_ON",
+            "INSTANCE_OF",
+            "IN_ENVIRONMENT",
+            "MEMBER_OF",
+            "OWNED_BY",
+            "OWNS_DATA",
+            "PART_OF",
+            "PRODUCES",
+            "PROVIDES",
+            "PUBLISHES",
+            "REACHES_VIA",
+            "READS",
+            "ROUTES",
+            "RUNS",
+            "SPECIFIED_BY",
+            "SUBSCRIBES",
+            "USES_RESOURCE",
+            "VERSION_OF",
+            "WRITES"
+          ]
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/FactDivergencesResult"
+      }
+    },
+    {
+      "name": "graph_query",
+      "since": 1,
+      "stability": "exploratory",
+      "args": {
+        "cypher": {
+          "type": "string",
+          "required": true
+        },
+        "limit": {
+          "type": "number",
+          "required": false
+        },
+        "params": {
+          "type": "record",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/GraphQueryResult"
+      }
+    },
+    {
+      "name": "library_usage",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "direct": {
+          "type": "boolean",
+          "required": false
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "library": {
+          "type": "string",
+          "required": true
+        },
+        "versionRange": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/LibraryUsageResult"
+      }
+    },
+    {
+      "name": "node_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "node": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/NodeGetResult"
+      }
+    },
+    {
+      "name": "nodes_find",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "limit": {
+          "type": "number",
+          "required": false
+        },
+        "referencedOnly": {
+          "type": "boolean",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": false
+        },
+        "types": {
+          "type": "array",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/NodesFindResult"
+      }
+    },
+    {
+      "name": "org_structure",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "depth": {
+          "type": "number",
+          "required": false
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "group": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/OrgStructureResult"
+      }
+    },
+    {
+      "name": "people_list",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "group": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "limit": {
+          "type": "number",
+          "required": false
+        },
+        "text": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/PeopleListResult"
+      }
+    },
+    {
+      "name": "route_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "host": {
+          "type": "string",
+          "required": true
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "path": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/RouteGetResult"
+      }
+    },
+    {
+      "name": "sources_status",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "limit": {
+          "type": "number",
+          "required": false
+        },
+        "source": {
+          "type": "string",
+          "required": false
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/SourcesStatusResult"
+      }
+    },
+    {
+      "name": "topic_get",
+      "since": 1,
+      "stability": "stable",
+      "args": {
+        "allVersions": {
+          "type": "boolean",
+          "required": false
+        },
+        "detail": {
+          "type": "enum",
+          "required": false,
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "environment": {
+          "type": "string",
+          "required": false
+        },
+        "includeStale": {
+          "type": "boolean",
+          "required": false
+        },
+        "topic": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "output": {
+        "$ref": "#/definitions/TopicGetResult"
+      }
+    }
+  ],
+  "definitions": {
+    "Fact": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Fonte que afirmou"
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Onde a fonte viu (ex.: repo@sha:caminho:linha)"
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "stale"
+          ],
+          "description": "Em summary, só quando é stale"
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "observed",
+            "inferred",
+            "confirmed"
+          ],
+          "description": "Em summary, só quando não é observed"
+        },
+        "scope": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Só em full"
+        },
+        "observedAt": {
+          "type": "string",
+          "description": "Só em full: o último retrato que afirmou"
+        },
+        "firstObservedAt": {
+          "type": "string",
+          "description": "Só em full: o primeiro retrato que afirmou"
+        }
+      },
+      "required": [
+        "source",
+        "evidence"
+      ],
+      "additionalProperties": false,
+      "description": "Uma afirmação: quem afirmou, onde viu e, em full, o escopo e quando. Com detail summary, só o que serve para citar"
+    },
+    "NodeRef": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Domain",
+            "System",
+            "Component",
+            "Repository",
+            "Api",
+            "Endpoint",
+            "Topic",
+            "Contract",
+            "Resource",
+            "Group",
+            "OrgLevel",
+            "Person",
+            "Technology",
+            "Library",
+            "Dataset",
+            "Environment"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "description": "Em APIs e tópicos versionados, a versão da interface (v1, v2). Em componentes, só no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+        }
+      },
+      "required": [
+        "key",
+        "type"
+      ],
+      "additionalProperties": false,
+      "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+    },
+    "Edge": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PART_OF",
+            "OWNED_BY",
+            "MEMBER_OF",
+            "AT_LEVEL",
+            "HOSTED_IN",
+            "PROVIDES",
+            "HAS_ENDPOINT",
+            "CONSUMES",
+            "CALLS",
+            "PUBLISHES",
+            "SUBSCRIBES",
+            "VERSION_OF",
+            "SPECIFIED_BY",
+            "USES_RESOURCE",
+            "HOSTED_ON",
+            "INSTANCE_OF",
+            "IN_ENVIRONMENT",
+            "DEPLOYED_IN",
+            "RUNS",
+            "ROUTES",
+            "REACHES_VIA",
+            "BUILT_WITH",
+            "DEPENDS_ON",
+            "PRODUCES",
+            "OWNS_DATA",
+            "READS",
+            "WRITES"
+          ]
+        },
+        "node": {
+          "$ref": "#/definitions/NodeRef"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "out",
+            "in"
+          ],
+          "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "node",
+        "facts"
+      ],
+      "additionalProperties": false,
+      "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+    },
+    "NodeView": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Domain",
+            "System",
+            "Component",
+            "Repository",
+            "Api",
+            "Endpoint",
+            "Topic",
+            "Contract",
+            "Resource",
+            "Group",
+            "OrgLevel",
+            "Person",
+            "Technology",
+            "Library",
+            "Dataset",
+            "Environment"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "stale"
+          ],
+          "description": "current enquanto alguma fonte afirma o nó ou uma relação current chega nele"
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+        },
+        "referenced": {
+          "type": "boolean",
+          "description": "Nenhuma fonte declarou o nó: existe só como ponta de relação"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          },
+          "description": "Afirmações de existência do nó"
+        },
+        "version": {
+          "type": "string",
+          "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+        }
+      },
+      "required": [
+        "key",
+        "type",
+        "status",
+        "props",
+        "referenced",
+        "aliases",
+        "facts"
+      ],
+      "additionalProperties": false,
+      "description": "Nó com as próprias afirmações de existência"
+    },
+    "Coverage": {
+      "type": "object",
+      "properties": {
+        "what": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourceCoverage"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "what",
+        "sources"
+      ],
+      "additionalProperties": false,
+      "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+    },
+    "SourceCoverage": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "scopes": {
+          "type": "number"
+        },
+        "lastObservedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "scopes",
+        "lastObservedAt"
+      ],
+      "additionalProperties": false
+    },
+    "DataUse": {
+      "type": "object",
+      "properties": {
+        "dataset": {
+          "$ref": "#/definitions/NodeRef"
+        },
+        "owns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "reads": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "writes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        }
+      },
+      "required": [
+        "dataset"
+      ],
+      "additionalProperties": false,
+      "description": "Um dataset visto de um componente: se é dono da estrutura, se lê e se escreve"
+    },
+    "DependencyFacts": {
+      "type": "object",
+      "properties": {
+        "dependent": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "provider": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        }
+      },
+      "required": [
+        "dependent",
+        "provider"
+      ],
+      "additionalProperties": false,
+      "description": "Afirmações de quem depende (CONSUMES, CALLS, SUBSCRIBES) e de quem oferece (PROVIDES, PUBLISHES)"
+    },
+    "DependencyEdge": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Quem depende"
+        },
+        "to": {
+          "type": "string",
+          "description": "De quem depende"
+        },
+        "via": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "CONSUMES",
+                "CALLS",
+                "SUBSCRIBES"
+              ]
+            },
+            "node": {
+              "$ref": "#/definitions/NodeRef"
+            },
+            "api": {
+              "$ref": "#/definitions/NodeRef",
+              "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+            },
+            "endpoint": {
+              "$ref": "#/definitions/EndpointRef"
+            }
+          },
+          "required": [
+            "type",
+            "node"
+          ],
+          "additionalProperties": false
+        },
+        "facts": {
+          "$ref": "#/definitions/DependencyFacts"
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "via",
+        "facts"
+      ],
+      "additionalProperties": false,
+      "description": "Dependência entre componentes, derivada de CONSUMES, CALLS ou SUBSCRIBES"
+    },
+    "DependencyHop": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "via": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "CONSUMES",
+                  "CALLS",
+                  "SUBSCRIBES"
+                ]
+              },
+              "node": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "api": {
+                "$ref": "#/definitions/NodeRef",
+                "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+              },
+              "facts": {
+                "$ref": "#/definitions/DependencyFacts"
+              }
+            },
+            "required": [
+              "type",
+              "node",
+              "facts"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "via"
+      ],
+      "additionalProperties": false,
+      "description": "Um salto de um caminho de dependência: from depende de to, por uma ou mais vias"
+    },
+    "Deployment": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "$ref": "#/definitions/NodeRef"
+        },
+        "version": {
+          "type": "string",
+          "description": "Versão em execução (rótulo)"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "replicas": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "stale"
+          ],
+          "description": "stale: a implantação saiu do ambiente (vem com includeStale, como histórico)"
+        },
+        "since": {
+          "type": "string",
+          "description": "Primeira vez que a implantação foi vista"
+        },
+        "lastSeen": {
+          "type": "string",
+          "description": "Última vez que a implantação foi vista"
+        },
+        "frozen": {
+          "type": "boolean",
+          "description": "O grafo tem o retrato desta versão: o recorte do ambiente mostra o que ela oferece e usa"
+        },
+        "sameAsDefault": {
+          "type": [
+            "boolean",
+            "null"
+          ],
+          "description": "O commit é o da linha principal (null: a linha principal não diz de que commit é)"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        }
+      },
+      "required": [
+        "environment",
+        "version",
+        "commit",
+        "status",
+        "since",
+        "lastSeen",
+        "frozen",
+        "sameAsDefault",
+        "facts"
+      ],
+      "additionalProperties": false,
+      "description": "Uma implantação do componente (DEPLOYED_IN): ambiente, versão e commit em execução"
+    },
+    "LineRevision": {
+      "type": "object",
+      "properties": {
+        "commit": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "observedAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "commit",
+        "observedAt"
+      ],
+      "additionalProperties": false,
+      "description": "De que commit e versão é o retrato da linha principal (a visão padrão)"
+    },
+    "EndpointRef": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "OrgNode": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Domain",
+            "System",
+            "Component",
+            "Repository",
+            "Api",
+            "Endpoint",
+            "Topic",
+            "Contract",
+            "Resource",
+            "Group",
+            "OrgLevel",
+            "Person",
+            "Technology",
+            "Library",
+            "Dataset",
+            "Environment"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "current",
+            "stale"
+          ],
+          "description": "current enquanto alguma fonte afirma o nó ou uma relação current chega nele"
+        },
+        "props": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+        },
+        "referenced": {
+          "type": "boolean",
+          "description": "Nenhuma fonte declarou o nó: existe só como ponta de relação"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          },
+          "description": "Afirmações de existência do nó"
+        },
+        "version": {
+          "type": "string",
+          "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+        },
+        "parentFacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          },
+          "description": "Afirmações de que o grupo faz parte do pai; não vem na raiz"
+        },
+        "level": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          },
+          "description": "Nível do grupo na estrutura (AT_LEVEL), com as afirmações de cada fonte; vazio quando nenhuma fonte o diz"
+        },
+        "members": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "owns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrgNode"
+          }
+        },
+        "moreGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Subgrupos além da profundidade pedida"
+        }
+      },
+      "required": [
+        "key",
+        "type",
+        "status",
+        "props",
+        "referenced",
+        "aliases",
+        "facts",
+        "level",
+        "members",
+        "owns",
+        "groups"
+      ],
+      "additionalProperties": false,
+      "description": "Grupo com o nível, os membros, o que possui e os subgrupos"
+    },
+    "LoadCounts": {
+      "type": "object",
+      "properties": {
+        "nodes": {
+          "type": "object",
+          "properties": {
+            "created": {
+              "type": "number"
+            },
+            "updated": {
+              "type": "number"
+            },
+            "unchanged": {
+              "type": "number"
+            },
+            "stale": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "relations": {
+          "type": "object",
+          "properties": {
+            "created": {
+              "type": "number"
+            },
+            "updated": {
+              "type": "number"
+            },
+            "unchanged": {
+              "type": "number"
+            },
+            "stale": {
+              "type": "number"
+            }
+          },
+          "additionalProperties": false
+        },
+        "referenced": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Contagens de uma carga (numa aposentadoria, só stale)"
+    },
+    "LibraryUse": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PART_OF",
+            "OWNED_BY",
+            "MEMBER_OF",
+            "AT_LEVEL",
+            "HOSTED_IN",
+            "PROVIDES",
+            "HAS_ENDPOINT",
+            "CONSUMES",
+            "CALLS",
+            "PUBLISHES",
+            "SUBSCRIBES",
+            "VERSION_OF",
+            "SPECIFIED_BY",
+            "USES_RESOURCE",
+            "HOSTED_ON",
+            "INSTANCE_OF",
+            "IN_ENVIRONMENT",
+            "DEPLOYED_IN",
+            "RUNS",
+            "ROUTES",
+            "REACHES_VIA",
+            "BUILT_WITH",
+            "DEPENDS_ON",
+            "PRODUCES",
+            "OWNS_DATA",
+            "READS",
+            "WRITES"
+          ]
+        },
+        "node": {
+          "$ref": "#/definitions/NodeRef"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "out",
+            "in"
+          ],
+          "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "direct": {
+          "type": "boolean",
+          "description": "Direta (o componente declara a biblioteca) ou transitiva (chega por outra)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Versão em uso: a resolvida pelo build, quando alguma fonte a dá"
+        },
+        "unused": {
+          "type": "boolean",
+          "const": true,
+          "description": "Declarada no build e não usada pelo código"
+        },
+        "via": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Na transitiva: as dependências diretas (chaves) que a trazem"
+        },
+        "library": {
+          "type": "string",
+          "description": "Consultado um componente: o pacote dele de que este uso depende"
+        }
+      },
+      "required": [
+        "type",
+        "node",
+        "facts",
+        "direct"
+      ],
+      "additionalProperties": false,
+      "description": "Uso de uma biblioteca por um componente (DEPENDS_ON), com o resumo das afirmações"
+    },
+    "InterfaceVersion": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string",
+          "description": "Ausente na interface sem versão"
+        }
+      },
+      "required": [
+        "key"
+      ],
+      "additionalProperties": false,
+      "description": "Uma versão de uma API ou de um tópico (cada versão é um nó)"
+    },
+    "TopicEdge": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "PART_OF",
+            "OWNED_BY",
+            "MEMBER_OF",
+            "AT_LEVEL",
+            "HOSTED_IN",
+            "PROVIDES",
+            "HAS_ENDPOINT",
+            "CONSUMES",
+            "CALLS",
+            "PUBLISHES",
+            "SUBSCRIBES",
+            "VERSION_OF",
+            "SPECIFIED_BY",
+            "USES_RESOURCE",
+            "HOSTED_ON",
+            "INSTANCE_OF",
+            "IN_ENVIRONMENT",
+            "DEPLOYED_IN",
+            "RUNS",
+            "ROUTES",
+            "REACHES_VIA",
+            "BUILT_WITH",
+            "DEPENDS_ON",
+            "PRODUCES",
+            "OWNS_DATA",
+            "READS",
+            "WRITES"
+          ]
+        },
+        "node": {
+          "$ref": "#/definitions/NodeRef"
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "out",
+            "in"
+          ],
+          "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+        },
+        "identity": {
+          "type": "object",
+          "additionalProperties": {},
+          "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Fact"
+          }
+        },
+        "topic": {
+          "type": "string",
+          "description": "Com todas as versões: o tópico (a versão) da relação"
+        },
+        "version": {
+          "type": "string",
+          "description": "Com todas as versões: a versão do tópico da relação"
+        }
+      },
+      "required": [
+        "type",
+        "node",
+        "facts"
+      ],
+      "additionalProperties": false,
+      "description": "Relação de um tópico; juntando as versões, diz de qual versão é"
+    },
+    "ArchitectureOverviewResult": {
+      "type": "object",
+      "properties": {
+        "filters": {
+          "type": "object",
+          "properties": {
+            "domain": {
+              "type": "string"
+            },
+            "team": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "center": {
+          "type": "string"
+        },
+        "depth": {
+          "type": "number"
+        },
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+              },
+              "level": {
+                "type": "number"
+              },
+              "status": {
+                "type": "string"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "systems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "domains": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "facts": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/definitions/Fact"
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "facts"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts",
+                    "domains"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "stack": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "provides": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "endpoints": {
+                      "type": "number"
+                    },
+                    "contracts": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "endpoints",
+                    "contracts",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "resources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    },
+                    "kind": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "hostedOn": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "instanceOf": {
+                            "type": "object",
+                            "properties": {
+                              "key": {
+                                "type": "string"
+                              },
+                              "name": {
+                                "type": "string"
+                              },
+                              "facts": {
+                                "type": "array",
+                                "items": {
+                                  "$ref": "#/definitions/Fact"
+                                }
+                              }
+                            },
+                            "required": [
+                              "key",
+                              "facts"
+                            ],
+                            "additionalProperties": false
+                          },
+                          "environments": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "string"
+                                },
+                                "kind": {
+                                  "type": "string"
+                                },
+                                "facts": {
+                                  "type": "array",
+                                  "items": {
+                                    "$ref": "#/definitions/Fact"
+                                  }
+                                }
+                              },
+                              "required": [
+                                "key",
+                                "facts"
+                              ],
+                              "additionalProperties": false,
+                              "description": "Ambiente em que o recurso está (IN_ENVIRONMENT)"
+                            }
+                          },
+                          "facts": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/definitions/Fact"
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "environments",
+                          "facts"
+                        ],
+                        "additionalProperties": false
+                      }
+                    },
+                    "instanceOf": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "facts": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Fact"
+                          }
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "facts"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "environments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "facts": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/definitions/Fact"
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "facts"
+                        ],
+                        "additionalProperties": false,
+                        "description": "Ambiente em que o recurso está (IN_ENVIRONMENT)"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts",
+                    "hostedOn",
+                    "environments"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/DataUse"
+                }
+              },
+              "libraries": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "key",
+              "owners",
+              "systems",
+              "stack",
+              "provides",
+              "resources",
+              "data",
+              "libraries"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "via": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "CONSUMES",
+                        "CALLS",
+                        "SUBSCRIBES"
+                      ]
+                    },
+                    "node": {
+                      "type": "string"
+                    },
+                    "api": {
+                      "type": "string"
+                    },
+                    "endpoint": {
+                      "$ref": "#/definitions/EndpointRef"
+                    },
+                    "facts": {
+                      "$ref": "#/definitions/DependencyFacts"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "node",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "via"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "libraryLinks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": {
+                "type": "string",
+                "description": "Quem usa"
+              },
+              "to": {
+                "type": "string",
+                "description": "O componente que gera a biblioteca (PRODUCES)"
+              },
+              "packages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "A versão em uso"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "from",
+              "to",
+              "packages"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Uso direto das bibliotecas que um componente do grafo gera (um framework ou biblioteca interna com repositório), com os pacotes usados; as de terceiros ficam de fora"
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "publishers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "subscribers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "contracts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "hostedOn": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "instanceOf": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "facts": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Fact"
+                          }
+                        }
+                      },
+                      "required": [
+                        "key",
+                        "facts"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "environments": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "key": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "facts": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/definitions/Fact"
+                            }
+                          }
+                        },
+                        "required": [
+                          "key",
+                          "facts"
+                        ],
+                        "additionalProperties": false,
+                        "description": "Ambiente em que o recurso está (IN_ENVIRONMENT)"
+                      }
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    }
+                  },
+                  "required": [
+                    "key",
+                    "environments",
+                    "facts"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "key",
+              "publishers",
+              "subscribers",
+              "contracts",
+              "hostedOn"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "nodes": {
+          "type": "object",
+          "properties": {
+            "current": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "staleHidden": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "number"
+              }
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "current"
+          ],
+          "additionalProperties": false
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SourceCoverage"
+          }
+        },
+        "gaps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "detail": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "components",
+        "dependencies",
+        "libraryLinks",
+        "topics",
+        "nodes",
+        "sources",
+        "detail"
+      ],
+      "additionalProperties": false
+    },
+    "ComponentGetResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "component": {
+          "$ref": "#/definitions/NodeView"
+        },
+        "revision": {
+          "$ref": "#/definitions/LineRevision",
+          "description": "De que commit e versão é o retrato da linha principal (a visão padrão)"
+        },
+        "deployments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Deployment"
+          },
+          "description": "Onde o componente está implantado, em ordem até a produção"
+        },
+        "owners": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "systems": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PART_OF",
+                  "OWNED_BY",
+                  "MEMBER_OF",
+                  "AT_LEVEL",
+                  "HOSTED_IN",
+                  "PROVIDES",
+                  "HAS_ENDPOINT",
+                  "CONSUMES",
+                  "CALLS",
+                  "PUBLISHES",
+                  "SUBSCRIBES",
+                  "VERSION_OF",
+                  "SPECIFIED_BY",
+                  "USES_RESOURCE",
+                  "HOSTED_ON",
+                  "INSTANCE_OF",
+                  "IN_ENVIRONMENT",
+                  "DEPLOYED_IN",
+                  "RUNS",
+                  "ROUTES",
+                  "REACHES_VIA",
+                  "BUILT_WITH",
+                  "DEPENDS_ON",
+                  "PRODUCES",
+                  "OWNS_DATA",
+                  "READS",
+                  "WRITES"
+                ]
+              },
+              "node": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "out",
+                  "in"
+                ],
+                "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+              },
+              "identity": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                }
+              },
+              "domains": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "node",
+              "facts",
+              "domains"
+            ],
+            "additionalProperties": false,
+            "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+          }
+        },
+        "repositories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "stack": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "provides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PART_OF",
+                  "OWNED_BY",
+                  "MEMBER_OF",
+                  "AT_LEVEL",
+                  "HOSTED_IN",
+                  "PROVIDES",
+                  "HAS_ENDPOINT",
+                  "CONSUMES",
+                  "CALLS",
+                  "PUBLISHES",
+                  "SUBSCRIBES",
+                  "VERSION_OF",
+                  "SPECIFIED_BY",
+                  "USES_RESOURCE",
+                  "HOSTED_ON",
+                  "INSTANCE_OF",
+                  "IN_ENVIRONMENT",
+                  "DEPLOYED_IN",
+                  "RUNS",
+                  "ROUTES",
+                  "REACHES_VIA",
+                  "BUILT_WITH",
+                  "DEPENDS_ON",
+                  "PRODUCES",
+                  "OWNS_DATA",
+                  "READS",
+                  "WRITES"
+                ]
+              },
+              "node": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "out",
+                  "in"
+                ],
+                "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+              },
+              "identity": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                }
+              },
+              "endpoints": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "node",
+              "facts",
+              "endpoints"
+            ],
+            "additionalProperties": false,
+            "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+          }
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          },
+          "description": "Pacotes (bibliotecas) que o componente gera (PRODUCES), com a versão; quem usa cada um: library_usage"
+        },
+        "reachesVia": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PART_OF",
+                  "OWNED_BY",
+                  "MEMBER_OF",
+                  "AT_LEVEL",
+                  "HOSTED_IN",
+                  "PROVIDES",
+                  "HAS_ENDPOINT",
+                  "CONSUMES",
+                  "CALLS",
+                  "PUBLISHES",
+                  "SUBSCRIBES",
+                  "VERSION_OF",
+                  "SPECIFIED_BY",
+                  "USES_RESOURCE",
+                  "HOSTED_ON",
+                  "INSTANCE_OF",
+                  "IN_ENVIRONMENT",
+                  "DEPLOYED_IN",
+                  "RUNS",
+                  "ROUTES",
+                  "REACHES_VIA",
+                  "BUILT_WITH",
+                  "DEPENDS_ON",
+                  "PRODUCES",
+                  "OWNS_DATA",
+                  "READS",
+                  "WRITES"
+                ]
+              },
+              "node": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "out",
+                  "in"
+                ],
+                "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+              },
+              "identity": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                }
+              },
+              "environments": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              },
+              "runs": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              },
+              "hostedOn": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "PART_OF",
+                        "OWNED_BY",
+                        "MEMBER_OF",
+                        "AT_LEVEL",
+                        "HOSTED_IN",
+                        "PROVIDES",
+                        "HAS_ENDPOINT",
+                        "CONSUMES",
+                        "CALLS",
+                        "PUBLISHES",
+                        "SUBSCRIBES",
+                        "VERSION_OF",
+                        "SPECIFIED_BY",
+                        "USES_RESOURCE",
+                        "HOSTED_ON",
+                        "INSTANCE_OF",
+                        "IN_ENVIRONMENT",
+                        "DEPLOYED_IN",
+                        "RUNS",
+                        "ROUTES",
+                        "REACHES_VIA",
+                        "BUILT_WITH",
+                        "DEPENDS_ON",
+                        "PRODUCES",
+                        "OWNS_DATA",
+                        "READS",
+                        "WRITES"
+                      ]
+                    },
+                    "node": {
+                      "$ref": "#/definitions/NodeRef"
+                    },
+                    "direction": {
+                      "type": "string",
+                      "enum": [
+                        "out",
+                        "in"
+                      ],
+                      "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+                    },
+                    "identity": {
+                      "type": "object",
+                      "additionalProperties": {},
+                      "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+                    },
+                    "facts": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Fact"
+                      }
+                    },
+                    "environments": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Edge"
+                      }
+                    },
+                    "runs": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Edge"
+                      }
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "node",
+                    "facts",
+                    "environments",
+                    "runs"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "node",
+              "facts",
+              "environments",
+              "runs",
+              "hostedOn"
+            ],
+            "additionalProperties": false,
+            "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+          }
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DataUse"
+          }
+        },
+        "libraries": {
+          "type": "object",
+          "properties": {
+            "count": {
+              "type": "number"
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "count",
+            "detail"
+          ],
+          "additionalProperties": false
+        },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "owners": {
+              "$ref": "#/definitions/Coverage",
+              "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+            },
+            "resources": {
+              "$ref": "#/definitions/Coverage",
+              "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+            },
+            "data": {
+              "$ref": "#/definitions/Coverage",
+              "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+            },
+            "deployments": {
+              "$ref": "#/definitions/Coverage",
+              "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+            }
+          },
+          "additionalProperties": false,
+          "description": "Vem quando falta dono, recurso, dataset ou implantação: quais fontes publicam aquele tipo de fato"
+        }
+      },
+      "required": [
+        "component",
+        "deployments",
+        "owners",
+        "systems",
+        "repositories",
+        "stack",
+        "provides",
+        "packages",
+        "reachesVia",
+        "resources",
+        "data",
+        "libraries"
+      ],
+      "additionalProperties": false
+    },
+    "ComponentsListResult": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Domain",
+                  "System",
+                  "Component",
+                  "Repository",
+                  "Api",
+                  "Endpoint",
+                  "Topic",
+                  "Contract",
+                  "Resource",
+                  "Group",
+                  "OrgLevel",
+                  "Person",
+                  "Technology",
+                  "Library",
+                  "Dataset",
+                  "Environment"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "stale"
+                ],
+                "description": "current enquanto alguma fonte afirma o nó ou uma relação current chega nele"
+              },
+              "props": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+              },
+              "referenced": {
+                "type": "boolean",
+                "description": "Nenhuma fonte declarou o nó: existe só como ponta de relação"
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                },
+                "description": "Afirmações de existência do nó"
+              },
+              "version": {
+                "type": "string",
+                "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+              },
+              "owners": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              },
+              "matchedBy": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "filter": {
+                      "type": "string"
+                    },
+                    "path": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/Edge"
+                      }
+                    }
+                  },
+                  "required": [
+                    "filter",
+                    "path"
+                  ],
+                  "additionalProperties": false
+                },
+                "description": "O caminho que satisfez cada filtro"
+              }
+            },
+            "required": [
+              "key",
+              "type",
+              "status",
+              "props",
+              "referenced",
+              "aliases",
+              "facts",
+              "owners",
+              "matchedBy"
+            ],
+            "additionalProperties": false,
+            "description": "Nó com as próprias afirmações de existência"
+          }
+        },
+        "coverage": {
+          "type": "object",
+          "properties": {
+            "owners": {
+              "$ref": "#/definitions/Coverage"
+            }
+          },
+          "required": [
+            "owners"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "count",
+        "truncated",
+        "components"
+      ],
+      "additionalProperties": false
+    },
+    "ApiConsumersResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "target": {
+          "type": "string"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterfaceVersion"
+          },
+          "description": "Pedida uma API: as versões dela. Pedido o componente, não vem"
+        },
+        "allVersions": {
+          "type": "boolean",
+          "const": true,
+          "description": "Vem quando o resultado junta todas as versões"
+        },
+        "apis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "consumers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "component": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "consumes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              },
+              "calls": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "component",
+              "consumes",
+              "calls"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "target",
+        "apis",
+        "consumers"
+      ],
+      "additionalProperties": false
+    },
+    "ContractGetResult": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "environment": {
+              "type": "string",
+              "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+            },
+            "target": {
+              "type": "string"
+            },
+            "apis": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "api": {
+                    "$ref": "#/definitions/NodeView"
+                  },
+                  "contracts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Edge"
+                    }
+                  },
+                  "endpoints": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "PART_OF",
+                            "OWNED_BY",
+                            "MEMBER_OF",
+                            "AT_LEVEL",
+                            "HOSTED_IN",
+                            "PROVIDES",
+                            "HAS_ENDPOINT",
+                            "CONSUMES",
+                            "CALLS",
+                            "PUBLISHES",
+                            "SUBSCRIBES",
+                            "VERSION_OF",
+                            "SPECIFIED_BY",
+                            "USES_RESOURCE",
+                            "HOSTED_ON",
+                            "INSTANCE_OF",
+                            "IN_ENVIRONMENT",
+                            "DEPLOYED_IN",
+                            "RUNS",
+                            "ROUTES",
+                            "REACHES_VIA",
+                            "BUILT_WITH",
+                            "DEPENDS_ON",
+                            "PRODUCES",
+                            "OWNS_DATA",
+                            "READS",
+                            "WRITES"
+                          ]
+                        },
+                        "node": {
+                          "$ref": "#/definitions/NodeRef"
+                        },
+                        "direction": {
+                          "type": "string",
+                          "enum": [
+                            "out",
+                            "in"
+                          ],
+                          "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+                        },
+                        "identity": {
+                          "type": "object",
+                          "additionalProperties": {},
+                          "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+                        },
+                        "facts": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/Fact"
+                          }
+                        },
+                        "hasContract": {
+                          "type": "boolean"
+                        },
+                        "method": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        },
+                        "operationId": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "node",
+                        "facts"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+                    }
+                  }
+                },
+                "required": [
+                  "api",
+                  "contracts",
+                  "endpoints"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "detail": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "target",
+            "apis",
+            "detail"
+          ],
+          "additionalProperties": false,
+          "description": "Sem endpoint: as APIs, os contratos e os endpoints, sem o conteúdo"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "environment": {
+              "type": "string",
+              "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+            },
+            "target": {
+              "type": "string"
+            },
+            "endpoint": {
+              "$ref": "#/definitions/NodeView"
+            },
+            "apis": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "PART_OF",
+                      "OWNED_BY",
+                      "MEMBER_OF",
+                      "AT_LEVEL",
+                      "HOSTED_IN",
+                      "PROVIDES",
+                      "HAS_ENDPOINT",
+                      "CONSUMES",
+                      "CALLS",
+                      "PUBLISHES",
+                      "SUBSCRIBES",
+                      "VERSION_OF",
+                      "SPECIFIED_BY",
+                      "USES_RESOURCE",
+                      "HOSTED_ON",
+                      "INSTANCE_OF",
+                      "IN_ENVIRONMENT",
+                      "DEPLOYED_IN",
+                      "RUNS",
+                      "ROUTES",
+                      "REACHES_VIA",
+                      "BUILT_WITH",
+                      "DEPENDS_ON",
+                      "PRODUCES",
+                      "OWNS_DATA",
+                      "READS",
+                      "WRITES"
+                    ]
+                  },
+                  "node": {
+                    "$ref": "#/definitions/NodeRef"
+                  },
+                  "direction": {
+                    "type": "string",
+                    "enum": [
+                      "out",
+                      "in"
+                    ],
+                    "description": "Visto do nó dono: out (dono → node) ou in (node → dono)"
+                  },
+                  "identity": {
+                    "type": "object",
+                    "additionalProperties": {},
+                    "description": "Propriedades que distinguem duas afirmações entre os mesmos nós"
+                  },
+                  "facts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Fact"
+                    }
+                  },
+                  "contracts": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Edge"
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "node",
+                  "facts",
+                  "contracts"
+                ],
+                "additionalProperties": false,
+                "description": "Relação lógica vista de um nó, com uma afirmação por fonte e escopo"
+              }
+            },
+            "contract": {
+              "type": "object",
+              "additionalProperties": {},
+              "description": "parameters, requestBody, responses e, em components, o fecho dos $ref locais"
+            },
+            "coverage": {
+              "type": "object",
+              "properties": {
+                "contract": {
+                  "type": "object",
+                  "properties": {
+                    "what": {
+                      "type": "string"
+                    },
+                    "note": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "what",
+                    "note"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "contract"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "target",
+            "endpoint",
+            "apis"
+          ],
+          "additionalProperties": false,
+          "description": "Com endpoint: o contrato daquela operação"
+        }
+      ]
+    },
+    "ComponentDependenciesResult": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "environment": {
+              "type": "string",
+              "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+            },
+            "root": {
+              "type": "string"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "out",
+                "in",
+                "both"
+              ]
+            },
+            "depth": {
+              "type": "number"
+            },
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "Domain",
+                      "System",
+                      "Component",
+                      "Repository",
+                      "Api",
+                      "Endpoint",
+                      "Topic",
+                      "Contract",
+                      "Resource",
+                      "Group",
+                      "OrgLevel",
+                      "Person",
+                      "Technology",
+                      "Library",
+                      "Dataset",
+                      "Environment"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "Em APIs e tópicos versionados, a versão da interface (v1, v2). Em componentes, só no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+                  },
+                  "level": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "key",
+                  "type",
+                  "level"
+                ],
+                "additionalProperties": false,
+                "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+              }
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DependencyEdge"
+              }
+            }
+          },
+          "required": [
+            "root",
+            "direction",
+            "depth",
+            "components",
+            "edges"
+          ],
+          "additionalProperties": false,
+          "description": "Sem kind: os componentes alcançados, com o nível, e as dependências entre eles"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "environment": {
+              "type": "string",
+              "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+            },
+            "root": {
+              "type": "string"
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "out",
+                "in",
+                "both"
+              ]
+            },
+            "depth": {
+              "type": "number"
+            },
+            "kind": {
+              "type": "string",
+              "enum": [
+                "service",
+                "bff",
+                "frontend",
+                "job",
+                "library",
+                "infra"
+              ]
+            },
+            "components": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "Domain",
+                      "System",
+                      "Component",
+                      "Repository",
+                      "Api",
+                      "Endpoint",
+                      "Topic",
+                      "Contract",
+                      "Resource",
+                      "Group",
+                      "OrgLevel",
+                      "Person",
+                      "Technology",
+                      "Library",
+                      "Dataset",
+                      "Environment"
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string",
+                    "description": "Em APIs e tópicos versionados, a versão da interface (v1, v2). Em componentes, só no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+                  },
+                  "level": {
+                    "type": "number"
+                  },
+                  "paths": {
+                    "type": "array",
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/DependencyHop"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "key",
+                  "type",
+                  "level",
+                  "paths"
+                ],
+                "additionalProperties": false,
+                "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+              }
+            },
+            "coverage": {
+              "type": "object",
+              "properties": {
+                "componentsOfKind": {
+                  "type": "number"
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "componentsOfKind",
+                "note"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "root",
+            "direction",
+            "depth",
+            "kind",
+            "components"
+          ],
+          "additionalProperties": false,
+          "description": "Com kind: só os componentes daquele tipo, com os caminhos mais curtos até a raiz"
+        }
+      ]
+    },
+    "ComponentCompareResult": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "string"
+        },
+        "from": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "boolean",
+              "description": "Este lado é a linha principal"
+            },
+            "environment": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "commit": {
+              "type": "string"
+            },
+            "frozen": {
+              "type": "boolean",
+              "description": "No ambiente: o grafo tem o retrato da versão implantada"
+            },
+            "note": {
+              "type": "string",
+              "description": "Quando o lado pedido não pôde ser montado com a versão implantada"
+            }
+          },
+          "additionalProperties": false
+        },
+        "to": {
+          "type": "object",
+          "properties": {
+            "line": {
+              "type": "boolean",
+              "description": "Este lado é a linha principal"
+            },
+            "environment": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "commit": {
+              "type": "string"
+            },
+            "frozen": {
+              "type": "boolean",
+              "description": "No ambiente: o grafo tem o retrato da versão implantada"
+            },
+            "note": {
+              "type": "string",
+              "description": "Quando o lado pedido não pôde ser montado com a versão implantada"
+            }
+          },
+          "additionalProperties": false
+        },
+        "same": {
+          "type": "boolean",
+          "description": "Nada mudou nas categorias comparadas"
+        },
+        "changes": {
+          "type": "object",
+          "properties": {
+            "endpoints": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "consumes": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "calls": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "publishes": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "subscribes": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "owns": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "reads": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "writes": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "resources": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "libraries": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            },
+            "stack": {
+              "type": "object",
+              "properties": {
+                "added": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "removed": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/NodeRef"
+                  }
+                },
+                "changed": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "node": {
+                        "$ref": "#/definitions/NodeRef"
+                      },
+                      "from": {
+                        "type": "string"
+                      },
+                      "to": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "node"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "description": "Nos dois lados, com valor diferente: a versão (bibliotecas, stack) ou o contrato (endpoints, sem o conteúdo)"
+                }
+              },
+              "required": [
+                "added",
+                "removed",
+                "changed"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false,
+          "description": "Só as categorias com mudança"
+        }
+      },
+      "required": [
+        "component",
+        "from",
+        "to",
+        "same",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "TopicGetResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "topic": {
+          "$ref": "#/definitions/NodeView"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InterfaceVersion"
+          },
+          "description": "Pedida uma API: as versões dela. Pedido o componente, não vem"
+        },
+        "allVersions": {
+          "type": "boolean",
+          "const": true,
+          "description": "Vem quando o resultado junta todas as versões"
+        },
+        "publishers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TopicEdge"
+          }
+        },
+        "subscribers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TopicEdge"
+          }
+        },
+        "contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TopicEdge"
+          }
+        },
+        "hostedOn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TopicEdge"
+          }
+        }
+      },
+      "required": [
+        "topic",
+        "versions",
+        "publishers",
+        "subscribers",
+        "contracts",
+        "hostedOn"
+      ],
+      "additionalProperties": false
+    },
+    "DatasetGetResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "dataset": {
+          "$ref": "#/definitions/NodeView"
+        },
+        "owners": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "readers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        },
+        "writers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          }
+        }
+      },
+      "required": [
+        "dataset",
+        "owners",
+        "readers",
+        "writers"
+      ],
+      "additionalProperties": false
+    },
+    "OrgStructureResult": {
+      "type": "object",
+      "properties": {
+        "depth": {
+          "type": "number"
+        },
+        "levels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NodeView"
+          },
+          "description": "Níveis citados pelos grupos da resposta (OrgLevel), de cima para baixo: `order` é a posição e `team` diz se os grupos do nível são times"
+        },
+        "groups": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/OrgNode"
+          }
+        },
+        "coverage": {
+          "$ref": "#/definitions/Coverage",
+          "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+        }
+      },
+      "required": [
+        "depth",
+        "levels",
+        "groups"
+      ],
+      "additionalProperties": false
+    },
+    "PeopleListResult": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Domain",
+                  "System",
+                  "Component",
+                  "Repository",
+                  "Api",
+                  "Endpoint",
+                  "Topic",
+                  "Contract",
+                  "Resource",
+                  "Group",
+                  "OrgLevel",
+                  "Person",
+                  "Technology",
+                  "Library",
+                  "Dataset",
+                  "Environment"
+                ]
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "stale"
+                ],
+                "description": "current enquanto alguma fonte afirma o nó ou uma relação current chega nele"
+              },
+              "props": {
+                "type": "object",
+                "additionalProperties": {},
+                "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+              },
+              "referenced": {
+                "type": "boolean",
+                "description": "Nenhuma fonte declarou o nó: existe só como ponta de relação"
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                },
+                "description": "Afirmações de existência do nó"
+              },
+              "version": {
+                "type": "string",
+                "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+              },
+              "memberships": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "key",
+              "type",
+              "status",
+              "props",
+              "referenced",
+              "aliases",
+              "facts",
+              "memberships"
+            ],
+            "additionalProperties": false,
+            "description": "Nó com as próprias afirmações de existência"
+          }
+        },
+        "coverage": {
+          "$ref": "#/definitions/Coverage",
+          "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+        }
+      },
+      "required": [
+        "count",
+        "truncated",
+        "people"
+      ],
+      "additionalProperties": false
+    },
+    "LibraryUsageResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "library": {
+          "type": "object",
+          "properties": {
+            "key": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "Domain",
+                "System",
+                "Component",
+                "Repository",
+                "Api",
+                "Endpoint",
+                "Topic",
+                "Contract",
+                "Resource",
+                "Group",
+                "OrgLevel",
+                "Person",
+                "Technology",
+                "Library",
+                "Dataset",
+                "Environment"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "current",
+                "stale"
+              ],
+              "description": "current enquanto alguma fonte afirma o nó ou uma relação current chega nele"
+            },
+            "props": {
+              "type": "object",
+              "additionalProperties": {},
+              "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+            },
+            "referenced": {
+              "type": "boolean",
+              "description": "Nenhuma fonte declarou o nó: existe só como ponta de relação"
+            },
+            "aliases": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "facts": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Fact"
+              },
+              "description": "Afirmações de existência do nó"
+            },
+            "version": {
+              "type": "string",
+              "description": "Só em componentes, no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+            }
+          },
+          "required": [
+            "key",
+            "type",
+            "status",
+            "props",
+            "referenced",
+            "aliases",
+            "facts"
+          ],
+          "additionalProperties": false,
+          "description": "A biblioteca consultada, ou o componente, quando é ele o consultado"
+        },
+        "packages": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          },
+          "description": "Consultado um componente: os pacotes que o build dele gera (PRODUCES), cujos usos vêm em users"
+        },
+        "producedBy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Edge"
+          },
+          "description": "Consultada uma biblioteca: o componente cujo build a gera"
+        },
+        "versionRange": {
+          "type": "string"
+        },
+        "direct": {
+          "type": "boolean"
+        },
+        "versions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "version": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "components": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "version",
+              "components"
+            ],
+            "additionalProperties": false
+          },
+          "description": "Versões em uso, da mais nova para a mais antiga (null: sem versão afirmada), com os componentes"
+        },
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LibraryUse"
+          }
+        }
+      },
+      "required": [
+        "library",
+        "versions",
+        "users"
+      ],
+      "additionalProperties": false
+    },
+    "ComponentLibrariesResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "component": {
+          "$ref": "#/definitions/NodeView"
+        },
+        "counts": {
+          "type": "object",
+          "properties": {
+            "direct": {
+              "type": "number"
+            },
+            "transitive": {
+              "type": "number"
+            },
+            "unused": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "direct",
+            "transitive",
+            "unused"
+          ],
+          "additionalProperties": false
+        },
+        "libraries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LibraryUse"
+          }
+        },
+        "coverage": {
+          "$ref": "#/definitions/Coverage",
+          "description": "Vem quando o componente não tem biblioteca: quais fontes publicam bibliotecas"
+        }
+      },
+      "required": [
+        "component",
+        "counts",
+        "libraries"
+      ],
+      "additionalProperties": false
+    },
+    "RouteGetResult": {
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "string",
+          "description": "O ambiente do recorte, quando `environment` foi pedido: os componentes implantados nele aparecem na versão implantada"
+        },
+        "host": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "routes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entry": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "host": {
+                "type": "string"
+              },
+              "path": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "to": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "facts": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Fact"
+                }
+              },
+              "provides": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "entry",
+              "host",
+              "path",
+              "to",
+              "facts",
+              "provides"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "host",
+        "routes"
+      ],
+      "additionalProperties": false
+    },
+    "NodesFindResult": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Domain",
+                  "System",
+                  "Component",
+                  "Repository",
+                  "Api",
+                  "Endpoint",
+                  "Topic",
+                  "Contract",
+                  "Resource",
+                  "Group",
+                  "OrgLevel",
+                  "Person",
+                  "Technology",
+                  "Library",
+                  "Dataset",
+                  "Environment"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string",
+                "description": "Em APIs e tópicos versionados, a versão da interface (v1, v2). Em componentes, só no recorte de um ambiente: a versão implantada nele (no canário, mais de uma, separadas por vírgula)"
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "stale"
+                ]
+              },
+              "referenced": {
+                "type": "boolean"
+              },
+              "matchedAlias": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "key",
+              "type",
+              "status",
+              "referenced"
+            ],
+            "additionalProperties": false,
+            "description": "Ponta de uma relação: o suficiente para identificar o nó e seguir com outra consulta"
+          }
+        }
+      },
+      "required": [
+        "count",
+        "truncated",
+        "nodes"
+      ],
+      "additionalProperties": false
+    },
+    "NodeGetResult": {
+      "type": "object",
+      "properties": {
+        "node": {
+          "$ref": "#/definitions/NodeView"
+        },
+        "relations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PART_OF",
+                  "OWNED_BY",
+                  "MEMBER_OF",
+                  "AT_LEVEL",
+                  "HOSTED_IN",
+                  "PROVIDES",
+                  "HAS_ENDPOINT",
+                  "CONSUMES",
+                  "CALLS",
+                  "PUBLISHES",
+                  "SUBSCRIBES",
+                  "VERSION_OF",
+                  "SPECIFIED_BY",
+                  "USES_RESOURCE",
+                  "HOSTED_ON",
+                  "INSTANCE_OF",
+                  "IN_ENVIRONMENT",
+                  "DEPLOYED_IN",
+                  "RUNS",
+                  "ROUTES",
+                  "REACHES_VIA",
+                  "BUILT_WITH",
+                  "DEPENDS_ON",
+                  "PRODUCES",
+                  "OWNS_DATA",
+                  "READS",
+                  "WRITES"
+                ]
+              },
+              "direction": {
+                "type": "string",
+                "enum": [
+                  "out",
+                  "in"
+                ]
+              },
+              "description": {
+                "type": "string"
+              },
+              "total": {
+                "type": "number"
+              },
+              "truncated": {
+                "type": "boolean"
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "direction",
+              "description",
+              "total",
+              "edges"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "node",
+        "relations"
+      ],
+      "additionalProperties": false
+    },
+    "SourcesStatusResult": {
+      "type": "object",
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "lastObservedAt": {
+                "type": "string"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "scope": {
+                      "type": "object",
+                      "additionalProperties": {
+                        "type": "string"
+                      },
+                      "description": "Só em full"
+                    },
+                    "lastObservedAt": {
+                      "type": "string"
+                    },
+                    "receivedAt": {
+                      "type": "string"
+                    },
+                    "counts": {
+                      "$ref": "#/definitions/LoadCounts",
+                      "description": "Contagens de uma carga (numa aposentadoria, só stale)"
+                    },
+                    "retired": {
+                      "type": "object",
+                      "properties": {
+                        "by": {
+                          "type": "string"
+                        },
+                        "reason": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "by",
+                        "reason"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "revision": {
+                      "type": "object",
+                      "properties": {
+                        "component": {
+                          "type": "string"
+                        },
+                        "commit": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "frozen": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "component",
+                        "commit",
+                        "frozen"
+                      ],
+                      "additionalProperties": false,
+                      "description": "De que versão de um componente é o retrato; frozen: retrato congelado daquele commit"
+                    },
+                    "producer": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "version"
+                      ],
+                      "additionalProperties": false,
+                      "description": "Quem montou o último retrato do escopo, e em que versão (quando o produtor informa)"
+                    }
+                  },
+                  "required": [
+                    "scope",
+                    "lastObservedAt"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "scopeCount": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "source",
+              "lastObservedAt",
+              "scopes",
+              "scopeCount"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "loads": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "source": {
+                "type": "string"
+              },
+              "scope": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "Só em full"
+              },
+              "observedAt": {
+                "type": "string"
+              },
+              "receivedAt": {
+                "type": "string"
+              },
+              "counts": {
+                "$ref": "#/definitions/LoadCounts"
+              },
+              "retired": {
+                "type": "object",
+                "properties": {
+                  "by": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "by",
+                  "reason",
+                  "evidence"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "id",
+              "source",
+              "scope",
+              "observedAt",
+              "receivedAt",
+              "counts"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "coverage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "what": {
+                "type": "string"
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/SourceCoverage"
+                }
+              },
+              "note": {
+                "type": "string"
+              },
+              "kind": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "what",
+              "sources",
+              "kind"
+            ],
+            "additionalProperties": false,
+            "description": "O que uma resposta vazia quer dizer: quais fontes afirmam hoje aquele tipo de fato"
+          }
+        }
+      },
+      "required": [
+        "sources",
+        "loads",
+        "coverage"
+      ],
+      "additionalProperties": false
+    },
+    "FactDivergencesResult": {
+      "type": "object",
+      "properties": {
+        "count": {
+          "type": "number"
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "divergences": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "props",
+                  "targets"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "PART_OF",
+                  "OWNED_BY",
+                  "MEMBER_OF",
+                  "AT_LEVEL",
+                  "HOSTED_IN",
+                  "PROVIDES",
+                  "HAS_ENDPOINT",
+                  "CONSUMES",
+                  "CALLS",
+                  "PUBLISHES",
+                  "SUBSCRIBES",
+                  "VERSION_OF",
+                  "SPECIFIED_BY",
+                  "USES_RESOURCE",
+                  "HOSTED_ON",
+                  "INSTANCE_OF",
+                  "IN_ENVIRONMENT",
+                  "DEPLOYED_IN",
+                  "RUNS",
+                  "ROUTES",
+                  "REACHES_VIA",
+                  "BUILT_WITH",
+                  "DEPENDS_ON",
+                  "PRODUCES",
+                  "OWNS_DATA",
+                  "READS",
+                  "WRITES"
+                ]
+              },
+              "from": {
+                "$ref": "#/definitions/NodeRef"
+              },
+              "props": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Em props: as propriedades em disputa"
+              },
+              "edges": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Edge"
+                }
+              }
+            },
+            "required": [
+              "kind",
+              "type",
+              "from",
+              "edges"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "count",
+        "truncated",
+        "divergences"
+      ],
+      "additionalProperties": false
+    },
+    "GraphQueryResult": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": {},
+            "description": "Propriedades da relação segundo esta fonte (ex.: version)"
+          }
+        },
+        "truncated": {
+          "type": "boolean"
+        },
+        "truncatedBy": {
+          "type": "string",
+          "enum": [
+            "rows",
+            "size"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "columns",
+        "rows",
+        "truncated"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

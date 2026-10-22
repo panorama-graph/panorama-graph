@@ -1,0 +1,24 @@
+{
+  "format": "panorama-graph-manifest/1",
+  "component": {
+    "group": "com.example.shop",
+    "name": "orders-api",
+    "version": "1.4.0",
+    "repository": "https://git.example.com/shop/orders-api.git",
+    "commit": "3f2c9e1a7b5d4c3e2f1a0b9c8d7e6f5a4b3c2d1e"
+  },
+  "technologies": [
+    {
+      "name": "java",
+      "version": "21"
+    },
+    {
+      "name": "maven",
+      "version": "3.9.9"
+    },
+    {
+      "name": "spring-boot",
+      "version": "3.4.8"
+    }
+  ]
+}

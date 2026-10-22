@@ -1,0 +1,20 @@
+{
+  "format": "panorama-graph-http-clients/2",
+  "clients": [
+    {
+      "group": "catalog-api-v1",
+      "service": "catalog-api",
+      "version": "1",
+      "type": "com.example.shop.orders.catalog.CatalogClient",
+      "source": "src/main/java/com/example/shop/orders/catalog/CatalogClient.java",
+      "baseUrlProperty": "clients.catalog.url",
+      "operations": [
+        {
+          "method": "GET",
+          "path": "/products/{id}",
+          "function": "getProduct"
+        }
+      ]
+    }
+  ]
+}

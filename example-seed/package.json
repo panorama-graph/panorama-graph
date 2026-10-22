@@ -1,0 +1,21 @@
+{
+  "name": "example-seed",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "example-seed": "src/cli.ts"
+  },
+  "scripts": {
+    "example-seed": "bun src/cli.ts",
+    "lint": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.8",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@panorama-graph/sdk": "0.1.1"
+  }
+}

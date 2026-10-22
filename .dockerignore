@@ -1,0 +1,12 @@
+# As imagens são construídas da raiz do repositório (o workspace resolve as dependências e o SDK vem do código).
+.git
+**/node_modules
+**/dist
+**/.vite
+**/.env
+**/.env.*
+**/test
+carga
+example-seed/data
+gradle-plugin
+agent-skills

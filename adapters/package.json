@@ -1,0 +1,28 @@
+{
+  "name": "panorama-graph-adapters",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "graph-publish": "src/graph-publish/cli.ts",
+    "graph-seed": "src/graph-seed/cli.ts",
+    "graph-deployments": "src/graph-deployments/cli.ts",
+    "graph-receiver": "src/graph-receiver/cli.ts"
+  },
+  "scripts": {
+    "graph-publish": "bun src/graph-publish/cli.ts",
+    "graph-seed": "bun src/graph-seed/cli.ts",
+    "graph-deployments": "bun src/graph-deployments/cli.ts",
+    "graph-receiver": "bun src/graph-receiver/cli.ts",
+    "lint": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.8",
+    "ajv": "^8.20.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@panorama-graph/sdk": "workspace:*"
+  }
+}

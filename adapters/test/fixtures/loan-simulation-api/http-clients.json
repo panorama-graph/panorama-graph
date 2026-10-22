@@ -1,0 +1,18 @@
+{
+  "format": "panorama-graph-http-clients/2",
+  "clients": [
+    {
+      "group": "product-catalog",
+      "type": "org.acme.credit.loansimulationapi.simulation.out.integration.catalog.CatalogApi",
+      "source": "src/main/java/org/acme/credit/loansimulationapi/simulation/out/integration/catalog/CatalogApi.java",
+      "baseUrlProperty": "spring.http.serviceclient.product-catalog.base-url",
+      "operations": [
+        {
+          "method": "GET",
+          "path": "/products/{id}",
+          "function": "getProduct"
+        }
+      ]
+    }
+  ]
+}

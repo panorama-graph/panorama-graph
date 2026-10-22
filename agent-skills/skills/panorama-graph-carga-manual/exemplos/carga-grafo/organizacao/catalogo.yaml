@@ -1,0 +1,13 @@
+# Catálogo: domínio, sistema e componente, lidos do README e do catalog-info.yaml do repositório.
+# O dono ficou nas lacunas: o CODEOWNERS só tem uma pessoa.
+snapshots:
+  - source: service-catalog
+    scope: { catalog: example }
+    evidenceBase: "shop/orders-api@3f2c9e1a7b5d4c3e2f1a0b9c8d7e6f5a4b3c2d1e:"
+    nodes:
+      - { key: domain:shop, name: Loja, evidence: catalog-info.yaml#L9 }
+      - { key: system:shop/orders, name: Pedidos, evidence: catalog-info.yaml#L8 }
+      - { key: component:shop/orders-api, kind: service, name: orders-api, description: "Recebe e acompanha os pedidos da loja", evidence: catalog-info.yaml#L4 }
+    relations:
+      - { type: PART_OF, from: system:shop/orders, to: domain:shop, evidence: catalog-info.yaml#L9 }
+      - { type: PART_OF, from: component:shop/orders-api, to: system:shop/orders, evidence: catalog-info.yaml#L8 }

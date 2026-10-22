@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://panorama-graph.dev/schemas/build.schema.json",
+  "title": "Pacote de build (POST /v1/builds do graph-receiver)",
+  "description": "Os artefatos de build/architecture de um build, enviados ao graph-receiver, que os traduz e publica no grafo como o graph-publish faria. A identidade do componente vem do manifest.json, com as opções por cima.",
+  "type": "object",
+  "required": ["files"],
+  "properties": {
+    "format": { "const": "panorama-graph-build/1" },
+    "files": {
+      "description": "Caminho relativo de cada arquivo (manifest.json, bom.json, pacts/web.json...) e o conteúdo JSON dele.",
+      "type": "object",
+      "required": ["manifest.json"],
+      "propertyNames": { "pattern": "^(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*\\.json$" }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "description": "kind do Component: service, bff, frontend, job, library (padrão: service)", "type": "string" },
+        "version": { "description": "Versão do artefato (padrão: a do manifest.json)", "type": "string" },
+        "evidenceDir": { "description": "Caminho do diretório de artefatos a partir da raiz do repositório (padrão: build/architecture)", "type": "string" },
+        "observedAt": { "description": "Quando o build viu os fatos (padrão: quando o receptor recebeu)", "type": "string", "format": "date-time" },
+        "component": { "description": "Caminho do repositório (padrão: o do manifest.json)", "type": "string" },
+        "host": { "description": "Host do repositório (padrão: o do manifest.json)", "type": "string" },
+        "commit": { "description": "Commit (padrão: o do manifest.json)", "type": "string" },
+        "service": { "description": "Nome do serviço para os clientes (padrão: application.json ou o fim do caminho)", "type": "string" }
+      }
+    },
+    "dryRun": { "description": "Monta e confere os retratos, sem gravar", "type": "boolean" }
+  }
+}

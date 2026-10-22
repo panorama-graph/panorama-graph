@@ -1,0 +1,36 @@
+// Aplica o plugin panorama-graph só nesta execução, sem tocar no build.gradle nem no settings.gradle do projeto:
+//
+//   PANORAMA_GRAPH_MAVEN_URL=https://repo.example.com/maven \
+//     ./gradlew --init-script <skill>/modelos/panorama-graph.init.gradle test architectureArtifacts
+//
+// Sem os testes (-x test) saem o manifesto, o SBOM, o uso de dependências e o acesso a dados. A saída fica em
+// build/architecture/ de cada projeto Java.
+//
+// PANORAMA_GRAPH_MAVEN_URL      repositório Maven em que o plugin e a biblioteca de teste estão publicados
+// PANORAMA_GRAPH_PLUGIN_VERSION versão do plugin (padrão: 0.3.1, a primeira que funciona por init script)
+
+def mavenUrl = System.getenv('PANORAMA_GRAPH_MAVEN_URL')
+if (!mavenUrl) {
+    throw new GradleException('panorama-graph: informe PANORAMA_GRAPH_MAVEN_URL, o repositório Maven em que o plugin está publicado')
+}
+def pluginVersion = System.getenv('PANORAMA_GRAPH_PLUGIN_VERSION') ?: '0.3.1'
+
+initscript {
+    repositories {
+        def url = System.getenv('PANORAMA_GRAPH_MAVEN_URL')
+        if (url) maven { setUrl(url); allowInsecureProtocol = url.startsWith('http:') }
+        gradlePluginPortal()   // o CycloneDX e o dependency-analysis, que o plugin aplica
+    }
+    dependencies {
+        classpath "panorama-graph:panorama-graph-gradle-plugin:${System.getenv('PANORAMA_GRAPH_PLUGIN_VERSION') ?: '0.3.1'}"
+    }
+}
+
+allprojects {
+    // A biblioteca de teste, que o plugin põe no classpath de teste dos projetos Spring.
+    repositories {
+        maven { setUrl(mavenUrl); allowInsecureProtocol = mavenUrl.startsWith('http:') }
+    }
+    // Num init script, o plugin é aplicado pela classe: o id não está no registro do projeto.
+    apply plugin: panoramagraph.gradle.PanoramaGraphPlugin
+}

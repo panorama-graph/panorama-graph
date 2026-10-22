@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:panorama-graph:format:panorama-graph-data-access:2",
+  "title": "Acesso a dados do componente",
+  "description": "data-access.json: os datasets do componente e os pontos do código que leem ou escrevem neles. O que o gerador não resolveu vai em `unresolved`, com o motivo, em vez de sumir.",
+  "type": "object",
+  "required": ["format", "datasets", "accesses"],
+  "$defs": {
+    "store": {
+      "enum": ["relational", "document", "key-value", "wide-column", "search", "graph", "time-series", "object"],
+      "description": "Categoria do banco, a mesma de Dataset.store no modelo do grafo. O motor (MongoDB, PostgreSQL) não entra: vem da instância em que o banco está."
+    }
+  },
+  "properties": {
+    "format": { "const": "panorama-graph-data-access/2" },
+    "datasets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "store", "kind", "declaredIn"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1, "description": "Nome da coleção ou da tabela" },
+          "store": { "$ref": "#/$defs/store" },
+          "kind": { "enum": ["collection", "table"] },
+          "type": { "type": "string", "description": "Tipo que mapeia o dataset no código" },
+          "declaredIn": {
+            "enum": ["project", "library", "none"],
+            "description": "project: tipo do próprio componente (vira OWNS_DATA); library: de uma dependência; none: citado só pelo nome"
+          },
+          "source": { "type": "string", "description": "Arquivo do tipo, relativo à raiz do repositório" }
+        }
+      }
+    },
+    "accesses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["dataset", "store", "operation", "source", "line"],
+        "properties": {
+          "dataset": { "type": "string", "minLength": 1 },
+          "store": { "$ref": "#/$defs/store" },
+          "operation": { "enum": ["read", "write", "read-write"] },
+          "via": { "type": "string", "description": "O que faz o acesso (repositório, template, driver)" },
+          "caller": { "type": "string", "description": "Quem chama, no código do componente" },
+          "source": { "type": "string", "description": "Arquivo da chamada, relativo à raiz do repositório" },
+          "line": { "type": "integer", "minimum": 1 }
+        }
+      }
+    },
+    "unresolved": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reason"],
+        "properties": {
+          "reason": { "type": "string", "minLength": 1 },
+          "via": { "type": "string" },
+          "caller": { "type": "string" },
+          "source": { "type": "string" },
+          "line": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

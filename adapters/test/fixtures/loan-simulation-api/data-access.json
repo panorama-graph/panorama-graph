@@ -1,0 +1,36 @@
+{
+    "format": "panorama-graph-data-access/2",
+    "datasets": [
+        {
+            "name": "simulations",
+            "store": "document",
+            "kind": "collection",
+            "type": "org.acme.credit.loansimulationapi.simulation.out.persistence.entity.SimulationDocument",
+            "declaredIn": "project",
+            "source": "src/main/java/org/acme/credit/loansimulationapi/simulation/out/persistence/entity/SimulationDocument.java"
+        }
+    ],
+    "accesses": [
+        {
+            "dataset": "simulations",
+            "store": "document",
+            "operation": "write",
+            "via": "org.acme.credit.loansimulationapi.simulation.out.persistence.springdata.SpringDataSimulationRepository#save",
+            "caller": "org.acme.credit.loansimulationapi.simulation.out.persistence.MongoSimulationRepository#save",
+            "source": "src/main/java/org/acme/credit/loansimulationapi/simulation/out/persistence/MongoSimulationRepository.java",
+            "line": 21
+        },
+        {
+            "dataset": "simulations",
+            "store": "document",
+            "operation": "read",
+            "via": "org.acme.credit.loansimulationapi.simulation.out.persistence.springdata.SpringDataSimulationRepository#findById",
+            "caller": "org.acme.credit.loansimulationapi.simulation.out.persistence.MongoSimulationRepository#findById",
+            "source": "src/main/java/org/acme/credit/loansimulationapi/simulation/out/persistence/MongoSimulationRepository.java",
+            "line": 26
+        }
+    ],
+    "unresolved": [
+        
+    ]
+}

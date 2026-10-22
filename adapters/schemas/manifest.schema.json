@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:panorama-graph:format:panorama-graph-manifest:1",
+  "title": "Manifesto de arquitetura do build",
+  "description": "manifest.json: quem é o componente, com que stack é construído e que pacotes gera. Sem `component`, a identidade vem do CI ou das opções do graph-publish.",
+  "type": "object",
+  "required": ["format"],
+  "properties": {
+    "format": { "const": "panorama-graph-manifest/1" },
+    "component": {
+      "type": "object",
+      "properties": {
+        "group": { "type": "string", "description": "Grupo do artefato no build (ex.: com.example.catalog)" },
+        "name": { "type": "string", "description": "Nome do artefato no build" },
+        "version": { "type": "string" },
+        "repository": { "type": "string", "description": "URL do repositório (ssh, scp ou https), sem credencial" },
+        "commit": { "type": "string", "description": "Commit do build" }
+      }
+    },
+    "technologies": {
+      "type": "array",
+      "description": "Stack do build; cada item vira BUILT_WITH",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": { "name": { "type": "string", "minLength": 1 }, "version": { "type": "string" } }
+      }
+    },
+    "packages": {
+      "type": "array",
+      "description": "Pacotes que o build gera e publica (num projeto de vários módulos, os de todos), pelo purl com a versão; cada item vira PRODUCES",
+      "items": {
+        "type": "object",
+        "required": ["purl"],
+        "properties": { "purl": { "type": "string", "pattern": "^pkg:[a-z]+/", "description": "Ex.: pkg:maven/org.example/lib@1.0.0" } }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "description": "Arquivos gerados pelo build, por artefato (informativo; o graph-publish lê os nomes padrão)",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}

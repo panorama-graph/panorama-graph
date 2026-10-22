@@ -1,0 +1,14 @@
+# Infraestrutura do ambiente dev, lida dos values do Helm do repositório.
+snapshots:
+  - source: k8s-infra
+    scope: { cluster: dev }
+    evidence: "shop/orders-api@3f2c9e1a7b5d4c3e2f1a0b9c8d7e6f5a4b3c2d1e:deploy/values-dev.yaml"
+    nodes:
+      - { key: env:dev, kind: development, name: dev }
+      - { key: resource:dev/postgres, kind: database-server, name: postgres }
+      - { key: resource:dev/kafka, kind: broker, name: kafka }
+    relations:
+      - { type: IN_ENVIRONMENT, from: resource:dev/postgres, to: env:dev }
+      - { type: IN_ENVIRONMENT, from: resource:dev/kafka, to: env:dev }
+      - { type: RUNS, from: resource:dev/postgres, to: tech:postgresql }
+      - { type: RUNS, from: resource:dev/kafka, to: tech:kafka }

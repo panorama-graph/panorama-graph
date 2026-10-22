@@ -1,0 +1,33 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "orders-api",
+    "version": "1.4.0"
+  },
+  "channels": {
+    "orderPlaced": {
+      "address": "shop.orders.order-placed",
+      "x-panorama-graph-source": "src/main/resources/application.yml#L21"
+    },
+    "paymentConfirmed": {
+      "address": "shop.payments.payment-confirmed",
+      "x-panorama-graph-source": "src/main/resources/application.yml#L22"
+    }
+  },
+  "operations": {
+    "publishOrderPlaced": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/orderPlaced"
+      },
+      "x-panorama-graph-source": "src/main/java/com/example/shop/orders/OrderEvents.java#L27"
+    },
+    "onPaymentConfirmed": {
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/paymentConfirmed"
+      },
+      "x-panorama-graph-source": "src/main/java/com/example/shop/orders/PaymentListener.java#onPaymentConfirmed"
+    }
+  }
+}

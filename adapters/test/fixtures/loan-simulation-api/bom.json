@@ -1,0 +1,4574 @@
+{
+ "bomFormat": "CycloneDX",
+ "specVersion": "1.6",
+ "version": 1,
+ "metadata": {
+  "timestamp": "2026-09-29T23:08:19Z",
+  "tools": {
+   "components": [
+    {
+     "type": "application",
+     "author": "CycloneDX",
+     "name": "cyclonedx-gradle-plugin",
+     "version": "3.4.1"
+    }
+   ]
+  },
+  "component": {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.acme.credit/loansimulationapi@0.0.0-SNAPSHOT?project_path=%3A",
+   "group": "org.acme.credit",
+   "name": "loansimulationapi",
+   "version": "0.0.0-SNAPSHOT",
+   "purl": "pkg:maven/org.acme.credit/loansimulationapi@0.0.0-SNAPSHOT?project_path=%3A",
+   "modified": false,
+   "externalReferences": [
+    {
+     "type": "vcs",
+     "url": "ssh://git@gitlab.acmebank.example/acme/credito/loan-simulation-api.git"
+    }
+   ]
+  }
+ },
+ "components": [
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.core/matchers@4.6.18?type=jar",
+   "group": "au.com.dius.pact.core",
+   "name": "matchers",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.core/matchers@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+   "group": "au.com.dius.pact.core",
+   "name": "model",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+   "group": "au.com.dius.pact.core",
+   "name": "pactbroker",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+   "group": "au.com.dius.pact.core",
+   "name": "support",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.provider/junit5@4.6.18?type=jar",
+   "group": "au.com.dius.pact.provider",
+   "name": "junit5",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.provider/junit5@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact.provider/spring6@4.6.18?type=jar",
+   "group": "au.com.dius.pact.provider",
+   "name": "spring6",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact.provider/spring6@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/au.com.dius.pact/provider@4.6.18?type=jar",
+   "group": "au.com.dius.pact",
+   "name": "provider",
+   "version": "4.6.18",
+   "purl": "pkg:maven/au.com.dius.pact/provider@4.6.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/ch.qos.logback/logback-classic@1.5.34?type=jar",
+   "group": "ch.qos.logback",
+   "name": "logback-classic",
+   "version": "1.5.34",
+   "purl": "pkg:maven/ch.qos.logback/logback-classic@1.5.34?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/ch.qos.logback/logback-core@1.5.34?type=jar",
+   "group": "ch.qos.logback",
+   "name": "logback-core",
+   "version": "1.5.34",
+   "purl": "pkg:maven/ch.qos.logback/logback-core@1.5.34?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+   "group": "com.fasterxml.jackson.core",
+   "name": "jackson-annotations",
+   "version": "2.21",
+   "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar",
+   "group": "com.fasterxml.jackson.core",
+   "name": "jackson-core",
+   "version": "2.21.4",
+   "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+   "group": "com.fasterxml.jackson.core",
+   "name": "jackson-databind",
+   "version": "2.21.4",
+   "purl": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.4?type=jar",
+   "group": "com.fasterxml.jackson.dataformat",
+   "name": "jackson-dataformat-yaml",
+   "version": "2.21.4",
+   "purl": "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.21.4?type=jar",
+   "group": "com.fasterxml.jackson.datatype",
+   "name": "jackson-datatype-jsr310",
+   "version": "2.21.4",
+   "purl": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.21.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+   "publisher": "FasterXML",
+   "group": "com.fasterxml.jackson",
+   "name": "jackson-bom",
+   "version": "2.21.4",
+   "purl": "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.fasterxml/classmate@1.7.3?type=jar",
+   "publisher": "fasterxml.com",
+   "group": "com.fasterxml",
+   "name": "classmate",
+   "version": "1.7.3",
+   "purl": "pkg:maven/com.fasterxml/classmate@1.7.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.github.ajalt/colormath@1.2.0?type=jar",
+   "group": "com.github.ajalt",
+   "name": "colormath",
+   "version": "1.2.0",
+   "purl": "pkg:maven/com.github.ajalt/colormath@1.2.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.github.ajalt/mordant@1.2.1?type=jar",
+   "group": "com.github.ajalt",
+   "name": "mordant",
+   "version": "1.2.1",
+   "purl": "pkg:maven/com.github.ajalt/mordant@1.2.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.github.mifmif/generex@1.0.2?type=jar",
+   "group": "com.github.mifmif",
+   "name": "generex",
+   "version": "1.0.2",
+   "purl": "pkg:maven/com.github.mifmif/generex@1.0.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.github.zafarkhaja/java-semver@0.10.2?type=jar",
+   "group": "com.github.zafarkhaja",
+   "name": "java-semver",
+   "version": "0.10.2",
+   "purl": "pkg:maven/com.github.zafarkhaja/java-semver@0.10.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.android/annotations@4.1.1.4?type=jar",
+   "group": "com.google.android",
+   "name": "annotations",
+   "version": "4.1.1.4",
+   "purl": "pkg:maven/com.google.android/annotations@4.1.1.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.api.grpc/proto-google-common-protos@2.70.0?type=jar",
+   "publisher": "Google LLC",
+   "group": "com.google.api.grpc",
+   "name": "proto-google-common-protos",
+   "version": "2.70.0",
+   "purl": "pkg:maven/com.google.api.grpc/proto-google-common-protos@2.70.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+   "group": "com.google.code.findbugs",
+   "name": "jsr305",
+   "version": "3.0.2",
+   "purl": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.code.gson/gson@2.13.2?type=jar",
+   "group": "com.google.code.gson",
+   "name": "gson",
+   "version": "2.13.2",
+   "purl": "pkg:maven/com.google.code.gson/gson@2.13.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar",
+   "group": "com.google.errorprone",
+   "name": "error_prone_annotations",
+   "version": "2.45.0",
+   "purl": "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
+   "group": "com.google.guava",
+   "name": "failureaccess",
+   "version": "1.0.3",
+   "purl": "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+   "group": "com.google.guava",
+   "name": "guava",
+   "version": "33.5.0-jre",
+   "purl": "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+   "group": "com.google.guava",
+   "name": "listenablefuture",
+   "version": "9999.0-empty-to-avoid-conflict-with-guava",
+   "purl": "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+   "group": "com.google.j2objc",
+   "name": "j2objc-annotations",
+   "version": "3.1",
+   "purl": "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.google.protobuf/protobuf-java@4.34.2?type=jar",
+   "group": "com.google.protobuf",
+   "name": "protobuf-java",
+   "version": "4.34.2",
+   "purl": "pkg:maven/com.google.protobuf/protobuf-java@4.34.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result-jvm@1.1.20?type=jar",
+   "group": "com.michael-bull.kotlin-result",
+   "name": "kotlin-result-jvm",
+   "version": "1.1.20",
+   "purl": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result-jvm@1.1.20?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result@1.1.20?type=pom",
+   "group": "com.michael-bull.kotlin-result",
+   "name": "kotlin-result",
+   "version": "1.1.20",
+   "purl": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result@1.1.20?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vdurmont/semver4j@3.1.0?type=jar",
+   "group": "com.vdurmont",
+   "name": "semver4j",
+   "version": "3.1.0",
+   "purl": "pkg:maven/com.vdurmont/semver4j@3.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-ext-tables@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-ext-tables",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-ext-tables@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-ast",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-builder@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-builder",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-builder@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-collection",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-data",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-dependency@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-dependency",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-dependency@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-format@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-format",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-format@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-html",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-misc",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-options@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-options",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-options@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-sequence",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util-visitor",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark-util@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark-util",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark-util@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/com.vladsch.flexmark/flexmark@0.64.8?type=jar",
+   "group": "com.vladsch.flexmark",
+   "name": "flexmark",
+   "version": "0.64.8",
+   "purl": "pkg:maven/com.vladsch.flexmark/flexmark@0.64.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/commons-beanutils/commons-beanutils@1.11.0?type=jar",
+   "group": "commons-beanutils",
+   "name": "commons-beanutils",
+   "version": "1.11.0",
+   "purl": "pkg:maven/commons-beanutils/commons-beanutils@1.11.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+   "group": "commons-codec",
+   "name": "commons-codec",
+   "version": "1.21.0",
+   "purl": "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/commons-collections/commons-collections@3.2.2?type=jar",
+   "group": "commons-collections",
+   "name": "commons-collections",
+   "version": "3.2.2",
+   "purl": "pkg:maven/commons-collections/commons-collections@3.2.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
+   "group": "commons-io",
+   "name": "commons-io",
+   "version": "2.21.0",
+   "purl": "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/commons-logging/commons-logging@1.3.6?type=jar",
+   "group": "commons-logging",
+   "name": "commons-logging",
+   "version": "1.3.6",
+   "purl": "pkg:maven/commons-logging/commons-logging@1.3.6?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/dk.brics.automaton/automaton@1.11-8?type=jar",
+   "group": "dk.brics.automaton",
+   "name": "automaton",
+   "version": "1.11-8",
+   "purl": "pkg:maven/dk.brics.automaton/automaton@1.11-8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.github.classgraph/classgraph@4.8.184?type=jar",
+   "group": "io.github.classgraph",
+   "name": "classgraph",
+   "version": "4.8.184",
+   "purl": "pkg:maven/io.github.classgraph/classgraph@4.8.184?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.github.compress4j/compress4j@2.1.2?type=jar",
+   "group": "io.github.compress4j",
+   "name": "compress4j",
+   "version": "2.1.2",
+   "purl": "pkg:maven/io.github.compress4j/compress4j@2.1.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.github.java-diff-utils/java-diff-utils@4.16?type=jar",
+   "group": "io.github.java-diff-utils",
+   "name": "java-diff-utils",
+   "version": "4.16",
+   "purl": "pkg:maven/io.github.java-diff-utils/java-diff-utils@4.16?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar",
+   "group": "io.github.oshai",
+   "name": "kotlin-logging-jvm",
+   "version": "6.0.9",
+   "purl": "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-api",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-context@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-context",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-context@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-core@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-core",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-core@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-netty@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-netty",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-netty@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-protobuf-lite@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-protobuf-lite",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-protobuf-lite@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-protobuf@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-protobuf",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-protobuf@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-stub@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-stub",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-stub@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.grpc/grpc-util@1.80.0?type=jar",
+   "group": "io.grpc",
+   "name": "grpc-util",
+   "version": "1.80.0",
+   "purl": "pkg:maven/io.grpc/grpc-util@1.80.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.hotmoka/toml4j@0.7.3?type=jar",
+   "group": "io.hotmoka",
+   "name": "toml4j",
+   "version": "0.7.3",
+   "purl": "pkg:maven/io.hotmoka/toml4j@0.7.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.ktor/ktor-http-jvm@2.3.13?type=jar",
+   "group": "io.ktor",
+   "name": "ktor-http-jvm",
+   "version": "2.3.13",
+   "purl": "pkg:maven/io.ktor/ktor-http-jvm@2.3.13?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.ktor/ktor-io-jvm@2.3.13?type=jar",
+   "group": "io.ktor",
+   "name": "ktor-io-jvm",
+   "version": "2.3.13",
+   "purl": "pkg:maven/io.ktor/ktor-io-jvm@2.3.13?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.ktor/ktor-io@2.3.13?type=pom",
+   "group": "io.ktor",
+   "name": "ktor-io",
+   "version": "2.3.13",
+   "purl": "pkg:maven/io.ktor/ktor-io@2.3.13?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.ktor/ktor-utils-jvm@2.3.13?type=jar",
+   "group": "io.ktor",
+   "name": "ktor-utils-jvm",
+   "version": "2.3.13",
+   "purl": "pkg:maven/io.ktor/ktor-utils-jvm@2.3.13?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.ktor/ktor-utils@2.3.13?type=pom",
+   "group": "io.ktor",
+   "name": "ktor-utils",
+   "version": "2.3.13",
+   "purl": "pkg:maven/io.ktor/ktor-utils@2.3.13?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar",
+   "group": "io.micrometer",
+   "name": "micrometer-commons",
+   "version": "1.17.0",
+   "purl": "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.micrometer/micrometer-core@1.17.0?type=jar",
+   "group": "io.micrometer",
+   "name": "micrometer-core",
+   "version": "1.17.0",
+   "purl": "pkg:maven/io.micrometer/micrometer-core@1.17.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.micrometer/micrometer-jakarta9@1.17.0?type=jar",
+   "group": "io.micrometer",
+   "name": "micrometer-jakarta9",
+   "version": "1.17.0",
+   "purl": "pkg:maven/io.micrometer/micrometer-jakarta9@1.17.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+   "group": "io.micrometer",
+   "name": "micrometer-observation",
+   "version": "1.17.0",
+   "purl": "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-buffer",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-codec-base",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-codec-compression@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-codec-compression",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-codec-compression@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-codec-http2@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-codec-http2",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-codec-http2@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-codec-http@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-codec-http",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-codec-http@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-codec-socks@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-codec-socks",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-codec-socks@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-common",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-handler-proxy@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-handler-proxy",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-handler-proxy@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-handler",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-resolver@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-resolver",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-resolver@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-transport-native-unix-common@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-transport-native-unix-common",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-transport-native-unix-common@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+   "group": "io.netty",
+   "name": "netty-transport",
+   "version": "4.2.15.Final",
+   "purl": "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+   "group": "io.pact.plugin.driver",
+   "name": "core",
+   "version": "0.5.2",
+   "purl": "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.perfmark/perfmark-api@0.27.0?type=jar",
+   "group": "io.perfmark",
+   "name": "perfmark-api",
+   "version": "0.27.0",
+   "purl": "pkg:maven/io.perfmark/perfmark-api@0.27.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.projectreactor/reactor-core@3.8.6?type=jar",
+   "publisher": "reactor",
+   "group": "io.projectreactor",
+   "name": "reactor-core",
+   "version": "3.8.6",
+   "purl": "pkg:maven/io.projectreactor/reactor-core@3.8.6?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.swagger.core.v3/swagger-annotations-jakarta@2.2.47?type=jar",
+   "group": "io.swagger.core.v3",
+   "name": "swagger-annotations-jakarta",
+   "version": "2.2.47",
+   "purl": "pkg:maven/io.swagger.core.v3/swagger-annotations-jakarta@2.2.47?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.swagger.core.v3/swagger-core-jakarta@2.2.47?type=jar",
+   "group": "io.swagger.core.v3",
+   "name": "swagger-core-jakarta",
+   "version": "2.2.47",
+   "purl": "pkg:maven/io.swagger.core.v3/swagger-core-jakarta@2.2.47?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/io.swagger.core.v3/swagger-models-jakarta@2.2.47?type=jar",
+   "group": "io.swagger.core.v3",
+   "name": "swagger-models-jakarta",
+   "version": "2.2.47",
+   "purl": "pkg:maven/io.swagger.core.v3/swagger-models-jakarta@2.2.47?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4?type=jar",
+   "group": "jakarta.activation",
+   "name": "jakarta.activation-api",
+   "version": "2.1.4",
+   "purl": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+   "group": "jakarta.annotation",
+   "name": "jakarta.annotation-api",
+   "version": "3.0.0",
+   "purl": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.1.0?type=jar",
+   "group": "jakarta.servlet",
+   "name": "jakarta.servlet-api",
+   "version": "6.1.0",
+   "purl": "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?type=jar",
+   "group": "jakarta.validation",
+   "name": "jakarta.validation-api",
+   "version": "3.1.1",
+   "purl": "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5?type=jar",
+   "group": "jakarta.xml.bind",
+   "name": "jakarta.xml.bind-api",
+   "version": "4.0.5",
+   "purl": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/javax.activation/activation@1.1?type=jar",
+   "group": "javax.activation",
+   "name": "activation",
+   "version": "1.1",
+   "purl": "pkg:maven/javax.activation/activation@1.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+   "group": "javax.mail",
+   "name": "mail",
+   "version": "1.5.0-b01",
+   "purl": "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.acme.platform/platform-bom@1.2.0-SNAPSHOT?type=pom",
+   "group": "org.acme.platform",
+   "name": "platform-bom",
+   "version": "1.2.0-SNAPSHOT",
+   "purl": "pkg:maven/org.acme.platform/platform-bom@1.2.0-SNAPSHOT?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.acme.platform/platform-starter-http-api@1.2.0-SNAPSHOT?type=jar",
+   "group": "org.acme.platform",
+   "name": "platform-starter-http-api",
+   "version": "1.2.0-SNAPSHOT",
+   "purl": "pkg:maven/org.acme.platform/platform-starter-http-api@1.2.0-SNAPSHOT?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+   "group": "org.apache.commons",
+   "name": "commons-collections4",
+   "version": "4.5.0",
+   "purl": "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.commons/commons-compress@1.27.1?type=jar",
+   "group": "org.apache.commons",
+   "name": "commons-compress",
+   "version": "1.27.1",
+   "purl": "pkg:maven/org.apache.commons/commons-compress@1.27.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+   "group": "org.apache.commons",
+   "name": "commons-lang3",
+   "version": "3.20.0",
+   "purl": "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.commons/commons-text@1.14.0?type=jar",
+   "group": "org.apache.commons",
+   "name": "commons-text",
+   "version": "1.14.0",
+   "purl": "pkg:maven/org.apache.commons/commons-text@1.14.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.groovy/groovy-bom@5.0.6?type=pom",
+   "publisher": "Apache Software Foundation",
+   "group": "org.apache.groovy",
+   "name": "groovy-bom",
+   "version": "5.0.6",
+   "purl": "pkg:maven/org.apache.groovy/groovy-bom@5.0.6?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.groovy/groovy@5.0.6?type=jar",
+   "publisher": "Apache Software Foundation",
+   "group": "org.apache.groovy",
+   "name": "groovy",
+   "version": "5.0.6",
+   "purl": "pkg:maven/org.apache.groovy/groovy@5.0.6?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.httpcomponents.client5/httpclient5-fluent@5.6.1?type=jar",
+   "group": "org.apache.httpcomponents.client5",
+   "name": "httpclient5-fluent",
+   "version": "5.6.1",
+   "purl": "pkg:maven/org.apache.httpcomponents.client5/httpclient5-fluent@5.6.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+   "group": "org.apache.httpcomponents.client5",
+   "name": "httpclient5",
+   "version": "5.6.1",
+   "purl": "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.httpcomponents.core5/httpcore5-h2@5.4.2?type=jar",
+   "group": "org.apache.httpcomponents.core5",
+   "name": "httpcore5-h2",
+   "version": "5.4.2",
+   "purl": "pkg:maven/org.apache.httpcomponents.core5/httpcore5-h2@5.4.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.httpcomponents.core5/httpcore5@5.4.2?type=jar",
+   "group": "org.apache.httpcomponents.core5",
+   "name": "httpcore5",
+   "version": "5.4.2",
+   "purl": "pkg:maven/org.apache.httpcomponents.core5/httpcore5@5.4.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.logging.log4j/log4j-api@2.25.4?type=jar",
+   "group": "org.apache.logging.log4j",
+   "name": "log4j-api",
+   "version": "2.25.4",
+   "purl": "pkg:maven/org.apache.logging.log4j/log4j-api@2.25.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.25.4?type=jar",
+   "group": "org.apache.logging.log4j",
+   "name": "log4j-to-slf4j",
+   "version": "2.25.4",
+   "purl": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.25.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar",
+   "publisher": "The Apache Software Foundation",
+   "group": "org.apache.tika",
+   "name": "tika-core",
+   "version": "2.9.4",
+   "purl": "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar",
+   "group": "org.apache.tomcat.embed",
+   "name": "tomcat-embed-core",
+   "version": "11.0.22",
+   "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.22?type=jar",
+   "group": "org.apache.tomcat.embed",
+   "name": "tomcat-embed-el",
+   "version": "11.0.22",
+   "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.22?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@11.0.22?type=jar",
+   "group": "org.apache.tomcat.embed",
+   "name": "tomcat-embed-websocket",
+   "version": "11.0.22",
+   "purl": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@11.0.22?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.atteo/evo-inflector@1.3?type=jar",
+   "group": "org.atteo",
+   "name": "evo-inflector",
+   "version": "1.3",
+   "purl": "pkg:maven/org.atteo/evo-inflector@1.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+   "group": "org.codehaus.mojo",
+   "name": "animal-sniffer-annotations",
+   "version": "1.26",
+   "purl": "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.hamcrest/hamcrest@3.0?type=jar",
+   "group": "org.hamcrest",
+   "name": "hamcrest",
+   "version": "3.0",
+   "purl": "pkg:maven/org.hamcrest/hamcrest@3.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2?type=jar",
+   "group": "org.hdrhistogram",
+   "name": "HdrHistogram",
+   "version": "2.2.2",
+   "purl": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.0.Final?type=jar",
+   "group": "org.hibernate.validator",
+   "name": "hibernate-validator",
+   "version": "9.1.0.Final",
+   "purl": "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.0.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final?type=jar",
+   "group": "org.jboss.logging",
+   "name": "jboss-logging",
+   "version": "3.6.3.Final",
+   "purl": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-bom",
+   "version": "1.8.22",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-reflect",
+   "version": "2.3.21",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-stdlib-common",
+   "version": "2.3.21",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-stdlib-jdk7",
+   "version": "2.3.21",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-stdlib-jdk8",
+   "version": "2.3.21",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+   "group": "org.jetbrains.kotlin",
+   "name": "kotlin-stdlib",
+   "version": "2.3.21",
+   "purl": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.10.2?type=pom",
+   "group": "org.jetbrains.kotlinx",
+   "name": "kotlinx-coroutines-bom",
+   "version": "1.10.2",
+   "purl": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.10.2?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.10.2?type=jar",
+   "group": "org.jetbrains.kotlinx",
+   "name": "kotlinx-coroutines-core-jvm",
+   "version": "1.10.2",
+   "purl": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.10.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+   "group": "org.jetbrains.kotlinx",
+   "name": "kotlinx-coroutines-core",
+   "version": "1.10.2",
+   "purl": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+   "group": "org.jetbrains.kotlinx",
+   "name": "kotlinx-coroutines-jdk8",
+   "version": "1.10.2",
+   "purl": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+   "group": "org.jetbrains",
+   "name": "annotations",
+   "version": "24.0.1",
+   "purl": "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+   "group": "org.jspecify",
+   "name": "jspecify",
+   "version": "1.0.0",
+   "purl": "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.junit.jupiter/junit-jupiter-api@6.0.3?type=jar",
+   "group": "org.junit.jupiter",
+   "name": "junit-jupiter-api",
+   "version": "6.0.3",
+   "purl": "pkg:maven/org.junit.jupiter/junit-jupiter-api@6.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.junit.platform/junit-platform-commons@6.0.3?type=jar",
+   "group": "org.junit.platform",
+   "name": "junit-platform-commons",
+   "version": "6.0.3",
+   "purl": "pkg:maven/org.junit.platform/junit-platform-commons@6.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.junit/junit-bom@6.0.3?type=pom",
+   "group": "org.junit",
+   "name": "junit-bom",
+   "version": "6.0.3",
+   "purl": "pkg:maven/org.junit/junit-bom@6.0.3?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.mongodb/bson-record-codec@5.8.0?type=jar",
+   "group": "org.mongodb",
+   "name": "bson-record-codec",
+   "version": "5.8.0",
+   "purl": "pkg:maven/org.mongodb/bson-record-codec@5.8.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.mongodb/bson@5.8.0?type=jar",
+   "group": "org.mongodb",
+   "name": "bson",
+   "version": "5.8.0",
+   "purl": "pkg:maven/org.mongodb/bson@5.8.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.mongodb/mongodb-driver-core@5.8.0?type=jar",
+   "group": "org.mongodb",
+   "name": "mongodb-driver-core",
+   "version": "5.8.0",
+   "purl": "pkg:maven/org.mongodb/mongodb-driver-core@5.8.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.mongodb/mongodb-driver-sync@5.8.0?type=jar",
+   "group": "org.mongodb",
+   "name": "mongodb-driver-sync",
+   "version": "5.8.0",
+   "purl": "pkg:maven/org.mongodb/mongodb-driver-sync@5.8.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar",
+   "group": "org.opentest4j",
+   "name": "opentest4j",
+   "version": "1.3.0",
+   "purl": "pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4?type=jar",
+   "group": "org.reactivestreams",
+   "name": "reactive-streams",
+   "version": "1.0.4",
+   "purl": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.18?type=jar",
+   "group": "org.slf4j",
+   "name": "jul-to-slf4j",
+   "version": "2.0.18",
+   "purl": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+   "group": "org.slf4j",
+   "name": "slf4j-api",
+   "version": "2.0.18",
+   "purl": "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-common@3.0.3?type=jar",
+   "group": "org.springdoc",
+   "name": "springdoc-openapi-starter-common",
+   "version": "3.0.3",
+   "purl": "pkg:maven/org.springdoc/springdoc-openapi-starter-common@3.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-api@3.0.3?type=jar",
+   "group": "org.springdoc",
+   "name": "springdoc-openapi-starter-webmvc-api",
+   "version": "3.0.3",
+   "purl": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-api@3.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-ui@3.0.3?type=jar",
+   "group": "org.springdoc",
+   "name": "springdoc-openapi-starter-webmvc-ui",
+   "version": "3.0.3",
+   "purl": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-ui@3.0.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-actuator-autoconfigure",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-actuator@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-actuator",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-actuator@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-autoconfigure",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-data-commons@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-data-commons",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-data-commons@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-data-mongodb@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-data-mongodb",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-data-mongodb@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-dependencies@4.1.0?type=pom",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-dependencies",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-dependencies@4.1.0?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-health@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-health",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-health@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-http-converter",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-jackson",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-micrometer-metrics@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-micrometer-metrics",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-micrometer-metrics@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-micrometer-observation@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-micrometer-observation",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-micrometer-observation@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-mongodb@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-mongodb",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-mongodb@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-persistence",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-servlet@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-servlet",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-servlet@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-actuator",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-data-mongodb@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-data-mongodb",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-data-mongodb@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-jackson@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-jackson",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-jackson@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-logging",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-micrometer-metrics@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-micrometer-metrics",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-micrometer-metrics@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-mongodb@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-mongodb",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-mongodb@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat-runtime@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-tomcat-runtime",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat-runtime@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-tomcat",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-validation@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-validation",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-validation@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter-webmvc@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter-webmvc",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter-webmvc@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-starter",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-tomcat",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-transaction@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-transaction",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-transaction@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-validation@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-validation",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-validation@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-web-server",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot-webmvc",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+   "publisher": "VMware, Inc.",
+   "group": "org.springframework.boot",
+   "name": "spring-boot",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.cloud/spring-cloud-dependencies@2025.1.2?type=pom",
+   "publisher": "Pivotal Software, Inc.",
+   "group": "org.springframework.cloud",
+   "name": "spring-cloud-dependencies",
+   "version": "2025.1.2",
+   "purl": "pkg:maven/org.springframework.cloud/spring-cloud-dependencies@2025.1.2?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.data/spring-data-commons@4.1.0?type=jar",
+   "group": "org.springframework.data",
+   "name": "spring-data-commons",
+   "version": "4.1.0",
+   "purl": "pkg:maven/org.springframework.data/spring-data-commons@4.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework.data/spring-data-mongodb@5.1.0?type=jar",
+   "group": "org.springframework.data",
+   "name": "spring-data-mongodb",
+   "version": "5.1.0",
+   "purl": "pkg:maven/org.springframework.data/spring-data-mongodb@5.1.0?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-aop@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-aop",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-aop@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-beans",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-context",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-core",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-expression",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-test@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-test",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-test@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-tx",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-web",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-webflux@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-webflux",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-webflux@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.springframework/spring-webmvc@7.0.8?type=jar",
+   "publisher": "Spring IO",
+   "group": "org.springframework",
+   "name": "spring-webmvc",
+   "version": "7.0.8",
+   "purl": "pkg:maven/org.springframework/spring-webmvc@7.0.8?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.testcontainers/testcontainers-bom@1.21.3?type=pom",
+   "group": "org.testcontainers",
+   "name": "testcontainers-bom",
+   "version": "1.21.3",
+   "purl": "pkg:maven/org.testcontainers/testcontainers-bom@1.21.3?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.webjars/swagger-ui@5.32.2?type=jar",
+   "group": "org.webjars",
+   "name": "swagger-ui",
+   "version": "5.32.2",
+   "purl": "pkg:maven/org.webjars/swagger-ui@5.32.2?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.webjars/webjars-locator-lite@1.1.3?type=jar",
+   "group": "org.webjars",
+   "name": "webjars-locator-lite",
+   "version": "1.1.3",
+   "purl": "pkg:maven/org.webjars/webjars-locator-lite@1.1.3?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+   "group": "org.yaml",
+   "name": "snakeyaml",
+   "version": "2.6",
+   "purl": "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/tools.jackson.core/jackson-core@3.1.4?type=jar",
+   "group": "tools.jackson.core",
+   "name": "jackson-core",
+   "version": "3.1.4",
+   "purl": "pkg:maven/tools.jackson.core/jackson-core@3.1.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/tools.jackson.core/jackson-databind@3.1.4?type=jar",
+   "group": "tools.jackson.core",
+   "name": "jackson-databind",
+   "version": "3.1.4",
+   "purl": "pkg:maven/tools.jackson.core/jackson-databind@3.1.4?type=jar",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  },
+  {
+   "type": "library",
+   "bom-ref": "pkg:maven/tools.jackson/jackson-bom@3.1.4?type=pom",
+   "publisher": "FasterXML",
+   "group": "tools.jackson",
+   "name": "jackson-bom",
+   "version": "3.1.4",
+   "purl": "pkg:maven/tools.jackson/jackson-bom@3.1.4?type=pom",
+   "modified": false,
+   "properties": [
+    {
+     "name": "cdx:maven:package:test",
+     "value": "false"
+    }
+   ]
+  }
+ ],
+ "dependencies": [
+  {
+   "ref": "pkg:maven/au.com.dius.pact.core/matchers@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.atteo/evo-inflector@1.3?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+    "pkg:maven/com.github.zafarkhaja/java-semver@0.10.2?type=jar",
+    "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+    "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+    "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+    "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+    "pkg:maven/io.github.java-diff-utils/java-diff-utils@4.16?type=jar",
+    "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+    "pkg:maven/com.github.ajalt/mordant@1.2.1?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/com.github.mifmif/generex@1.0.2?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+    "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/commons-beanutils/commons-beanutils@1.11.0?type=jar",
+    "pkg:maven/io.ktor/ktor-http-jvm@2.3.13?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+    "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+    "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+    "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+    "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+    "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-text@1.14.0?type=jar",
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5-fluent@5.6.1?type=jar",
+    "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/com.github.mifmif/generex@1.0.2?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+    "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact.provider/junit5@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.michael-bull.kotlin-result/kotlin-result@1.1.20?type=pom",
+    "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+    "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/org.junit.jupiter/junit-jupiter-api@6.0.3?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+    "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+    "pkg:maven/au.com.dius.pact/provider@4.6.18?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact.provider/spring6@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/org.hamcrest/hamcrest@3.0?type=jar",
+    "pkg:maven/org.springframework/spring-webflux@7.0.8?type=jar",
+    "pkg:maven/au.com.dius.pact.provider/junit5@4.6.18?type=jar",
+    "pkg:maven/org.springframework/spring-test@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+    "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.1.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/au.com.dius.pact/provider@4.6.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.michael-bull.kotlin-result/kotlin-result@1.1.20?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+    "pkg:maven/au.com.dius.pact.core/model@4.6.18?type=jar",
+    "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+    "pkg:maven/au.com.dius.pact.core/support@4.6.18?type=jar",
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+    "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+    "pkg:maven/org.apache.groovy/groovy@5.0.6?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark@0.64.8?type=jar",
+    "pkg:maven/au.com.dius.pact.core/matchers@4.6.18?type=jar",
+    "pkg:maven/com.github.ajalt/mordant@1.2.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-ext-tables@0.64.8?type=jar",
+    "pkg:maven/io.github.classgraph/classgraph@4.8.184?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/au.com.dius.pact.core/pactbroker@4.6.18?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/ch.qos.logback/logback-classic@1.5.34?type=jar",
+   "dependsOn": [
+    "pkg:maven/ch.qos.logback/logback-core@1.5.34?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/ch.qos.logback/logback-core@1.5.34?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+    "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+    "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.21.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+    "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-core@2.21.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml.jackson/jackson-bom@2.21.4?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.fasterxml/classmate@1.7.3?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.github.ajalt/colormath@1.2.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.github.ajalt/mordant@1.2.1?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.github.ajalt/colormath@1.2.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.github.mifmif/generex@1.0.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/dk.brics.automaton/automaton@1.11-8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.github.zafarkhaja/java-semver@0.10.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.android/annotations@4.1.1.4?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.api.grpc/proto-google-common-protos@2.70.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.protobuf/protobuf-java@4.34.2?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.code.gson/gson@2.13.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/com.google.guava/failureaccess@1.0.3?type=jar",
+    "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.google.guava/listenablefuture@9999.0-empty-to-avoid-conflict-with-guava?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.j2objc/j2objc-annotations@3.1?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.google.protobuf/protobuf-java@4.34.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result-jvm@1.1.20?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.michael-bull.kotlin-result/kotlin-result@1.1.20?type=pom",
+   "dependsOn": [
+    "pkg:maven/com.michael-bull.kotlin-result/kotlin-result-jvm@1.1.20?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vdurmont/semver4j@3.1.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-ext-tables@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.vladsch.flexmark/flexmark@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-builder@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-dependency@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-format@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-options@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark-util@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-options@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-dependency@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-format@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-builder@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/com.vladsch.flexmark/flexmark@0.64.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-data@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-dependency@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-sequence@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-format@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-visitor@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-ast@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-misc@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-collection@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-builder@0.64.8?type=jar",
+    "pkg:maven/com.vladsch.flexmark/flexmark-util-html@0.64.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/commons-beanutils/commons-beanutils@1.11.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/commons-collections/commons-collections@3.2.2?type=jar",
+    "pkg:maven/commons-logging/commons-logging@1.3.6?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/commons-collections/commons-collections@3.2.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/commons-logging/commons-logging@1.3.6?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/dk.brics.automaton/automaton@1.11-8?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.github.classgraph/classgraph@4.8.184?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.github.compress4j/compress4j@2.1.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.commons/commons-compress@1.27.1?type=jar",
+    "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.github.java-diff-utils/java-diff-utils@4.16?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-context@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-core@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.android/annotations@4.1.1.4?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/io.grpc/grpc-context@1.80.0?type=jar",
+    "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+    "pkg:maven/com.google.code.gson/gson@2.13.2?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+    "pkg:maven/io.perfmark/perfmark-api@0.27.0?type=jar",
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-netty@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-handler-proxy@4.2.15.Final?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/io.grpc/grpc-core@1.80.0?type=jar",
+    "pkg:maven/io.netty/netty-codec-http2@4.2.15.Final?type=jar",
+    "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+    "pkg:maven/io.netty/netty-transport-native-unix-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+    "pkg:maven/io.perfmark/perfmark-api@0.27.0?type=jar",
+    "pkg:maven/io.grpc/grpc-util@1.80.0?type=jar",
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-protobuf-lite@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-protobuf@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.code.findbugs/jsr305@3.0.2?type=jar",
+    "pkg:maven/com.google.protobuf/protobuf-java@4.34.2?type=jar",
+    "pkg:maven/com.google.api.grpc/proto-google-common-protos@2.70.0?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/io.grpc/grpc-protobuf-lite@1.80.0?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-stub@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar",
+    "pkg:maven/com.google.errorprone/error_prone_annotations@2.45.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.grpc/grpc-util@1.80.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/io.grpc/grpc-core@1.80.0?type=jar",
+    "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+    "pkg:maven/io.grpc/grpc-api@1.80.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.hotmoka/toml4j@0.7.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.google.code.gson/gson@2.13.2?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.ktor/ktor-http-jvm@2.3.13?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+    "pkg:maven/io.ktor/ktor-utils@2.3.13?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.ktor/ktor-io-jvm@2.3.13?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.ktor/ktor-io@2.3.13?type=pom",
+   "dependsOn": [
+    "pkg:maven/io.ktor/ktor-io-jvm@2.3.13?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.ktor/ktor-utils-jvm@2.3.13?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+    "pkg:maven/io.ktor/ktor-io@2.3.13?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.ktor/ktor-utils@2.3.13?type=pom",
+   "dependsOn": [
+    "pkg:maven/io.ktor/ktor-utils-jvm@2.3.13?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.micrometer/micrometer-core@1.17.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar",
+    "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.micrometer/micrometer-jakarta9@1.17.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-core@1.17.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-commons@1.17.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-codec-compression@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-codec-http2@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-http@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-codec-http@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-compression@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-codec-socks@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-handler-proxy@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-socks@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-http@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-handler@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-codec-base@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport-native-unix-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-resolver@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-resolver@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-transport-native-unix-common@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.netty/netty-transport@4.2.15.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.netty/netty-common@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-buffer@4.2.15.Final?type=jar",
+    "pkg:maven/io.netty/netty-resolver@4.2.15.Final?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.pact.plugin.driver/core@0.5.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.vdurmont/semver4j@3.1.0?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+    "pkg:maven/io.github.compress4j/compress4j@2.1.2?type=jar",
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5-fluent@5.6.1?type=jar",
+    "pkg:maven/io.grpc/grpc-stub@1.80.0?type=jar",
+    "pkg:maven/com.google.guava/guava@33.5.0-jre?type=jar",
+    "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+    "pkg:maven/io.github.oshai/kotlin-logging-jvm@6.0.9?type=jar",
+    "pkg:maven/io.grpc/grpc-protobuf@1.80.0?type=jar",
+    "pkg:maven/io.hotmoka/toml4j@0.7.3?type=jar",
+    "pkg:maven/org.apache.commons/commons-compress@1.27.1?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar",
+    "pkg:maven/io.grpc/grpc-netty@1.80.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.perfmark/perfmark-api@0.27.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.projectreactor/reactor-core@3.8.6?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/org.reactivestreams/reactive-streams@1.0.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.swagger.core.v3/swagger-annotations-jakarta@2.2.47?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/io.swagger.core.v3/swagger-core-jakarta@2.2.47?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+    "pkg:maven/io.swagger.core.v3/swagger-models-jakarta@2.2.47?type=jar",
+    "pkg:maven/io.swagger.core.v3/swagger-annotations-jakarta@2.2.47?type=jar",
+    "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+    "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5?type=jar",
+    "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?type=jar",
+    "pkg:maven/com.fasterxml.jackson.datatype/jackson-datatype-jsr310@2.21.4?type=jar",
+    "pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.21.4?type=jar",
+    "pkg:maven/com.fasterxml.jackson.dataformat/jackson-dataformat-yaml@2.21.4?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/io.swagger.core.v3/swagger-models-jakarta@2.2.47?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/jakarta.servlet/jakarta.servlet-api@6.1.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/jakarta.xml.bind/jakarta.xml.bind-api@4.0.5?type=jar",
+   "dependsOn": [
+    "pkg:maven/jakarta.activation/jakarta.activation-api@2.1.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/javax.activation/activation@1.1?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/javax.mail/mail@1.5.0-b01?type=jar",
+   "dependsOn": [
+    "pkg:maven/javax.activation/activation@1.1?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.acme.platform/platform-bom@1.2.0-SNAPSHOT?type=pom",
+   "dependsOn": [
+    "pkg:maven/org.testcontainers/testcontainers-bom@1.21.3?type=pom",
+    "pkg:maven/org.springframework.cloud/spring-cloud-dependencies@2025.1.2?type=pom",
+    "pkg:maven/org.springframework.boot/spring-boot-dependencies@4.1.0?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.acme.platform/platform-starter-http-api@1.2.0-SNAPSHOT?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-starter-validation@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-webmvc@4.1.0?type=jar",
+    "pkg:maven/au.com.dius.pact.provider/spring6@4.6.18?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@4.1.0?type=jar",
+    "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-ui@3.0.3?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-dependencies@4.1.0?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.acme.credit/loansimulationapi@0.0.0-SNAPSHOT?project_path=%3A",
+   "dependsOn": [
+    "pkg:maven/org.acme.platform/platform-bom@1.2.0-SNAPSHOT?type=pom",
+    "pkg:maven/org.acme.platform/platform-starter-http-api@1.2.0-SNAPSHOT?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-data-mongodb@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.commons/commons-collections4@4.5.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.commons/commons-compress@1.27.1?type=jar",
+   "dependsOn": [
+    "pkg:maven/commons-codec/commons-codec@1.21.0?type=jar",
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+    "pkg:maven/commons-io/commons-io@2.21.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.commons/commons-text@1.14.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.commons/commons-lang3@3.20.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.groovy/groovy-bom@5.0.6?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.groovy/groovy@5.0.6?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.groovy/groovy-bom@5.0.6?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.httpcomponents.client5/httpclient5-fluent@5.6.1?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.httpcomponents.client5/httpclient5@5.6.1?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.httpcomponents.core5/httpcore5-h2@5.4.2?type=jar",
+    "pkg:maven/org.apache.httpcomponents.core5/httpcore5@5.4.2?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.httpcomponents.core5/httpcore5-h2@5.4.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.httpcomponents.core5/httpcore5@5.4.2?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.httpcomponents.core5/httpcore5@5.4.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.logging.log4j/log4j-api@2.25.4?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.25.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.logging.log4j/log4j-api@2.25.4?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.tika/tika-core@2.9.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/commons-io/commons-io@2.21.0?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.22?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@11.0.22?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.atteo/evo-inflector@1.3?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.codehaus.mojo/animal-sniffer-annotations@1.26?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.hamcrest/hamcrest@3.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.hdrhistogram/HdrHistogram@2.2.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.0.Final?type=jar",
+   "dependsOn": [
+    "pkg:maven/jakarta.validation/jakarta.validation-api@3.1.1?type=jar",
+    "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final?type=jar",
+    "pkg:maven/com.fasterxml/classmate@1.7.3?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jboss.logging/jboss-logging@3.6.3.Final?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-bom@1.8.22?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-reflect@2.3.21?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-common@2.3.21?type=pom",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk8@2.3.21?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+    "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib-jdk7@2.3.21?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlin/kotlin-stdlib@2.3.21?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.10.2?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.10.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.10.2?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm@1.10.2?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-jdk8@1.10.2?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-core@1.10.2?type=pom",
+    "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-bom@1.10.2?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.jetbrains/annotations@24.0.1?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.junit.jupiter/junit-jupiter-api@6.0.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.junit/junit-bom@6.0.3?type=pom",
+    "pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar",
+    "pkg:maven/org.junit.platform/junit-platform-commons@6.0.3?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.junit.platform/junit-platform-commons@6.0.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.junit/junit-bom@6.0.3?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.junit/junit-bom@6.0.3?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.mongodb/bson-record-codec@5.8.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.mongodb/bson@5.8.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.mongodb/bson@5.8.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.mongodb/mongodb-driver-core@5.8.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.mongodb/bson@5.8.0?type=jar",
+    "pkg:maven/org.mongodb/bson-record-codec@5.8.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.mongodb/mongodb-driver-sync@5.8.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.mongodb/bson@5.8.0?type=jar",
+    "pkg:maven/org.mongodb/mongodb-driver-core@5.8.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.opentest4j/opentest4j@1.3.0?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.reactivestreams/reactive-streams@1.0.4?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.slf4j/jul-to-slf4j@2.0.18?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-common@3.0.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-validation@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar",
+    "pkg:maven/io.swagger.core.v3/swagger-core-jakarta@2.2.47?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-api@3.0.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springdoc/springdoc-openapi-starter-common@3.0.3?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-ui@3.0.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.webjars/swagger-ui@5.32.2?type=jar",
+    "pkg:maven/org.springdoc/springdoc-openapi-starter-webmvc-api@3.0.3?type=jar",
+    "pkg:maven/org.webjars/webjars-locator-lite@1.1.3?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-actuator@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-actuator@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-data-commons@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.0?type=jar",
+    "pkg:maven/org.springframework.data/spring-data-commons@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-data-mongodb@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-transaction@4.1.0?type=jar",
+    "pkg:maven/org.springframework.data/spring-data-mongodb@5.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-data-commons@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-mongodb@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-dependencies@4.1.0?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-health@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/tools.jackson.core/jackson-databind@3.1.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-micrometer-metrics@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-micrometer-observation@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-core@1.17.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-micrometer-observation@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-mongodb@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-servlet@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-actuator@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.micrometer/micrometer-jakarta9@1.17.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-micrometer-metrics@4.1.0?type=jar",
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-health@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-data-mongodb@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-starter-mongodb@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-data-mongodb@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-jackson@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-jackson@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-logging@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.slf4j/jul-to-slf4j@2.0.18?type=jar",
+    "pkg:maven/ch.qos.logback/logback-classic@1.5.34?type=jar",
+    "pkg:maven/org.apache.logging.log4j/log4j-to-slf4j@2.25.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-micrometer-metrics@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-micrometer-metrics@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-mongodb@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.mongodb/mongodb-driver-sync@5.8.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-mongodb@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat-runtime@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.22?type=jar",
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-websocket@11.0.22?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.0?type=jar",
+    "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat-runtime@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-validation@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-validation@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter-webmvc@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-tomcat@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter-jackson@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-starter@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-starter-logging@4.1.0?type=jar",
+    "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@4.1.0?type=jar",
+    "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-tomcat@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/jakarta.annotation/jakarta.annotation-api@3.0.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-core@11.0.22?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-transaction@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-persistence@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-validation@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.apache.tomcat.embed/tomcat-embed-el@11.0.22?type=jar",
+    "pkg:maven/org.hibernate.validator/hibernate-validator@9.1.0.Final?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-web-server@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot-webmvc@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework.boot/spring-boot-http-converter@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-webmvc@7.0.8?type=jar",
+    "pkg:maven/org.springframework.boot/spring-boot-servlet@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.boot/spring-boot@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-context@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.cloud/spring-cloud-dependencies@2025.1.2?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.springframework.data/spring-data-commons@4.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework.data/spring-data-mongodb@5.1.0?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+    "pkg:maven/org.mongodb/mongodb-driver-core@5.8.0?type=jar",
+    "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+    "pkg:maven/org.springframework.data/spring-data-commons@4.1.0?type=jar",
+    "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+    "pkg:maven/org.slf4j/slf4j-api@2.0.18?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-aop@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-aop@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar",
+    "pkg:maven/commons-logging/commons-logging@1.3.6?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-test@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-tx@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/io.micrometer/micrometer-observation@1.17.0?type=jar",
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-webflux@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+    "pkg:maven/io.projectreactor/reactor-core@3.8.6?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.springframework/spring-webmvc@7.0.8?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.springframework/spring-core@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-beans@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-context@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-web@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-expression@7.0.8?type=jar",
+    "pkg:maven/org.springframework/spring-aop@7.0.8?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.testcontainers/testcontainers-bom@1.21.3?type=pom",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.webjars/swagger-ui@5.32.2?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/org.webjars/webjars-locator-lite@1.1.3?type=jar",
+   "dependsOn": [
+    "pkg:maven/org.jspecify/jspecify@1.0.0?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/org.yaml/snakeyaml@2.6?type=jar",
+   "dependsOn": []
+  },
+  {
+   "ref": "pkg:maven/tools.jackson.core/jackson-core@3.1.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/tools.jackson/jackson-bom@3.1.4?type=pom"
+   ]
+  },
+  {
+   "ref": "pkg:maven/tools.jackson.core/jackson-databind@3.1.4?type=jar",
+   "dependsOn": [
+    "pkg:maven/com.fasterxml.jackson.core/jackson-annotations@2.21?type=jar",
+    "pkg:maven/tools.jackson/jackson-bom@3.1.4?type=pom",
+    "pkg:maven/tools.jackson.core/jackson-core@3.1.4?type=jar"
+   ]
+  },
+  {
+   "ref": "pkg:maven/tools.jackson/jackson-bom@3.1.4?type=pom",
+   "dependsOn": []
+  }
+ ]
+}

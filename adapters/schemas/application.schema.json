@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:panorama-graph:format:panorama-graph-application:1",
+  "title": "Aplicação",
+  "description": "application.json: o nome com que os clientes conhecem o serviço (o participante nos pacts, o grupo dos clientes HTTP). Ele nomeia a API e os endpoints. Sem o arquivo, o nome é o fim do caminho do repositório.",
+  "type": "object",
+  "required": ["format", "name"],
+  "properties": {
+    "format": { "const": "panorama-graph-application/1" },
+    "name": { "type": "string", "minLength": 1, "description": "Nome do serviço (ex.: o spring.application.name)" }
+  }
+}

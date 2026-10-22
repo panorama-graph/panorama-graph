@@ -1,0 +1,37 @@
+{
+    "format": "panorama-graph-manifest/1",
+    "component": {
+        "group": "org.acme.credit",
+        "name": "loansimulationapi",
+        "version": "0.0.0-SNAPSHOT",
+        "repository": "ssh://git@gitlab.acmebank.example/acme/credito/loan-simulation-api.git",
+        "commit": "edf89eccf19f4efbd0a698fde1dee3302984874d"
+    },
+    "technologies": [
+        {
+            "name": "java",
+            "version": "25"
+        },
+        {
+            "name": "gradle",
+            "version": "9.5.1"
+        },
+        {
+            "name": "spring-boot",
+            "version": "4.1.0"
+        },
+        {
+            "name": "service-platform",
+            "version": "1.2.0-SNAPSHOT"
+        }
+    ],
+    "artifacts": {
+        "application": "application.json",
+        "sbom": "bom.json",
+        "dependencyUsage": "dependency-usage",
+        "openapi": "openapi.json",
+        "asyncapi": "asyncapi.json",
+        "httpClients": "http-clients.json",
+        "pacts": "pacts"
+    }
+}

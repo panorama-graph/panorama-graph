@@ -1,0 +1,37 @@
+{
+    "format": "panorama-graph-manifest/1",
+    "component": {
+        "group": "org.acme.credit",
+        "name": "productcatalog",
+        "version": "0.0.0-SNAPSHOT",
+        "repository": "ssh://git@gitlab.acmebank.example/acme/credito/product-catalog-api.git",
+        "commit": "deaaa55574719a5978d07ef0eb2f096da6b88d00"
+    },
+    "technologies": [
+        {
+            "name": "java",
+            "version": "25"
+        },
+        {
+            "name": "gradle",
+            "version": "9.5.1"
+        },
+        {
+            "name": "spring-boot",
+            "version": "4.1.0"
+        },
+        {
+            "name": "service-platform",
+            "version": "1.2.0-SNAPSHOT"
+        }
+    ],
+    "artifacts": {
+        "application": "application.json",
+        "sbom": "bom.json",
+        "dependencyUsage": "dependency-usage",
+        "openapi": "openapi.json",
+        "asyncapi": "asyncapi.json",
+        "httpClients": "http-clients.json",
+        "pacts": "pacts"
+    }
+}
