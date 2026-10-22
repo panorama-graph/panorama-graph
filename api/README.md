@@ -14,7 +14,7 @@ TypeScript com Bun, Fastify, Neo4j Community 5.x.
 
 ## Subir
 
-A instância (Neo4j, API e console, com a carga de exemplo opcional) sobe pelo compose da raiz: ver os [primeiros passos](../PRIMEIROS-PASSOS.md).
+A instância (Neo4j, API e console) sobe pelo compose da raiz; a carga de exemplo, pelo do repositório dos adaptadores: ver os [primeiros passos](../PRIMEIROS-PASSOS.md).
 
 Para desenvolver fora do container, com o Neo4j da raiz (`docker compose up -d neo4j` em `..`):
 

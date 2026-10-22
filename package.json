@@ -4,8 +4,6 @@
   "workspaces": [
     "api",
     "web",
-    "adapters",
-    "example-seed",
     "sdks/typescript"
   ],
   "scripts": {

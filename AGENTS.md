@@ -4,13 +4,12 @@ Este arquivo diz **como trabalhar** no repositório. **Por que o grafo existe, e
 
 ## Regras
 
-- **Um repositório, um workspace.** `api`, `web`, `adapters`, `example-seed` e `sdks/typescript` são projetos do workspace do Bun (`package.json` da raiz, um `bun.lock` só, dependências içadas para a raiz pelo `bunfig.toml`). `bun install` roda na raiz. Dependência nova entra no `package.json` do projeto que a usa.
-- **Uma mudança, um commit.** Mudança no modelo ou no contrato da API chega ao SDK (`bun run sdk:generate` em `api/`), aos adaptadores, ao console e ao [MODELO.md](api/MODELO.md) na mesma entrega. `bun run lint` e `bun run test` na raiz (ou em cada projeto que a mudança toca) precisam passar antes de entregar.
-- **O SDK é o artefato público.** Dentro do repositório, ninguém depende da versão publicada: `api`, `web` e `adapters` usam o SDK pelo workspace (`workspace:*`), lendo o código-fonte. O SDK muda de versão (`sdks/typescript/package.json`) quando muda, e o job `publish_sdk` o publica no branch padrão. Um SDK em outra linguagem entra como `sdks/<linguagem>`, gerado do mesmo contrato (o OpenAPI de `/v1` e o modelo de `GET /v1/schema`) e com as mesmas receitas de chave.
-- **Exemplos copiáveis.** Um `example-*` depende só do que é publicado, para que uma organização o copie como está: o SDK pela versão (e não `workspace:*`; o workspace o liga ao código enquanto as versões batem), e nada de importar de `adapters/`. Ao subir a versão do SDK, suba a dele. O que ele tem da organização de exemplo (ACME Bank) fica nos dados (`data/`), nunca no código.
-- **Linguagem livre nos adaptadores.** Um projeto novo usa a linguagem da fonte que lê. Fora do TypeScript, ele fica fora do workspace, com o próprio build (o `gradle-plugin` é Java, com o próprio wrapper do Gradle), e entra com uma linha na tabela do [README](README.md).
+- **Este repositório é o produto.** A API, o console e o SDK. O que alimenta o grafo (adaptadores, plugin Gradle, skills) fica em repositórios próprios, na tabela abaixo, e depende só do que este publica: o SDK e o contrato da API. Nada aqui importa código de lá.
+- **Um repositório, um workspace.** `api`, `web` e `sdks/typescript` são projetos do workspace do Bun (`package.json` da raiz, um `bun.lock` só, dependências içadas para a raiz pelo `bunfig.toml`). `bun install` roda na raiz. Dependência nova entra no `package.json` do projeto que a usa.
+- **Uma mudança, um commit.** Mudança no modelo ou no contrato da API chega ao SDK (`bun run sdk:generate` em `api/`), ao console e ao [MODELO.md](api/MODELO.md) na mesma entrega. `bun run lint` e `bun run test` na raiz (ou em cada projeto que a mudança toca) precisam passar antes de entregar.
+- **O SDK é o artefato público.** Aqui, `api` e `web` usam o SDK pelo workspace (`workspace:*`), lendo o código-fonte. O SDK muda de versão (`sdks/typescript/package.json`) quando muda, e o job `publish-sdk` o publica no branch padrão. Os adaptadores usam a versão publicada: mudou o SDK ou o modelo, publique a versão nova e ajuste o [adapters](https://github.com/panorama-graph/adapters) em seguida. Um SDK em outra linguagem entra como `sdks/<linguagem>`, gerado do mesmo contrato (o OpenAPI de `/v1` e o modelo de `GET /v1/schema`) e com as mesmas receitas de chave.
 - **Imagens da raiz.** Todo `Dockerfile` é construído com o contexto na raiz (`docker build -f <projeto>/Dockerfile .`), com o `.dockerignore` da raiz: o workspace resolve as dependências e o SDK vem do código. Mudou o que a instância sobe? Atualize o [docker-compose.yml](docker-compose.yml) e os [primeiros passos](PRIMEIROS-PASSOS.md) na mesma entrega.
-- **Roadmap em dia.** Ao concluir um item do [ROADMAP.md](ROADMAP.md) ou mudar o rumo dele, atualize-o na mesma entrega.
+- **Roadmap em dia.** Ao concluir um item do [ROADMAP.md](ROADMAP.md) ou mudar o rumo dele, atualize-o na mesma entrega. O roadmap é um só, para o produto e os repositórios que o alimentam.
 
 ## Projetos
 
@@ -19,7 +18,11 @@ Este arquivo diz **como trabalhar** no repositório. **Por que o grafo existe, e
 | `api` | [api/AGENTS.md](api/AGENTS.md) |
 | `web` | [web/AGENTS.md](web/AGENTS.md) |
 | `sdks/typescript` | [sdks/typescript/README.md](sdks/typescript/README.md) |
-| `adapters` | [adapters/AGENTS.md](adapters/AGENTS.md) |
-| `gradle-plugin` | [gradle-plugin/AGENTS.md](gradle-plugin/AGENTS.md) |
-| `example-seed` | [example-seed/AGENTS.md](example-seed/AGENTS.md) |
-| `agent-skills` | [agent-skills/AGENTS.md](agent-skills/AGENTS.md) |
+
+## Repositórios que alimentam o grafo
+
+| Repositório | O que tem |
+|---|---|
+| [adapters](https://github.com/panorama-graph/adapters) | `graph-publish`, `graph-deployments`, `graph-seed`, `graph-receiver`, os formatos dos artefatos de build (`schemas/`), a organização de exemplo e o `example-seed` |
+| [gradle-plugin](https://github.com/panorama-graph/gradle-plugin) | Plugin Gradle `panorama-graph` e a biblioteca de teste para Spring |
+| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA (`panorama-graph-carga-manual`) |

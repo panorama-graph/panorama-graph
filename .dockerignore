@@ -6,7 +6,3 @@
 **/.env
 **/.env.*
 **/test
-carga
-example-seed/data
-gradle-plugin
-agent-skills

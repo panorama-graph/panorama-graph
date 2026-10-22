@@ -5,37 +5,44 @@ Do zero a um grafo consultável: subir a instância, carregar a organização de
 ## O que é preciso
 
 - Docker com o Compose v2.
+- Git, para baixar este repositório e o dos [adaptadores](https://github.com/panorama-graph/adapters), que carrega o exemplo e recebe os builds.
 - Para consultar pelo MCP: um cliente MCP, como o Claude Code.
 
 ## 1. Baixar e configurar
 
 ```sh
-git clone https://github.com/panorama-graph/panorama-graph.git && cd panorama-graph
-cp .env.example .env   # troque NEO4J_PASSWORD
+git clone https://github.com/panorama-graph/panorama-graph.git
+git clone https://github.com/panorama-graph/adapters.git
+cd panorama-graph && cp .env.example .env   # troque NEO4J_PASSWORD
 ```
 
-## 2. Subir com o exemplo
+## 2. Subir e carregar o exemplo
 
 ```sh
-docker compose --profile exemplo up -d --build
-```
-
-Sobem o Neo4j, a API, o receptor dos builds (`graph-receiver`, porta 3210) e o console. Os serviços `exemplo` e `exemplo-organizacao` rodam uma vez, carregam a organização fictícia ACME Bank e saem:
-
-- a organização (diretorias, times e pessoas) e a infraestrutura dos ambientes `dev`, `stage` e `prd` (servidores, bancos e rotas), traduzidas dos exports do ACME Bank pelo `example-seed` (`example-seed/`), o exemplo de adaptador próprio de uma organização;
-- a carga à mão de `adapters/seeds/acme`: catálogo (domínios, sistemas e donos) e bancos de cada serviço;
-- a arquitetura de build de dois serviços, `product-catalog-api` e `loan-simulation-api`, a partir de artefatos reais de build (`adapters/test/fixtures`): stack, bibliotecas, endpoints, eventos, clientes HTTP, coleções e o contrato Pact entre os dois.
-
-Para conferir:
-
-```sh
-docker compose logs exemplo exemplo-organizacao  # uma linha por retrato carregado
+docker compose up -d --build                     # em panorama-graph/: Neo4j, API e console, com o grafo vazio
 curl -s http://localhost:3200/health/ready       # o Neo4j responde
 ```
 
-O exemplo nunca sobrescreve dados mais novos. As afirmações dele têm uma data fixa, e a API recusa como mais antigo (`outdated`) qualquer retrato de um escopo que já tem um mais novo.
+Com a API no ar, o repositório dos adaptadores sobe o receptor dos builds (`graph-receiver`, porta 3210) e carrega o exemplo:
 
-Sem o exemplo, `docker compose up -d --build` sobe a instância vazia.
+```sh
+cd ../adapters
+docker compose --profile exemplo up -d --build   # chama a API em http://localhost:3200 (GRAPH_API_URL muda)
+```
+
+Os serviços `exemplo` e `exemplo-organizacao` rodam uma vez, carregam a organização fictícia ACME Bank e saem:
+
+- a organização (diretorias, times e pessoas) e a infraestrutura dos ambientes `dev`, `stage` e `prd` (servidores, bancos e rotas), traduzidas dos exports do ACME Bank pelo `example-seed`, o exemplo de adaptador próprio de uma organização;
+- a carga à mão de `seeds/acme`: catálogo (domínios, sistemas e donos) e bancos de cada serviço;
+- a arquitetura de build de dois serviços, `product-catalog-api` e `loan-simulation-api`, a partir de artefatos reais de build (`test/fixtures`): stack, bibliotecas, endpoints, eventos, clientes HTTP, coleções e o contrato Pact entre os dois.
+
+Para conferir, ainda em `adapters/`:
+
+```sh
+docker compose logs exemplo exemplo-organizacao  # uma linha por retrato carregado
+```
+
+O exemplo nunca sobrescreve dados mais novos. As afirmações dele têm uma data fixa, e a API recusa como mais antigo (`outdated`) qualquer retrato de um escopo que já tem um mais novo.
 
 ## 3. Consultar pelo console
 
@@ -75,31 +82,31 @@ curl -s -X POST http://localhost:3200/v1/queries/api_consumers \
 
 ## 5. Carregar a sua organização
 
-O que o grafo aceita (os tipos de nó e de relação, o que é fixo e o que é livre, e o que fazer quando algo não cabe) está no [MODELO.md](api/MODELO.md). Os fatos chegam por adaptadores (`adapters/`), cada um com a sua fonte:
+O que o grafo aceita (os tipos de nó e de relação, o que é fixo e o que é livre, e o que fazer quando algo não cabe) está no [MODELO.md](api/MODELO.md). Os fatos chegam por adaptadores ([adapters](https://github.com/panorama-graph/adapters) e [gradle-plugin](https://github.com/panorama-graph/gradle-plugin)), cada um com a sua fonte:
 
 | Adaptador | O que publica | Onde roda |
 |---|---|---|
-| Plugin Gradle `panorama-graph` | Gera o `build/architecture` de um projeto Gradle, só com o que o projeto tem de onde tirar, e o envia ao receptor (`./gradlew architecturePublish`, [gradle-plugin](gradle-plugin/README.md)) | No build de cada componente |
-| `graph-receiver` | A arquitetura de build de um componente (`build/architecture`: manifesto, SBOM, OpenAPI, AsyncAPI, clientes HTTP, acesso a dados, pacts), recebida do build | Na instância (serviço `receptor`, porta 3210) |
+| Plugin Gradle `panorama-graph` | Gera o `build/architecture` de um projeto Gradle, só com o que o projeto tem de onde tirar, e o envia ao receptor (`./gradlew architecturePublish`, [gradle-plugin](https://github.com/panorama-graph/gradle-plugin)) | No build de cada componente |
+| `graph-receiver` | A arquitetura de build de um componente (`build/architecture`: manifesto, SBOM, OpenAPI, AsyncAPI, clientes HTTP, acesso a dados, pacts), recebida do build | Ao lado da instância (serviço `receptor` do compose dos adaptadores, porta 3210) |
 | `graph-publish` | O mesmo que o receptor, lendo o diretório: para builds que não são Gradle e não enviam o pacote | No CI de cada componente |
 | `graph-deployments` | O que roda em cada ambiente, com a versão e o commit | No cluster, como CronJob |
 | `graph-seed` | Retratos declarados em YAML, para o que ainda não tem adaptador (organização, catálogo, infraestrutura) | À mão |
 
-Para o que nenhum deles lê (o diretório de pessoas, o CMDB, o inventário da infraestrutura), a organização escreve o próprio adaptador. O ponto de partida é o [example-seed](example-seed/README.md): ele lê o export do diretório e o inventário da infraestrutura, traduz com as receitas de chave do SDK, confere contra o modelo e publica, e é ele que carrega times, pessoas e infraestrutura no exemplo. Copie-o e troque a leitura dos arquivos pela das suas fontes.
+Para o que nenhum deles lê (o diretório de pessoas, o CMDB, o inventário da infraestrutura), a organização escreve o próprio adaptador. O ponto de partida é o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed): ele lê o export do diretório e o inventário da infraestrutura, traduz com as receitas de chave do SDK, confere contra o modelo e publica, e é ele que carrega times, pessoas e infraestrutura no exemplo. Copie-o e troque a leitura dos arquivos pela das suas fontes.
 
-Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode gerar e importar a carga pela skill [panorama-graph-carga-manual](agent-skills/README.md).
+Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode gerar e importar a carga pela skill [panorama-graph-carga-manual](https://github.com/panorama-graph/skills).
 
-Os formatos dos artefatos estão em `adapters/schemas/`, e o uso de cada adaptador no [README dos adaptadores](adapters/README.md). Para implantá-los na organização (convenções, ordem, pipeline e cluster), siga o guia de [adoção](ADOCAO.md).
+Os formatos dos artefatos estão em [`schemas/`](https://github.com/panorama-graph/adapters/tree/main/schemas) dos adaptadores, e o uso de cada um no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Para implantá-los na organização (convenções, ordem, pipeline e cluster), siga o guia de [adoção](ADOCAO.md).
 
 ### Primeira carga à mão
 
-Para começar sem o exemplo, recrie o banco (apaga tudo):
+Para começar sem o exemplo, recrie o banco (apaga tudo), em `panorama-graph/`:
 
 ```sh
 docker compose down -v && docker compose up -d --build
 ```
 
-Crie a pasta `carga/` ao lado do compose, com um ou mais arquivos `*.yaml`. Cada item de `snapshots` é um **retrato**: tudo o que uma fonte (`source`) afirma num escopo (`scope`). Este exemplo declara os níveis da estrutura, um time, um domínio, dois serviços em que um chama a API do outro, e o banco de um deles em `dev`:
+Em `adapters/`, crie a pasta `carga/` ao lado do compose, com um ou mais arquivos `*.yaml`. Cada item de `snapshots` é um **retrato**: tudo o que uma fonte (`source`) afirma num escopo (`scope`). Este exemplo declara os níveis da estrutura, um time, um domínio, dois serviços em que um chama a API do outro, e o banco de um deles em `dev`:
 
 ```yaml
 # carga/organizacao.yaml
@@ -149,7 +156,7 @@ snapshots:
       - { type: USES_RESOURCE, from: component:example/catalog/product-api, to: resource:dev/postgres/products, access: read-write }
 ```
 
-Confira e envie:
+Confira e envie, em `adapters/`:
 
 ```sh
 docker compose run --rm carga --dry-run   # valida as chaves e as evidências e mostra o resumo, sem enviar

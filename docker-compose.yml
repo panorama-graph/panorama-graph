@@ -1,12 +1,10 @@
-# Instância do panorama-graph: Neo4j, API e console, e a carga de exemplo. Variáveis vêm do .env (modelo em
-# .env.example). As imagens são construídas da raiz do repositório, com o Dockerfile de cada projeto. Guia:
-# PRIMEIROS-PASSOS.md.
+# Instância do panorama-graph: Neo4j, API e console. Variáveis vêm do .env (modelo em .env.example). As imagens são
+# construídas da raiz do repositório, com o Dockerfile de cada projeto. Guia: PRIMEIROS-PASSOS.md.
 #   docker compose up -d --build                        Neo4j, API e console
-#   docker compose --profile exemplo up -d --build      e carrega a organização de exemplo (ACME Bank)
-#   docker compose run --rm carga                       carrega os *.yaml de ./carga (a sua organização)
 #   docker compose up -d neo4j                          só o banco, para rodar a API com `bun run dev`
-# Portas (mudam por variável): API 3200 (API_PORT), receptor dos
-# builds 3210 (RECEIVER_PORT), console 5180 (WEB_PORT), Neo4j 7474 (NEO4J_HTTP_PORT, browser) e 7687 (NEO4J_BOLT_PORT).
+# Portas (mudam por variável): API 3200 (API_PORT), console 5180 (WEB_PORT), Neo4j 7474 (NEO4J_HTTP_PORT, browser) e
+# 7687 (NEO4J_BOLT_PORT). O receptor dos builds, a carga à mão e a organização de exemplo sobem do repositório dos
+# adaptadores (github.com/panorama-graph/adapters), apontando para esta API.
 name: panorama-graph
 
 services:
@@ -54,21 +52,6 @@ services:
       timeout: 3s
       retries: 5
 
-  # O graph-receiver: recebe os artefatos de build que o plugin Gradle envia (`./gradlew architecturePublish`) e os
-  # publica na API. É o endereço que os pipelines usam (PANORAMA_GRAPH_URL).
-  receptor:
-    image: panorama-graph-adapters:local
-    build:
-      context: .
-      dockerfile: adapters/Dockerfile
-    command: ["graph-receiver", "--api", "http://api:3200"]
-    ports:
-      - "${RECEIVER_PORT:-3210}:3210"
-    depends_on:
-      api:
-        condition: service_healthy
-    restart: unless-stopped
-
   web:
     build:
       context: .
@@ -79,74 +62,6 @@ services:
         VITE_EVIDENCE_URL_TEMPLATE: ${VITE_EVIDENCE_URL_TEMPLATE:-}
     ports:
       - "${WEB_PORT:-5180}:5180"
-    depends_on:
-      api:
-        condition: service_healthy
-
-  # Carga de exemplo (organização fictícia ACME Bank), só com o perfil `exemplo`, em dois serviços que rodam uma vez e
-  # saem: este, com a carga à mão (catálogo e configuração, adapters/seeds/acme) e a arquitetura de build de dois
-  # serviços (os artefatos reais de adapters/test/fixtures), e o `exemplo-organizacao`. A ordem entre eles não
-  # importa. A data das afirmações é fixa: num grafo com retratos mais novos dos mesmos escopos, a API recusa a
-  # carga como mais antiga (`outdated`), e o exemplo não sobrescreve nada.
-  exemplo:
-    profiles: ["exemplo"]
-    image: panorama-graph-adapters:local
-    build:
-      context: .
-      dockerfile: adapters/Dockerfile
-    volumes:
-      - ./adapters/seeds/acme:/exemplo/carga:ro
-      - ./adapters/test/fixtures:/exemplo/builds:ro
-    environment:
-      GRAPH_API_URL: http://api:3200
-      OBSERVED_AT: "2026-10-01T00:00:00Z"
-    entrypoint: ["sh", "-c"]
-    command:
-      - |
-        set -e
-        graph-seed /exemplo/carga --observed-at "$$OBSERVED_AT"
-        for build in /exemplo/builds/*/; do
-          graph-publish "$$build" --observed-at "$$OBSERVED_AT"
-        done
-    restart: "no"
-    depends_on:
-      api:
-        condition: service_healthy
-
-  # Times, pessoas e infraestrutura da organização de exemplo, pelo example-seed: o exemplo de adaptador próprio de
-  # uma organização, que traduz os exports dela (example-seed/data/acme) e publica pelo SDK.
-  exemplo-organizacao:
-    profiles: ["exemplo"]
-    image: example-seed:local
-    build:
-      context: .
-      dockerfile: example-seed/Dockerfile
-    volumes:
-      - ./example-seed/data/acme:/data:ro
-    environment:
-      GRAPH_API_URL: http://api:3200
-    command: ["/data", "--observed-at", "2026-10-01T00:00:00Z"]
-    restart: "no"
-    depends_on:
-      api:
-        condition: service_healthy
-
-  # Carga à mão da sua organização: os *.yaml de ./carga, pelo graph-seed (ver PRIMEIROS-PASSOS.md).
-  #   docker compose run --rm carga --dry-run    monta os retratos e mostra o resumo, sem enviar
-  #   docker compose run --rm carga              envia
-  carga:
-    profiles: ["carga"]
-    image: panorama-graph-adapters:local
-    build:
-      context: .
-      dockerfile: adapters/Dockerfile
-    volumes:
-      - ./carga:/carga:ro
-    environment:
-      GRAPH_API_URL: http://api:3200
-    entrypoint: ["graph-seed", "/carga"]
-    command: []
-    restart: "no"
     depends_on:
       api:
         condition: service_healthy

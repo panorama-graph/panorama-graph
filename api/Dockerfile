@@ -9,8 +9,6 @@ RUN apk add --no-cache wget
 COPY package.json bun.lock bunfig.toml ./
 COPY api/package.json api/
 COPY web/package.json web/
-COPY adapters/package.json adapters/
-COPY example-seed/package.json example-seed/
 COPY sdks/typescript/package.json sdks/typescript/
 RUN bun install --frozen-lockfile --production --filter panorama-graph-api
 

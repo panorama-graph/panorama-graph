@@ -4,5 +4,3 @@ dist/
 .env
 *.log
 .vscode/
-# Carga à mão da sua organização (docker compose run --rm carga).
-/carga/

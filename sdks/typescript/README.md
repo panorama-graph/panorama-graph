@@ -68,7 +68,7 @@ Uma versão do SDK com o mesmo contrato e o mesmo modelo continua servindo enqua
 
 ## Desenvolvimento
 
-O SDK fica no repositório do grafo, em `sdks/typescript`, e é um projeto do workspace: a API, o console e os adaptadores o usam pelo código-fonte (`src/index.ts`), sem passar pelo registry. Os arquivos de `src/generated/` saem do contrato (`bun run sdk:generate` em `api/`) e não são editados à mão; as receitas de chave ficam em `src/keys.ts`.
+O SDK fica no repositório do grafo, em `sdks/typescript`, e é um projeto do workspace: a API e o console o usam pelo código-fonte (`src/index.ts`), sem passar pelo registry. Os adaptadores, em repositório próprio, usam a versão publicada. Os arquivos de `src/generated/` saem do contrato (`bun run sdk:generate` em `api/`) e não são editados à mão; as receitas de chave ficam em `src/keys.ts`.
 
 ```sh
 bun run lint

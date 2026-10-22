@@ -5,24 +5,6 @@
     "": {
       "name": "panorama-graph",
     },
-    "adapters": {
-      "name": "panorama-graph-adapters",
-      "version": "0.2.0",
-      "bin": {
-        "graph-publish": "src/graph-publish/cli.ts",
-        "graph-seed": "src/graph-seed/cli.ts",
-        "graph-deployments": "src/graph-deployments/cli.ts",
-        "graph-receiver": "src/graph-receiver/cli.ts",
-      },
-      "dependencies": {
-        "@panorama-graph/sdk": "workspace:*",
-      },
-      "devDependencies": {
-        "@types/bun": "^1.1.8",
-        "ajv": "^8.20.0",
-        "typescript": "^5.5.4",
-      },
-    },
     "api": {
       "name": "panorama-graph-api",
       "version": "0.1.0",
@@ -43,20 +25,6 @@
         "@types/bun": "^1.1.8",
         "ajv": "^8",
         "openapi-typescript": "^7",
-        "typescript": "^5.5.4",
-      },
-    },
-    "example-seed": {
-      "name": "example-seed",
-      "version": "0.1.0",
-      "bin": {
-        "example-seed": "src/cli.ts",
-      },
-      "dependencies": {
-        "@panorama-graph/sdk": "0.1.1",
-      },
-      "devDependencies": {
-        "@types/bun": "^1.1.8",
         "typescript": "^5.5.4",
       },
     },
@@ -628,8 +596,6 @@
 
     "eventsource-parser": ["eventsource-parser@3.1.1", "", {}, "sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ=="],
 
-    "example-seed": ["example-seed@workspace:example-seed"],
-
     "express": ["express@5.3.0", "", { "dependencies": { "accepts": "^2.0.0", "body-parser": "^2.3.0", "content-disposition": "^2.0.1", "content-type": "^2.0.0", "cookie": "^0.7.1", "cookie-signature": "^1.2.1", "debug": "^4.4.0", "depd": "^2.0.0", "encodeurl": "^2.0.0", "escape-html": "^1.0.3", "etag": "^1.8.1", "finalhandler": "^2.1.0", "fresh": "^2.0.0", "http-errors": "^2.0.0", "merge-descriptors": "^2.0.0", "mime-types": "^3.0.0", "on-finished": "^2.4.1", "once": "^1.4.0", "parseurl": "^1.3.3", "proxy-addr": "^2.0.8", "qs": "^6.16.0", "range-parser": "^1.2.1", "router": "^2.2.0", "send": "^1.1.0", "serve-static": "^2.2.0", "statuses": "^2.0.1", "type-is": "^2.1.0", "vary": "^1.1.2" } }, "sha512-qCqy1xSoaugxOD4IVHb1ZWdkvCF2W3aE2okKouWj8VwJ+ztskSiXoBnCSJqfKT+cVPJhuJqe9YLbY425+Zh00g=="],
 
     "express-rate-limit": ["express-rate-limit@8.7.1", "", { "dependencies": { "debug": "^4.4.3", "ip-address": "^10.2.0" }, "peerDependencies": { "express": ">= 4.11" } }, "sha512-2FXbqkygil3mZiXzEtM0IjE/UBmBNot0J1GEVrJT4JbrvwOSoEtqtO+wHbiMQELWe1eNvHoYRg2dkjOid+6JkA=="],
@@ -837,8 +803,6 @@
     "openapi-typescript": ["openapi-typescript@7.13.0", "", { "dependencies": { "@redocly/openapi-core": "^1.34.6", "ansi-colors": "^4.1.3", "change-case": "^5.4.4", "parse-json": "^8.3.0", "supports-color": "^10.2.2", "yargs-parser": "^21.1.1" }, "peerDependencies": { "typescript": "^5.x" }, "bin": { "openapi-typescript": "bin/cli.js" } }, "sha512-EFP392gcqXS7ntPvbhBzbF8TyBA+baIYEm791Hy5YkjDYKTnk/Tn5OQeKm5BIZvJihpp8Zzr4hzx0Irde1LNGQ=="],
 
     "package-json-from-dist": ["package-json-from-dist@1.0.1", "", {}, "sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw=="],
-
-    "panorama-graph-adapters": ["panorama-graph-adapters@workspace:adapters"],
 
     "panorama-graph-api": ["panorama-graph-api@workspace:api"],
 

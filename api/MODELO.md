@@ -122,7 +122,7 @@ Os pares são validados pelo tipo do nó, e não pelo `kind`: `ROUTES` exige um 
 - as propriedades de cada tipo: uma propriedade fora da tabela recusa o retrato inteiro. Os valores são texto, booleano, lista de textos ou, em `OrgLevel.order`, número;
 - os valores das propriedades com lista fechada (tabela [Valores fixos](#valores-fixos)): `Component.kind`, `Environment.kind` e os demais;
 - o formato da chave e o prefixo de cada tipo;
-- os formatos dos artefatos de build lidos pelo `graph-publish` (manifesto, clientes HTTP, acesso a dados), especificados em [adapters/schemas/](../adapters/schemas).
+- os formatos dos artefatos de build lidos pelo `graph-publish` (manifesto, clientes HTTP, acesso a dados), especificados em [adapters/schemas/](https://github.com/panorama-graph/adapters/tree/main/schemas).
 
 **Livre**, definido pela organização:
 
@@ -207,7 +207,7 @@ Uma chave diferente para a mesma coisa vira um nó duplicado. Ele se resolve com
 | Infraestrutura | `Environment`, `Resource`, `IN_ENVIRONMENT`, `RUNS`, `INSTANCE_OF`, `ROUTES`, `REACHES_VIA` | Os manifestos do cluster. Sem adaptador do produto: um adaptador próprio (o `example-seed` é o modelo) ou o `graph-seed` |
 | Configuração de cada serviço | `USES_RESOURCE`, `HOSTED_ON` (banco no servidor, tópico no broker) | A configuração de implantação. Sem adaptador: `graph-seed` |
 
-O uso de cada adaptador está no [README dos adaptadores](../README.md). Uma fonte que nenhum adaptador lê entra por um adaptador próprio da organização (o [example-seed](../example-seed/README.md) é o ponto de partida: lê os exports, traduz com as receitas do SDK e publica), pelo `graph-seed` (YAML) ou direto pelo `POST /v1/ingest` (veja o [README da API](README.md#ingestão)).
+O uso de cada adaptador está no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Uma fonte que nenhum adaptador lê entra por um adaptador próprio da organização (o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed) é o ponto de partida: lê os exports, traduz com as receitas do SDK e publica), pelo `graph-seed` (YAML) ou direto pelo `POST /v1/ingest` (veja o [README da API](README.md#ingestão)).
 
 ## Quando algo não cabe no modelo
 
@@ -230,7 +230,7 @@ Quando não cabe, o modelo muda numa **versão nova**, na API (`api/`):
 2. Regere o que sai do modelo: `bun run modelo:write` (este documento), `bun run openapi:write` e `bun run sdk:generate`, e suba a versão do SDK em `sdks/typescript/package.json`.
 3. Registre a versão e o que mudou em [Versões do modelo](#versões-do-modelo), no fim deste documento.
 4. Se uma pergunta precisa da relação nova, ela entra numa ferramenta de consulta (`src/query/tools.ts`). Sem isso, a relação já aparece no `node_get` (todas as relações de um nó) e no `graph_query`, mas não nas ferramentas específicas, como `component_get` e `architecture_overview`.
-5. Ajuste os adaptadores e o console no mesmo commit: no repositório, eles usam o SDK pelo workspace. Um adaptador próprio da organização, fora do repositório, passa para o SDK publicado. Todos conferem a versão do modelo antes de enviar e recusam uma API em outra versão: com versões diferentes, a carga seria recusada ou perderia o que um lado não conhece.
+5. Ajuste o console no mesmo commit (ele usa o SDK pelo workspace). Publique o SDK e passe os [adaptadores](https://github.com/panorama-graph/adapters) e os adaptadores próprios da organização para a versão nova. Todos conferem a versão do modelo antes de enviar e recusam uma API em outra versão: com versões diferentes, a carga seria recusada ou perderia o que um lado não conhece.
 
 Acrescentar só amplia o que é aceito, e as cargas antigas continuam válidas. Renomear ou remover algo invalida as cargas que o usam: cada fonte precisa mandar um retrato novo no modelo novo.
 

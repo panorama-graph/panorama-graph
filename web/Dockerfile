@@ -5,8 +5,6 @@ WORKDIR /app
 COPY package.json bun.lock bunfig.toml ./
 COPY api/package.json api/
 COPY web/package.json web/
-COPY adapters/package.json adapters/
-COPY example-seed/package.json example-seed/
 COPY sdks/typescript/package.json sdks/typescript/
 RUN bun install --frozen-lockfile --filter panorama-graph-web
 COPY sdks/typescript sdks/typescript
