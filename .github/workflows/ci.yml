@@ -1,13 +1,15 @@
 # Lint e testes de todo o workspace a cada push e pull request. No branch principal, quando o push muda a versão do
 # SDK em TypeScript, envia essa versão ao npm como staged (sdks/typescript/scripts/publish.ts), por Trusted Publishing:
 # sem segredo no repositório, o npm aceita o OIDC deste workflow (configurado no pacote, em npmjs.com). A versão só
-# fica pública quando um mantenedor a aprova com 2FA.
+# fica pública quando um mantenedor a aprova com 2FA. O disparo manual (workflow_dispatch) envia a versão atual sem
+# olhar se o push a mudou, para refazer um envio que falhou.
 name: ci
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   test:
@@ -46,7 +48,7 @@ jobs:
       - run: ./gradlew build
 
   publish-sdk:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     permissions:
@@ -63,7 +65,7 @@ jobs:
           before="${{ github.event.before }}"
           current=$(jq -r .version sdks/typescript/package.json)
           previous=$(git show "$before:sdks/typescript/package.json" 2>/dev/null | jq -r .version || true)
-          if [ "$current" = "$previous" ]; then echo changed=false >> "$GITHUB_OUTPUT"; else echo changed=true >> "$GITHUB_OUTPUT"; fi
+          if [ "${{ github.event_name }}" = "push" ] && [ "$current" = "$previous" ]; then echo changed=false >> "$GITHUB_OUTPUT"; else echo changed=true >> "$GITHUB_OUTPUT"; fi
       - if: steps.version.outputs.changed == 'true'
         uses: oven-sh/setup-bun@v2
         with:

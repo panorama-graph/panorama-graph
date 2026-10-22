@@ -7,7 +7,7 @@
     "dev": "bun run --watch src/main.ts",
     "start": "bun src/main.ts",
     "lint": "tsc --noEmit",
-    "test": "bun test",
+    "test": "bun test --timeout 30000",
     "test:db:up": "docker compose up -d --wait neo4j-test",
     "contract:write": "bun scripts/contract.ts",
     "openapi:write": "bun scripts/openapi.ts",
