@@ -65,7 +65,7 @@ Modelo versão **12**. Formato da chave: `<prefixo>:<identificador>`.
 | `ROUTES` | Resource → Component | Gateway ou ingress encaminha para o componente | física | `host` (identidade, obrigatória), `path` (identidade) |
 | `REACHES_VIA` | Component → Resource | Componente chega a outros pelo gateway ou ingress | física | — |
 | `BUILT_WITH` | Component → Technology | Componente é construído com a tecnologia | stack | `version` |
-| `DEPENDS_ON` | Component → Library | Componente depende da biblioteca | stack | `version`, `scope`, `resolved`, `direct`, `via`, `declared`, `configurations`, `used` |
+| `DEPENDS_ON` | Component → Library | Componente depende da biblioteca | stack | `version`, `scope`, `resolved`, `direct`, `via`, `declared`, `used` |
 | `PRODUCES` | Component → Library | O build do componente gera a biblioteca: o pacote que os outros componentes usam (DEPENDS_ON) sai deste repositório | stack | `version` |
 | `OWNS_DATA` | Component → Dataset | Componente define a estrutura do dataset (mapeamento ou migração) | dados | — |
 | `READS` | Component → Dataset | Componente lê o dataset | dados | — |
@@ -90,7 +90,6 @@ Modelo versão **12**. Formato da chave: `<prefixo>:<identificador>`.
 | `DEPENDS_ON.direct` | Dependência direta do componente (false: só chega por outra) (boolean) |
 | `DEPENDS_ON.via` | Na transitiva: as dependências diretas (chaves de biblioteca) que a trazem para o componente (string[]) |
 | `DEPENDS_ON.declared` | Declarada no build do componente (boolean) |
-| `DEPENDS_ON.configurations` | Configurações do build em que a dependência é declarada (no Gradle: implementation, api, runtimeOnly...) (string[]) |
 | `DEPENDS_ON.used` | Usada pelo código do componente (análise do bytecode) (boolean) |
 | `PRODUCES.version` | Versão do pacote gerada no build afirmado (string) |
 

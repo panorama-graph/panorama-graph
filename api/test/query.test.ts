@@ -134,7 +134,7 @@ describe("perguntas de validação do ACME Bank", () => {
     expect(byComponent[K.pca]).toEqual({ version: "2.3.1", scope: "compile", resolved: true, direct: true });
     // Declarado × usado vem de outra fonte, como outra afirmação da mesma relação.
     const pca = res.users.find((e) => e.node.key === K.pca)!;
-    expect(pca.facts.find((f) => f.source === "dependency-usage")?.props).toEqual({ declared: true, used: true, configurations: ["implementation"] });
+    expect(pca.facts.find((f) => f.source === "dependency-usage")?.props).toEqual({ declared: true, used: true });
     expect(byComponent[K.lsa]).toMatchObject({ version: "3.0.0-RC1" });
 
     const old = await q.libraryUsage(K.platform, { versionRange: "<3.0.0" });

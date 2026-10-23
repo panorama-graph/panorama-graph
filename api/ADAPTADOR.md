@@ -678,11 +678,11 @@ Componente é construído com a tecnologia.
 Componente depende da biblioteca.
 
 - **Liga:** `Component` → `Library`.
-- **Propriedades:** `version`, `scope`, `resolved`, `direct`, `via`, `declared`, `configurations`, `used`.
-- **Quem afirma:** O SBOM do build (fonte `sbom`: `version`, `scope`, `resolved`, `direct`, `via`) e a análise de uso das dependências (fonte `dependency-usage`: `declared`, `used`, `configurations`), cada um no escopo `{component}`.
+- **Propriedades:** `version`, `scope`, `resolved`, `direct`, `via`, `declared`, `used`.
+- **Quem afirma:** O SBOM do build (fonte `sbom`: `version`, `scope`, `resolved`, `direct`, `via`) e a análise de uso das dependências (fonte `dependency-usage`: `declared`, `used`), cada um no escopo `{component}`.
 - A biblioteca é identificada sem versão (`lib:maven/<grupo>:<artefato>`); a versão é da relação, e duas fontes podem divergir nela.
 - Na transitiva, `direct: false` e `via` com as chaves das dependências diretas que a trazem.
-- `scope` é o classpath (`compile`, `runtime`, `test`); a configuração do build em que a dependência é declarada (`implementation`, `api`) vai em `configurations`.
+- `scope` é o classpath (`compile`, `runtime`, `test`), e não a configuração do build em que a dependência é declarada (`implementation`, `api`).
 
 ```json
 {

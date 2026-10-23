@@ -347,11 +347,11 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     ],
   },
   DEPENDS_ON: {
-    who: "O SBOM do build (fonte `sbom`: `version`, `scope`, `resolved`, `direct`, `via`) e a análise de uso das dependências (fonte `dependency-usage`: `declared`, `used`, `configurations`), cada um no escopo `{component}`.",
+    who: "O SBOM do build (fonte `sbom`: `version`, `scope`, `resolved`, `direct`, `via`) e a análise de uso das dependências (fonte `dependency-usage`: `declared`, `used`), cada um no escopo `{component}`.",
     notes: [
       "A biblioteca é identificada sem versão (`lib:maven/<grupo>:<artefato>`); a versão é da relação, e duas fontes podem divergir nela.",
       "Na transitiva, `direct: false` e `via` com as chaves das dependências diretas que a trazem.",
-      "`scope` é o classpath (`compile`, `runtime`, `test`); a configuração do build em que a dependência é declarada (`implementation`, `api`) vai em `configurations`.",
+      "`scope` é o classpath (`compile`, `runtime`, `test`), e não a configuração do build em que a dependência é declarada (`implementation`, `api`).",
     ],
     source: "sbom",
     scope: PRODUCT_SCOPE,

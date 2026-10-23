@@ -269,7 +269,7 @@ export const dependencyUsage: Load = {
   scope: { component: "product-catalog-api" },
   evidenceBase: "product-catalog-api@a1b2c3d:build/architecture/dependency-usage/",
   relations: [
-    { type: "DEPENDS_ON", from: K.pca, to: K.platform, props: { declared: true, used: true, configurations: ["implementation"] }, evidence: "declarations.json" },
+    { type: "DEPENDS_ON", from: K.pca, to: K.platform, props: { declared: true, used: true }, evidence: "declarations.json" },
     { type: "DEPENDS_ON", from: K.pca, to: "lib:maven/org.mongodb:mongodb-driver-sync", props: { declared: false, used: true }, evidence: "usages-dependencies.json" },
   ],
 };

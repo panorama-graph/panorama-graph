@@ -753,10 +753,6 @@ export const RELATION_TYPES = {
         "type": "boolean",
         "description": "Declarada no build do componente"
       },
-      "configurations": {
-        "type": "string[]",
-        "description": "Configurações do build em que a dependência é declarada (no Gradle: implementation, api, runtimeOnly...)"
-      },
       "used": {
         "type": "boolean",
         "description": "Usada pelo código do componente (análise do bytecode)"
