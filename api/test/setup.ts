@@ -28,6 +28,6 @@ try {
   await probe.close();
 } catch (err) {
   throw new Error(
-    `Neo4j de teste indisponível em ${uri}. Suba com \`bun run test:db:up\`. (${err instanceof Error ? err.message : err})`,
+    `Neo4j de teste indisponível em ${uri}. Suba com \`pnpm run test:db:up\`. (${err instanceof Error ? err.message : err})`,
   );
 }

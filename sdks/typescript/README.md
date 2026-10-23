@@ -5,7 +5,7 @@ Tipos, receitas de chave e cliente REST do panorama-graph, para quem consulta o 
 ## Instalar
 
 ```sh
-bun add @panorama-graph/sdk     # ou npm install @panorama-graph/sdk
+npm install @panorama-graph/sdk     # ou pnpm add @panorama-graph/sdk
 ```
 
 ## Consultar
@@ -68,11 +68,11 @@ Uma versão do SDK com o mesmo contrato e o mesmo modelo continua servindo enqua
 
 ## Desenvolvimento
 
-O SDK fica no repositório do grafo, em `sdks/typescript`, e é um projeto do workspace: a API e o console o usam pelo código-fonte (`src/index.ts`), sem passar pelo registry. Os adaptadores, em repositório próprio, usam a versão publicada. Os arquivos de `src/generated/` saem do contrato (`bun run sdk:generate` em `api/`) e não são editados à mão; as receitas de chave ficam em `src/keys.ts`.
+O SDK fica no repositório do grafo, em `sdks/typescript`, e é um projeto do workspace: a API e o console o usam pelo código-fonte (`src/index.ts`), sem passar pelo registry. Os adaptadores, em repositório próprio, usam a versão publicada. Os arquivos de `src/generated/` saem do contrato (`pnpm run sdk:generate` em `api/`) e não são editados à mão; as receitas de chave ficam em `src/keys.ts`.
 
 ```sh
-bun run lint
-bun test
+pnpm run lint
+pnpm test
 ```
 
 Mudou o SDK? Suba a versão no `package.json`. Quando um push no branch principal muda a versão, o workflow de CI a envia ao npm como staged (`scripts/publish.ts`): compila o `dist` e envia o pacote com ele, o README e a licença do repositório, pelo Trusted Publishing do npm (OIDC do GitHub Actions), sem token guardado no repositório. A versão só fica pública quando um mantenedor a aprova com 2FA, em npmjs.com ou com `npm stage approve`.

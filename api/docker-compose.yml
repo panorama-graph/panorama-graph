@@ -1,4 +1,4 @@
-# Neo4j de teste do panorama-graph-api (bun test, `bun run test:db:up`). A instância (Neo4j de desenvolvimento,
+# Neo4j de teste do panorama-graph-api (`pnpm test`, `pnpm run test:db:up`). A instância (Neo4j de desenvolvimento,
 # API e console) sobe pelo docker-compose.yml da raiz (../docker-compose.yml).
 # Porta 7688 (bolt). Descartável: dados em memória, apagados entre os testes. Community só tem um banco de usuário,
 # então o isolamento dos testes é uma instância separada.

@@ -128,7 +128,7 @@ Quando duas chaves para a mesma coisa já existem, não recarregue: registre um 
 
 ## Relações, uma a uma
 
-Cada relação abaixo tem um retrato de exemplo, pronto para o `POST /v1/ingest`. A fonte e o escopo de cada exemplo são os que a organização de exemplo usa, e as chaves seguem as receitas. Onde o exemplo usa uma fonte dos adaptadores do produto, ele mostra o que eles enviam; o seu adaptador envia com a fonte dele. Os exemplos são conferidos contra o modelo nos testes da API, e esta seção é gerada (`bun run adaptador:write`).
+Cada relação abaixo tem um retrato de exemplo, pronto para o `POST /v1/ingest`. A fonte e o escopo de cada exemplo são os que a organização de exemplo usa, e as chaves seguem as receitas. Onde o exemplo usa uma fonte dos adaptadores do produto, ele mostra o que eles enviam; o seu adaptador envia com a fonte dele. Os exemplos são conferidos contra o modelo nos testes da API, e esta seção é gerada (`pnpm run adaptador:write`).
 
 <!-- relacoes:inicio -->
 ### `PART_OF`

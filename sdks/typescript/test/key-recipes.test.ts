@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import {
@@ -26,7 +26,7 @@ import {
 
 /** Os casos compartilhados por todos os SDKs e pelos adaptadores sem SDK (`sdks/key-recipes.json`). */
 type Input = Record<string, string | string[] | undefined>;
-const cases = JSON.parse(readFileSync(join(import.meta.dir, "..", "..", "key-recipes.json"), "utf8")) as {
+const cases = JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "key-recipes.json"), "utf8")) as {
   keys: { recipe: string; input: Input; key: string }[];
   versions: { convention: string; input: string; version: string | null; service?: string }[];
 };

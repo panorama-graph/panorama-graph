@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { currentContract, readSnapshot } from "../scripts/contract";
 import { QUERY_CONTRACT_VERSION, incompatibilities, type QueryContract, type ToolContract } from "../src/query/contract";
 
@@ -21,7 +21,7 @@ const base = contract(
 );
 
 describe("Contrato das consultas", () => {
-  test("o snapshot da versão atual é o que o código serve (rode bun run contract:write)", () => {
+  test("o snapshot da versão atual é o que o código serve (rode pnpm run contract:write)", () => {
     const published = readSnapshot(QUERY_CONTRACT_VERSION);
     expect(published).not.toBeNull();
     expect(currentContract()).toEqual(published!);

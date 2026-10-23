@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { relationSpec, validateProps } from "../src/model/model";
 import type { Edge, Fact } from "../src/query/facts";
 import { libraryUse, versionsInUse } from "../src/query/libraries";

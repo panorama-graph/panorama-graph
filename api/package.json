@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun run --watch src/main.ts",
-    "start": "bun src/main.ts",
+    "dev": "tsx watch src/main.ts",
+    "start": "tsx src/main.ts",
     "lint": "tsc --noEmit",
-    "test": "bun test --timeout 30000",
+    "test": "vitest run",
     "test:db:up": "docker compose up -d --wait neo4j-test",
-    "contract:write": "bun scripts/contract.ts",
-    "openapi:write": "bun scripts/openapi.ts",
-    "sdk:generate": "bun scripts/sdk.ts",
-    "modelo:write": "bun scripts/modelo.ts",
-    "adaptador:write": "bun scripts/adaptador.ts"
+    "contract:write": "tsx scripts/contract.ts",
+    "openapi:write": "tsx scripts/openapi.ts",
+    "sdk:generate": "tsx scripts/sdk.ts",
+    "modelo:write": "tsx scripts/modelo.ts",
+    "adaptador:write": "tsx scripts/adaptador.ts"
   },
   "dependencies": {
     "@fastify/swagger": "^8.15.0",
@@ -25,13 +25,16 @@
     "neo4j-driver": "^5.28.1",
     "pino": "^9.4.0",
     "pino-pretty": "^11.2.2",
-    "zod": "^3.23.8"
+    "tsx": "^4.23.15",
+    "zod": "^3.23.8",
+    "zod-to-json-schema": "^3.25.2"
   },
   "devDependencies": {
-    "@types/bun": "^1.1.8",
+    "@panorama-graph/sdk": "workspace:*",
+    "@types/node": "^22.20.5",
     "ajv": "^8",
     "openapi-typescript": "^7",
     "typescript": "^5.5.4",
-    "@panorama-graph/sdk": "workspace:*"
+    "vitest": "^5.0.5"
   }
 }

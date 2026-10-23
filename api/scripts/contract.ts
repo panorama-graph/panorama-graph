@@ -1,19 +1,20 @@
 /**
  * Snapshot do contrato das consultas: `contract/queries-v<N>.json` é o contrato como publicado na versão N.
  *
- *   bun run contract:write   grava o snapshot da versão atual, se a mudança respeita CONTRACT_POLICY
+ *   pnpm run contract:write   grava o snapshot da versão atual, se a mudança respeita CONTRACT_POLICY
  *
  * O teste `contract.test.ts` falha quando as ferramentas mudam e o snapshot não: toda mudança no contrato passa
  * por aqui, e uma incompatível só passa com QUERY_CONTRACT_VERSION novo (e o que sai, obsoleto antes).
  */
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { GraphDb } from "../src/db/neo4j";
 import type { QueryService } from "../src/query/QueryService";
 import { QUERY_CONTRACT_VERSION, incompatibilities, queryContract, type QueryContract } from "../src/query/contract";
 import { queryTools } from "../src/query/tools";
 
-const DIR = join(import.meta.dir, "..", "contract");
+const DIR = join(import.meta.dirname, "..", "contract");
 
 export const snapshotPath = (version: number) => join(DIR, `queries-v${version}.json`);
 
@@ -25,7 +26,7 @@ export function readSnapshot(version: number): QueryContract | null {
 /** O contrato que o código serve hoje (só os metadados: nenhuma consulta roda). */
 export const currentContract = () => queryContract(queryTools({} as QueryService, {} as GraphDb));
 
-if (import.meta.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const current = currentContract();
   const published = readSnapshot(QUERY_CONTRACT_VERSION) ?? readSnapshot(QUERY_CONTRACT_VERSION - 1);
   const problems = published ? incompatibilities(published, current) : [];

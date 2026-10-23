@@ -1,16 +1,12 @@
 {
   "name": "panorama-graph",
   "private": true,
-  "workspaces": [
-    "api",
-    "web",
-    "sdks/typescript"
-  ],
-  "scripts": {
-    "lint": "bun run --filter '*' lint",
-    "test": "bun run --filter '*' test"
+  "packageManager": "pnpm@11.20.0",
+  "engines": {
+    "node": ">=22.18"
   },
-  "overrides": {
-    "zod": "3.25.76"
+  "scripts": {
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r --workspace-concurrency=1 run test"
   }
 }

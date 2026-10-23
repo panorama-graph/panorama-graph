@@ -1,4 +1,5 @@
 import neo4j, { Neo4jError, type Driver, type ManagedTransaction, type QueryResult, type RecordShape } from "neo4j-driver";
+import { setTimeout } from "node:timers/promises";
 
 export type Neo4jConfig = { uri: string; user: string; password: string; database: string };
 
@@ -53,7 +54,7 @@ export class GraphDb {
         return await session.executeWrite(work);
       } catch (err) {
         if (!isConstraintRace(err) || attempt >= CONSTRAINT_RETRIES) throw err;
-        await Bun.sleep(20 * attempt + Math.random() * 30);
+        await setTimeout(20 * attempt + Math.random() * 30);
       } finally {
         await session.close();
       }

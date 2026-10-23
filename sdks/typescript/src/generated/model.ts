@@ -1,4 +1,4 @@
-// Gerado por `bun run sdk:generate` no panorama-graph-api, a partir de src/model (o mesmo documento do GET /v1/schema). Não edite à mão.
+// Gerado por `pnpm run sdk:generate` no panorama-graph-api, a partir de src/model (o mesmo documento do GET /v1/schema). Não edite à mão.
 
 /** Versão do modelo do grafo: tipos de nó, de relação e propriedades que a API aceita na carga. */
 export const MODEL_VERSION = 12;

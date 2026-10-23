@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import type { FastifyInstance } from "fastify";
 import { buildApp } from "../src/app";
 import { QUERY_CONTRACT_VERSION } from "../src/query/contract";
@@ -100,7 +100,7 @@ describe("MCP por Streamable HTTP", () => {
     const { isError, body } = await call("contract_get", { target: "product-catalog-api", endpoint: "POST /products" });
     expect(isError).toBe(false);
     expect(body.contract.components.schemas.CreateProductRequest.required).toEqual(["name"]);
-    expect(body.apis[0].facts[0].evidence).toEndWith("#/paths/~1products/post");
+    expect(body.apis[0].facts[0].evidence).toMatch(/#\/paths\/~1products\/post$/);
   });
 
   test("detail: summary resume as afirmações; full traz todas as propriedades", async () => {

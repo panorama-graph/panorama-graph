@@ -25,10 +25,10 @@ Este arquivo diz **como trabalhar** no console. As regras do repositório inteir
 | `src/lib/evidence.ts`, `facts.ts`, `nodes.ts`, `graphLayout.ts`, `layers.ts`, `tech.ts`, `nav.ts` | Evidência como link, propriedades por fonte, tipos de nó e rótulos, desenho e layout do grafo, camadas do grafo, tecnologia para o ícone, parâmetros na URL |
 | `src/components/` | Painel e selo de afirmações, lista de relações, grafo, estados de consulta, cobertura, layout |
 | `src/pages/` | Uma tela por rota; `pages/node/` é a página de cada tipo de nó |
-| `test/` | `bun test` nas funções puras |
+| `test/` | `pnpm test` (Vitest) nas funções puras |
 
 ## Testes
 
-`bun run lint`, `bun test` e `bun run build` precisam passar. Mudança de tela é conferida no navegador contra a API com o grafo carregado.
+`pnpm run lint`, `pnpm test` e `pnpm run build` precisam passar. Mudança de tela é conferida no navegador contra a API com o grafo carregado.
 
 MUI 9 não aceita props de sistema no `Stack` (`alignItems`, `flexWrap`...): use `sx`.

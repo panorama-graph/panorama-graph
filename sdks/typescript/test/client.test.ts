@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { PanoramaGraphClient, PanoramaGraphError, MODEL_VERSION } from "../src";
 
 type Call = { url: string; method: string; body?: unknown };

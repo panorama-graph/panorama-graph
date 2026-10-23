@@ -1,4 +1,4 @@
-import { afterAll, describe, expect, test } from "bun:test";
+import { afterAll, describe, expect, test } from "vitest";
 import { buildApp } from "../src/app";
 import { createTestDb, silentLogger } from "./setup";
 

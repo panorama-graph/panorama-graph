@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { levelOf, levelStyles } from "../src/lib/orgLevels";
 import type { NodeView, OrgNode } from "../src/lib/types";
 

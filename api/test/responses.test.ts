@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import Ajv, { type ValidateFunction } from "ajv";
 import type { FastifyInstance } from "fastify";
 import { currentContract } from "../scripts/contract";

@@ -1,4 +1,4 @@
-import { afterAll, beforeEach, describe, expect, test } from "bun:test";
+import { afterAll, beforeEach, describe, expect, test } from "vitest";
 import { createTestDb, resetDatabase } from "./setup";
 
 const db = createTestDb();

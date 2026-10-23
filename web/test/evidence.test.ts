@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { evidenceHref, parseCodePointer, shortEvidence } from "../src/lib/evidence";
 
 const T = "http://gitlab.local/{repo}/-/blob/{sha}/{path}";

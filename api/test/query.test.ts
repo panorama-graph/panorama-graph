@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import type { FastifyInstance } from "fastify";
 import { buildApp } from "../src/app";
 import { ApiError } from "../src/errors";
@@ -56,14 +56,14 @@ describe("perguntas de validação do ACME Bank", () => {
       scope: { component: "loan-simulation-api" },
       evidence: "loan-simulation-api@d4e5f6a:helm/values-dev.yaml:22",
     });
-    expect(helm.observedAt).toBeString();
+    expect(helm.observedAt).toBeTypeOf("string");
   });
 
   test("2. de quais endpoints a loan-simulation-api depende: os das interações do pact", async () => {
     const res = await q.apiConsumers(K.pcaApi);
     const calls = res.consumers[0].calls;
     expect(calls.map((e) => e.node.key).sort()).toEqual([K.epList, K.epGetOne].sort());
-    expect(calls.find((e) => e.node.key === K.epGetOne)!.facts[0].evidence).toEndWith("#interaction-1");
+    expect(calls.find((e) => e.node.key === K.epGetOne)!.facts[0].evidence).toMatch(/#interaction-1$/);
 
     const one = await q.apiConsumers(K.pca, { endpoint: "get /products/{id}" });
     expect(one.endpoint).toBe(K.epGetOne);
@@ -204,7 +204,7 @@ describe("contract_get", () => {
     expect(res.apis[0].node.key).toBe(K.pcaApi);
     expect(res.apis[0].direction).toBe("in");
     expect(res.apis[0].facts[0].source).toBe("openapi");
-    expect(res.apis[0].facts[0].evidence).toEndWith("#/paths/~1products/post");
+    expect(res.apis[0].facts[0].evidence).toMatch(/#\/paths\/~1products\/post$/);
     expect(res.apis[0].contracts.map((e: { node: { key: string } }) => e.node.key)).toContain(K.openapi);
     expect(res.coverage).toBeUndefined();
   });

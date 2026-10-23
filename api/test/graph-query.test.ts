@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { ApiError } from "../src/errors";
 import { runReadOnly } from "../src/query/graphQuery";
 import { createTestDb, resetDatabase } from "./setup";

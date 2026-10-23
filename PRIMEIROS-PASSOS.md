@@ -175,9 +175,9 @@ Sem o `graph-seed`, o mesmo retrato vai em JSON para `POST /v1/ingest`: o [ADAPT
 
 ## Desenvolver
 
-- **Dependências:** `bun install` na raiz instala todos os projetos do workspace, com o SDK ligado ao código.
-- **API fora do container:** `docker compose up -d neo4j` aqui e, em `api/`, `cp .env.example .env` e `bun run dev`.
-- **Console fora do container:** em `web/`, `bun run dev` (porta 5180).
-- **Testes da API:** `bun run test:db:up` em `api/` sobe o Neo4j de teste (porta 7688, com o compose de `api/`).
+- **Dependências:** Node.js 22.18+ e pnpm 11 (`corepack enable`, ou `npm install -g pnpm`). `pnpm install` na raiz instala todos os projetos do workspace, com o SDK ligado ao código.
+- **API fora do container:** `docker compose up -d neo4j` aqui e, em `api/`, `cp .env.example .env` e `pnpm run dev`.
+- **Console fora do container:** em `web/`, `pnpm run dev` (porta 5180).
+- **Testes da API:** `pnpm run test:db:up` em `api/` sobe o Neo4j de teste (porta 7688, com o compose de `api/`).
 
 Cada projeto tem o próprio `AGENTS.md`; as regras do repositório estão no [AGENTS.md](AGENTS.md) da raiz.

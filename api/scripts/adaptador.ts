@@ -2,17 +2,18 @@
  * O catálogo de relações do ADAPTADOR.md: para cada tipo de relação do modelo, quem costuma afirmá-la, o que vai
  * junto e um retrato de exemplo, gerado entre os marcadores `<!-- relacoes:inicio -->` e `<!-- relacoes:fim -->`.
  *
- *   bun run adaptador:write   regrava o catálogo
+ *   pnpm run adaptador:write   regrava o catálogo
  *
  * O teste `adaptador-doc.test.ts` falha quando o documento fica para trás, quando um tipo ou par de relação do
  * modelo não tem exemplo e quando um exemplo não passa na validação do POST /v1/ingest.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { IngestBody } from "../src/ingest/payload";
 import { RELATION_TYPE_NAMES, relationSpec, type RelationType } from "../src/model/model";
 
-export const ADAPTADOR_PATH = join(import.meta.dir, "..", "ADAPTADOR.md");
+export const ADAPTADOR_PATH = join(import.meta.dirname, "..", "ADAPTADOR.md");
 const START = "<!-- relacoes:inicio -->";
 const END = "<!-- relacoes:fim -->";
 
@@ -467,7 +468,7 @@ export function renderAdaptador(current: string): string {
   return `${current.slice(0, start + START.length)}\n${relationsSection()}\n${current.slice(end)}`;
 }
 
-if (import.meta.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   writeFileSync(ADAPTADOR_PATH, renderAdaptador(readFileSync(ADAPTADOR_PATH, "utf8")));
   console.log(`Gravado ${ADAPTADOR_PATH}`);
 }

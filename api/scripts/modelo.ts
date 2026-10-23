@@ -2,15 +2,16 @@
  * Referência do modelo para quem adota o grafo: as tabelas de nós, relações e valores fixos do MODELO.md saem do
  * `describeModel` (o mesmo do GET /v1/schema), entre os marcadores `<!-- modelo:inicio -->` e `<!-- modelo:fim -->`.
  *
- *   bun run modelo:write   regrava as tabelas
+ *   pnpm run modelo:write   regrava as tabelas
  *
  * O teste `modelo-doc.test.ts` falha quando o modelo muda e o MODELO.md não.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describeModel } from "../src/model/describe";
 
-export const MODELO_PATH = join(import.meta.dir, "..", "MODELO.md");
+export const MODELO_PATH = join(import.meta.dirname, "..", "MODELO.md");
 const START = "<!-- modelo:inicio -->";
 const END = "<!-- modelo:fim -->";
 
@@ -94,7 +95,7 @@ export function renderModelo(current: string): string {
   return `${current.slice(0, start + START.length)}\n${modelSection()}\n${current.slice(end)}`;
 }
 
-if (import.meta.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   writeFileSync(MODELO_PATH, renderModelo(readFileSync(MODELO_PATH, "utf8")));
   console.log(`Gravado ${MODELO_PATH}`);
 }

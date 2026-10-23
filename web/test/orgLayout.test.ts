@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { ORG_CARD_W, ORG_OWNS_ITEM_H, cardHeight, initials, isLead, memberships, orderedMembers, orgLayout, ownsByType, ownsKey } from "../src/lib/orgLayout";
 import type { Edge, OrgNode } from "../src/lib/types";
 

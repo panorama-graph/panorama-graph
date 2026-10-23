@@ -1,4 +1,4 @@
-// Gerado por `bun run sdk:generate` no panorama-graph-api, a partir de contract/openapi-v1.json. Não edite à mão.
+// Gerado por `pnpm run sdk:generate` no panorama-graph-api, a partir de contract/openapi-v1.json. Não edite à mão.
 
 export type components = {
     schemas: {

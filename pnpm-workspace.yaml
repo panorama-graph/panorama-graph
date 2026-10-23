@@ -1,0 +1,10 @@
+packages:
+  - api
+  - web
+  - sdks/typescript
+
+overrides:
+  zod: 3.25.76
+
+allowBuilds:
+  esbuild: true

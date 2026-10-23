@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import { ADAPTADOR_PATH, RELATION_GUIDE, exampleSnapshot, renderAdaptador } from "../scripts/adaptador";
 import { ingestBodySchema, validateSnapshot } from "../src/ingest/payload";
@@ -6,7 +6,7 @@ import { checkKey } from "../src/model/keys";
 import { RELATION_TYPE_NAMES, relationSpec } from "../src/model/model";
 
 describe("ADAPTADOR.md", () => {
-  test("o catálogo de relações é o do modelo atual (rode bun run adaptador:write)", () => {
+  test("o catálogo de relações é o do modelo atual (rode pnpm run adaptador:write)", () => {
     const current = readFileSync(ADAPTADOR_PATH, "utf8");
     expect(renderAdaptador(current)).toBe(current);
   });

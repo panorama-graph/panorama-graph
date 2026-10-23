@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { edgeLabel, fromDependencyEdges, fromOverview, layout, toGraphNode } from "../src/lib/graphLayout";
 import type { DependencyEdge } from "../src/lib/types";
 

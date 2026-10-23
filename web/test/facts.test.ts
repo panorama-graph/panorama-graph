@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { diverges, propValues, propsSummary } from "../src/lib/facts";
 import type { Fact } from "../src/lib/types";
 

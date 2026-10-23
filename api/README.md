@@ -10,7 +10,7 @@ Base em grafo da arquitetura e da estrutura organizacional, com API para registr
 
 ## Stack
 
-TypeScript com Bun, Fastify, Neo4j Community 5.x.
+TypeScript com Node.js (tsx), Fastify, Neo4j Community 5.x.
 
 ## Subir
 
@@ -20,8 +20,8 @@ Para desenvolver fora do container, com o Neo4j da raiz (`docker compose up -d n
 
 ```sh
 cp .env.example .env
-bun install
-bun run dev
+pnpm install
+pnpm run dev
 ```
 
 | Serviço | Porta |
@@ -29,7 +29,7 @@ bun run dev
 | API | `3200` |
 | Neo4j Browser | `7474` (usuário e senha do `.env`) |
 | Neo4j bolt | `7687` |
-| Neo4j de teste (`docker-compose.yml` deste repositório, `bun run test:db:up`) | `7688` |
+| Neo4j de teste (`docker-compose.yml` deste repositório, `pnpm run test:db:up`) | `7688` |
 
 ## Saúde
 
@@ -39,7 +39,7 @@ bun run dev
 ## REST: versão, OpenAPI e erros
 
 - **Versão no caminho:** as rotas do REST ficam em `/v1` (`/v1/schema`, `/v1/ingest`, `/v1/queries/...`). Saúde (`/health`) e MCP (`/mcp`, com versão de protocolo própria) ficam fora. A versão segue a política do contrato das consultas: mudança compatível fica no `/v1`; quebra é `/v2`, com o `/v1` servido por um tempo.
-- **OpenAPI** em `GET /v1/openapi.json`, também em produção, e no repositório em `contract/openapi-v1.json` (para gerar cliente sem subir a API). Um teste falha quando as rotas mudam e o arquivo não; para atualizá-lo, `bun run openapi:write`. Fora de produção, a tela do Swagger fica em `/docs`. Corpos e respostas são tipados, cada um com nome em `components.schemas`: os argumentos e a resposta de cada consulta (`ComponentGetArgs`, `ComponentGetResult`...), as formas compartilhadas (`Fact`, `Edge`, `NodeView`...), o retrato da carga (`Snapshot`) e as respostas das demais rotas. Os esquemas documentam, e não validam: a resposta sai como a API a monta, e os testes conferem cada uma contra o esquema, sem campo a mais nem a menos.
+- **OpenAPI** em `GET /v1/openapi.json`, também em produção, e no repositório em `contract/openapi-v1.json` (para gerar cliente sem subir a API). Um teste falha quando as rotas mudam e o arquivo não; para atualizá-lo, `pnpm run openapi:write`. Fora de produção, a tela do Swagger fica em `/docs`. Corpos e respostas são tipados, cada um com nome em `components.schemas`: os argumentos e a resposta de cada consulta (`ComponentGetArgs`, `ComponentGetResult`...), as formas compartilhadas (`Fact`, `Edge`, `NodeView`...), o retrato da carga (`Snapshot`) e as respostas das demais rotas. Os esquemas documentam, e não validam: a resposta sai como a API a monta, e os testes conferem cada uma contra o esquema, sem campo a mais nem a menos.
 - **Erros num formato único**, no REST e no MCP (o texto de um resultado com `isError`):
 
 ```json
@@ -215,20 +215,20 @@ Os nomes das ferramentas, os argumentos e o que as respostas trazem formam um co
 - **Versão nova** para renomear ou remover ferramenta, argumento ou campo de resposta, tornar argumento obrigatório, tirar valor de enum ou mudar o tipo ou o sentido de um argumento. O que sai fica obsoleto por pelo menos uma versão antes de ser removido, com as duas formas servidas. A ferramenta obsoleta avisa na descrição, no `_meta` (`deprecated`, com a substituta) e no REST (`Deprecation: true` e `Link` com `rel="successor-version"`).
 - **`graph_query` é exploratória** e fica fora do contrato.
 
-O contrato publicado de cada versão fica em `contract/queries-v<N>.json`. Um teste falha quando as ferramentas mudam e o snapshot não; para atualizá-lo, `bun run contract:write`, que recusa a mudança incompatível e pede a versão nova (`QUERY_CONTRACT_VERSION` em `src/query/contract.ts`). O snapshot confere nomes, argumentos, tipos, obrigatoriedade e enums, e traz a forma de cada resposta (`output`, com as formas em `definitions`, em JSON Schema): na mesma versão, remover campo, deixar de mandar sempre um campo, mudar o tipo ou passar a mandar nulo também é recusado. A forma das respostas é declarada em `src/query/responses.ts`.
+O contrato publicado de cada versão fica em `contract/queries-v<N>.json`. Um teste falha quando as ferramentas mudam e o snapshot não; para atualizá-lo, `pnpm run contract:write`, que recusa a mudança incompatível e pede a versão nova (`QUERY_CONTRACT_VERSION` em `src/query/contract.ts`). O snapshot confere nomes, argumentos, tipos, obrigatoriedade e enums, e traz a forma de cada resposta (`output`, com as formas em `definitions`, em JSON Schema): na mesma versão, remover campo, deixar de mandar sempre um campo, mudar o tipo ou passar a mandar nulo também é recusado. A forma das respostas é declarada em `src/query/responses.ts`.
 
 ## SDK
 
-O pacote npm `@panorama-graph/sdk` ([sdks/typescript](../sdks/typescript/README.md)) é gerado do contrato desta API: os tipos de cada corpo e resposta, o modelo (versão, tipos de nó com o prefixo da chave, tipos de relação), as receitas de chave e um cliente do REST. Toda mudança no OpenAPI ou no modelo termina com `bun run openapi:write && bun run sdk:generate`; um teste falha quando os arquivos gerados ficam para trás, e outro usa o cliente do SDK contra esta API. Com o SDK mudado, suba a versão em `../sdks/typescript/package.json`: o job `publish_sdk` do pipeline (na raiz) publica a versão que ainda não está no registry.
+O pacote npm `@panorama-graph/sdk` ([sdks/typescript](../sdks/typescript/README.md)) é gerado do contrato desta API: os tipos de cada corpo e resposta, o modelo (versão, tipos de nó com o prefixo da chave, tipos de relação), as receitas de chave e um cliente do REST. Toda mudança no OpenAPI ou no modelo termina com `pnpm run openapi:write && pnpm run sdk:generate`; um teste falha quando os arquivos gerados ficam para trás, e outro usa o cliente do SDK contra esta API. Com o SDK mudado, suba a versão em `../sdks/typescript/package.json`: o job `publish_sdk` do pipeline (na raiz) publica a versão que ainda não está no registry.
 
 ## Testes
 
 Os testes rodam contra um Neo4j separado e descartável (dados em memória), que é apagado entre os testes:
 
 ```sh
-bun run test:db:up
-bun test
-bun run lint
+pnpm run test:db:up
+pnpm test
+pnpm run lint
 ```
 
 O grafo dos testes ([test/fixtures/acme.ts](test/fixtures/acme.ts)) é um pedaço do ACME Bank, a organização fictícia de exemplo, carregado pelo REST como os adaptadores fariam. Os testes das consultas respondem sobre ele às perguntas que o grafo existe para responder, com a fonte de cada fato:

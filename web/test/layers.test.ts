@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { DEFAULT_LAYERS, parseLayers, resourceLayer, serializeLayers } from "../src/lib/layers";
 import { edgeEndpoints, edgeLabel, layout, overviewGraph } from "../src/lib/graphLayout";
 import type { Overview, OverviewComponent } from "../src/lib/types";

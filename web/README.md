@@ -40,8 +40,8 @@ A API precisa estar no ar (porta 3200) com `http://localhost:5180` no `CORS_ORIG
 
 ```sh
 cp .env.example .env
-bun install
-bun run dev                 # http://localhost:5180
+pnpm install
+pnpm run dev                 # http://localhost:5180
 ```
 
 Em container, com a API e o Neo4j: o compose da raiz (ver os [primeiros passos](../PRIMEIROS-PASSOS.md)), que passa as duas variáveis abaixo no build.
@@ -55,4 +55,4 @@ As duas entram no build (o Vite as embute no JS).
 
 ## Testes
 
-`bun run lint` (tsc), `bun test` (funções puras: evidência, propriedades por fonte, layout do grafo) e `bun run build`.
+`pnpm run lint` (tsc), `pnpm test` (funções puras: evidência, propriedades por fonte, layout do grafo) e `pnpm run build`.

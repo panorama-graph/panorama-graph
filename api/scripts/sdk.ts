@@ -5,13 +5,14 @@
  *              consulta → argumentos e resposta, com a versão do contrato das consultas;
  *   model.ts   o modelo (`GET /v1/schema`): versão, tipos de nó com o prefixo da chave e tipos de relação.
  *
- *   bun run sdk:generate   grava os dois arquivos
+ *   pnpm run sdk:generate   grava os dois arquivos
  *
  * O teste `sdk.test.ts` falha quando o contrato muda e os arquivos não: toda mudança no OpenAPI ou no modelo
- * termina com `bun run openapi:write && bun run sdk:generate`.
+ * termina com `pnpm run openapi:write && pnpm run sdk:generate`.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import openapiTS, { astToString } from "openapi-typescript";
 import { API_PREFIX } from "../src/api/rest";
 import type { GraphDb } from "../src/db/neo4j";
@@ -21,12 +22,12 @@ import { QUERY_CONTRACT_VERSION, argsName, resultName } from "../src/query/contr
 import { queryTools } from "../src/query/tools";
 import { openApiPath } from "./openapi";
 
-const OUT = join(import.meta.dir, "..", "..", "sdks", "typescript", "src", "generated");
+const OUT = join(import.meta.dirname, "..", "..", "sdks", "typescript", "src", "generated");
 export const sdkTypesPath = join(OUT, "types.ts");
 export const sdkModelPath = join(OUT, "model.ts");
 
 const HEADER = (from: string) =>
-  `// Gerado por \`bun run sdk:generate\` no panorama-graph-api, a partir de ${from}. Não edite à mão.\n\n`;
+  `// Gerado por \`pnpm run sdk:generate\` no panorama-graph-api, a partir de ${from}. Não edite à mão.\n\n`;
 
 /** Nomes dos componentes que colidem com nomes globais do TypeScript. */
 const RENAMED: Record<string, string> = { Error: "ErrorBody" };
@@ -77,7 +78,7 @@ export function sdkModel(): string {
   );
 }
 
-if (import.meta.main) {
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
   writeFileSync(sdkTypesPath, await sdkTypes());
   writeFileSync(sdkModelPath, sdkModel());
   console.log(`Gravados ${sdkTypesPath} e ${sdkModelPath}`);

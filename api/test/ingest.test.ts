@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, beforeEach, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, beforeEach, describe, expect, test } from "vitest";
 import type { FastifyInstance } from "fastify";
 import { buildApp } from "../src/app";
 import { createTestDb, resetDatabase, silentLogger } from "./setup";
@@ -67,7 +67,7 @@ describe("POST /ingest", () => {
       evidence: "https://gitlab.acme/", // sem evidência própria: fica a evidenceBase
       loadId: body.loadId,
     });
-    expect(hosted.id).toBeString();
+    expect(hosted.id).toBeTypeOf("string");
 
     const { records } = await db.read(
       `MATCH (c:Claim)-[:CLAIMS]->(n:Component) RETURN n.kind AS kind, n.type AS type, c.source AS source, c.evidence AS evidence`,

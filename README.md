@@ -177,7 +177,7 @@ claude mcp add --transport http panorama-graph http://localhost:3200/mcp
 
 ## Estrutura do repositório
 
-Workspace do Bun com a API, o console e o SDK. Uma mudança no modelo chega aos três no mesmo commit.
+Workspace do pnpm (Node.js) com a API, o console e o SDK. Uma mudança no modelo chega aos três no mesmo commit.
 
 | Pasta | Conteúdo |
 |---|---|

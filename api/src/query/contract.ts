@@ -7,7 +7,7 @@ import type { QueryTool } from "./tools";
  * Versão do contrato das consultas: os nomes das ferramentas, os argumentos e o que as respostas trazem. É
  * separada do MODEL_VERSION (o modelo do grafo, que os adaptadores seguem): o modelo pode mudar sem quebrar
  * as consultas, e vice-versa. A política está em CONTRACT_POLICY; o snapshot publicado de cada versão fica em
- * `contract/queries-v<N>.json`, e `bun run contract:write` recusa gravar uma mudança que a política proíbe.
+ * `contract/queries-v<N>.json`, e `pnpm run contract:write` recusa gravar uma mudança que a política proíbe.
  */
 export const QUERY_CONTRACT_VERSION = 1;
 

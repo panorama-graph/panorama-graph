@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { checkKey } from "../src/model/keys";
 import { isValidPair, nodeProps, validateProps } from "../src/model/model";
 import { canonicalScope, validateSnapshot, type IngestBody } from "../src/ingest/payload";

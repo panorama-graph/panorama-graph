@@ -227,7 +227,7 @@ O modelo é fechado: um adaptador nunca cria um tipo de nó, de relação ou de 
 Quando não cabe, o modelo muda numa **versão nova**, na API (`api/`):
 
 1. Acrescente o tipo, o par, a propriedade ou o valor em [src/model/model.ts](src/model/model.ts) e suba `MODEL_VERSION`.
-2. Regere o que sai do modelo: `bun run modelo:write` (este documento), `bun run openapi:write` e `bun run sdk:generate`, e suba a versão do SDK em `sdks/typescript/package.json`.
+2. Regere o que sai do modelo: `pnpm run modelo:write` (este documento), `pnpm run openapi:write` e `pnpm run sdk:generate`, e suba a versão do SDK em `sdks/typescript/package.json`.
 3. Registre a versão e o que mudou em [Versões do modelo](#versões-do-modelo), no fim deste documento.
 4. Se uma pergunta precisa da relação nova, ela entra numa ferramenta de consulta (`src/query/tools.ts`). Sem isso, a relação já aparece no `node_get` (todas as relações de um nó) e no `graph_query`, mas não nas ferramentas específicas, como `component_get` e `architecture_overview`.
 5. Ajuste o console no mesmo commit (ele usa o SDK pelo workspace). Publique o SDK e passe os [adaptadores](https://github.com/panorama-graph/adapters) e os adaptadores próprios da organização para a versão nova. Todos conferem a versão do modelo antes de enviar e recusam uma API em outra versão: com versões diferentes, a carga seria recusada ou perderia o que um lado não conhece.

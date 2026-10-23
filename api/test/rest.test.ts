@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import type { FastifyInstance } from "fastify";
 import { buildApp } from "../src/app";
@@ -76,7 +76,7 @@ describe("REST /v1", () => {
       }
     }
 
-    // Rotas mudaram e o snapshot não: rode `bun run openapi:write`.
+    // Rotas mudaram e o snapshot não: rode `pnpm run openapi:write`.
     expect(JSON.parse(readFileSync(openApiPath, "utf8"))).toEqual(await currentOpenApi());
   });
 });

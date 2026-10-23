@@ -2,7 +2,7 @@
  * Publica o SDK no registry npm, se a versão do package.json ainda não estiver lá. Roda no CI (workflow `ci`, no
  * branch principal) e também à mão:
  *
- *   bun scripts/publish.ts
+ *   pnpm exec tsx scripts/publish.ts
  *
  * Quem publica é o `npm publish`, com as credenciais do próprio npm: no CI, o Trusted Publishing (OIDC do GitHub
  * Actions, sem token guardado); à mão, o `npm login`. Com SDK_PUBLISH_STAGED=true (o CI), a versão vai como staged
@@ -15,22 +15,23 @@
  *
  * Uma versão publicada não muda: mudança no SDK pede versão nova no package.json.
  *
- * No repositório, o pacote aponta para o código-fonte (`src/index.ts`), que o Bun, o Vite e o tsc dos outros
- * projetos do workspace leem direto. O publicado é o compilado: o script monta o pacote numa pasta temporária, com o
+ * No repositório, o pacote aponta para o código-fonte (`src/index.ts`), que o tsx, o Vite, o Vitest e o tsc dos
+ * outros projetos do workspace leem direto. O publicado é o compilado: o script monta o pacote numa pasta temporária, com o
  * `dist`, o README, a licença e o package.json apontando para o `dist`.
  */
-import { cpSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const dir = join(import.meta.dir, "..");
+const dir = join(import.meta.dirname, "..");
 const registry = (process.env.SDK_REGISTRY_URL || "https://registry.npmjs.org/").replace(/\/*$/, "/");
 const token = process.env.SDK_REGISTRY_TOKEN ?? "";
 const auth = process.env.SDK_REGISTRY_AUTH ?? "";
 const staged = process.env.SDK_PUBLISH_STAGED === "true";
 const headers: Record<string, string> = token ? { authorization: `Bearer ${token}` } : auth ? { authorization: `Basic ${auth}` } : {};
 
-const pkg = (await Bun.file(join(dir, "package.json")).json()) as Record<string, unknown> & { name: string; version: string };
+const pkg = JSON.parse(readFileSync(join(dir, "package.json"), "utf8")) as Record<string, unknown> & { name: string; version: string };
 const { name, version } = pkg;
 const packument = await fetch(`${registry}${name.replace("/", "%2f")}`, { headers });
 if (packument.ok) {
@@ -44,9 +45,9 @@ if (packument.ok) {
   process.exit(1);
 }
 
-const run = (cmd: string[], cwd = dir) => Bun.spawnSync(cmd, { cwd, stdin: "inherit", stdout: "inherit", stderr: "inherit" }).exitCode;
+const run = ([cmd, ...args]: string[], cwd = dir) => spawnSync(cmd, args, { cwd, stdio: "inherit" }).status ?? 1;
 
-if (run(["bun", "run", "build"]) !== 0) process.exit(1);
+if (run(["pnpm", "run", "build"]) !== 0) process.exit(1);
 // Fora do workspace, para o `npm publish` não tomar a raiz do repositório pelo projeto.
 const stage = mkdtempSync(join(tmpdir(), "panorama-graph-sdk-"));
 cpSync(join(dir, "dist"), join(stage, "dist"), { recursive: true });

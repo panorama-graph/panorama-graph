@@ -1,7 +1,7 @@
 # Instância do panorama-graph: Neo4j, API e console. Variáveis vêm do .env (modelo em .env.example). As imagens são
 # construídas da raiz do repositório, com o Dockerfile de cada projeto. Guia: PRIMEIROS-PASSOS.md.
 #   docker compose up -d --build                        Neo4j, API e console
-#   docker compose up -d neo4j                          só o banco, para rodar a API com `bun run dev`
+#   docker compose up -d neo4j                          só o banco, para rodar a API com `pnpm run dev`
 # Portas (mudam por variável): API 3200 (API_PORT), console 5180 (WEB_PORT), Neo4j 7474 (NEO4J_HTTP_PORT, browser) e
 # 7687 (NEO4J_BOLT_PORT). O receptor dos builds, a carga à mão e a organização de exemplo sobem do repositório dos
 # adaptadores (github.com/panorama-graph/adapters), apontando para esta API.

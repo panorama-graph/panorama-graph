@@ -1,4 +1,4 @@
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { TECHS, techInfo, techOf } from "../src/lib/tech";
@@ -21,7 +21,7 @@ describe("techOf", () => {
 
 describe("bancos conhecidos", () => {
   test("cada um tem ícone ou logo em images/", () => {
-    const images = join(import.meta.dir, "..", "images");
+    const images = join(import.meta.dirname, "..", "images");
     const missing = TECHS.filter((t) => t.role === "store").filter((t) => !["icon", "logo"].some((v) => existsSync(join(images, `${t.id}-${v}.svg`))));
     expect(missing.map((t) => t.id)).toEqual([]);
   });

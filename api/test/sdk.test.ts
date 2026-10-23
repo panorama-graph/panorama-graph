@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, describe, expect, test } from "bun:test";
+import { afterAll, beforeAll, describe, expect, test } from "vitest";
 import { readFileSync } from "node:fs";
 import type { FastifyInstance } from "fastify";
 import { sdkModel, sdkModelPath, sdkTypes, sdkTypesPath } from "../scripts/sdk";
@@ -37,7 +37,7 @@ afterAll(async () => {
 });
 
 describe("SDK", () => {
-  test("os arquivos gerados são os do contrato atual (rode bun run openapi:write && bun run sdk:generate)", async () => {
+  test("os arquivos gerados são os do contrato atual (rode pnpm run openapi:write && pnpm run sdk:generate)", async () => {
     expect(readFileSync(sdkTypesPath, "utf8")).toBe(await sdkTypes());
     expect(readFileSync(sdkModelPath, "utf8")).toBe(sdkModel());
   });
