@@ -142,9 +142,12 @@ describe("retrato congelado na ingestão", () => {
   });
 
   test("a divergência entre fontes não confunde versões diferentes com fontes que discordam", async () => {
+    // A 1.0.0 congelada afirma outras versões (Spring Boot 3.1.0, service-platform 2.0.0) que a linha principal.
     const res = await q.factDivergences({ node: K.pca });
+    const targets = res.divergences.map((d) => d.edges[0].node.key);
+    expect(targets).not.toContain(K.springBoot);
+    expect(targets).not.toContain(K.platform);
     const scopes = res.divergences.flatMap((d) => d.edges.flatMap((e) => e.facts.map((f) => f.scope)));
-    expect(scopes.length).toBeGreaterThan(0);
     expect(scopes.filter((s) => "commit" in s)).toEqual([]);
   });
 });

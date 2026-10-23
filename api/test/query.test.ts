@@ -134,7 +134,7 @@ describe("perguntas de validação do ACME Bank", () => {
     expect(byComponent[K.pca]).toEqual({ version: "2.3.1", scope: "compile", resolved: true, direct: true });
     // Declarado × usado vem de outra fonte, como outra afirmação da mesma relação.
     const pca = res.users.find((e) => e.node.key === K.pca)!;
-    expect(pca.facts.find((f) => f.source === "dependency-usage")?.props).toEqual({ declared: true, used: true, scope: "implementation" });
+    expect(pca.facts.find((f) => f.source === "dependency-usage")?.props).toEqual({ declared: true, used: true, configurations: ["implementation"] });
     expect(byComponent[K.lsa]).toMatchObject({ version: "3.0.0-RC1" });
 
     const old = await q.libraryUsage(K.platform, { versionRange: "<3.0.0" });
@@ -507,11 +507,9 @@ describe("busca, nó genérico, fontes e divergências", () => {
     expect(only.loads.every((l) => l.source === "gitlab")).toBe(true);
   });
 
-  test("fact_divergences: a mesma dependência com propriedades diferentes por fonte", async () => {
+  test("fact_divergences: SBOM e declarado × usado se completam na mesma dependência, sem divergir", async () => {
     const { divergences } = await q.factDivergences({ relationType: "DEPENDS_ON", node: K.pca });
-    const platform = divergences.find((d) => d.edges[0].node.key === K.platform)!;
-    expect(platform).toMatchObject({ kind: "props", from: { key: K.pca }, props: ["scope"] });
-    expect(sources(platform.edges[0].facts)).toEqual(["dependency-usage", "sbom"]);
+    expect(divergences.find((d) => d.edges[0].node.key === K.platform)).toBeUndefined();
   });
 });
 
@@ -546,6 +544,10 @@ describe("divergência e retrato (escrevem no grafo)", () => {
     const { stack } = await q.componentGet(K.pca);
     const spring = stack.find((e) => e.node.key === K.springBoot)!;
     expect(spring.facts.map((f) => `${f.source}:${f.props!.version}`).sort()).toEqual(["gitlab-ci:3.2.0", "sbom:3.2.4"]);
+    const { divergences } = await q.factDivergences({ relationType: "BUILT_WITH", node: K.pca });
+    const versions = divergences.find((d) => d.edges[0].node.key === K.springBoot)!;
+    expect(versions).toMatchObject({ kind: "props", from: { key: K.pca }, props: ["version"] });
+    expect(sources(versions.edges[0].facts)).toEqual(["gitlab-ci", "sbom"]);
   });
 
   test("stale fica de fora por padrão e volta com includeStale", async () => {

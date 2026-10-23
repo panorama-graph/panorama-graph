@@ -321,7 +321,7 @@ export const RELATION_TYPES = {
     pairs: [["Component", "Library"]],
     props: {
       version,
-      scope: { type: "string", description: "Escopo da dependência (compile, runtime, test...)" },
+      scope: { type: "string", description: "Classpath em que a dependência está (compile, runtime, test...)" },
       resolved: { type: "boolean", description: "Versão resolvida pelo build (e não só declarada)" },
       direct: { type: "boolean", description: "Dependência direta do componente (false: só chega por outra)" },
       via: {
@@ -329,6 +329,10 @@ export const RELATION_TYPES = {
         description: "Na transitiva: as dependências diretas (chaves de biblioteca) que a trazem para o componente",
       },
       declared: { type: "boolean", description: "Declarada no build do componente" },
+      configurations: {
+        type: "string[]",
+        description: "Configurações do build em que a dependência é declarada (no Gradle: implementation, api, runtimeOnly...)",
+      },
       used: { type: "boolean", description: "Usada pelo código do componente (análise do bytecode)" },
     },
     identityProps: [],

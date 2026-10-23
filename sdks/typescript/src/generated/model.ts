@@ -735,7 +735,7 @@ export const RELATION_TYPES = {
       },
       "scope": {
         "type": "string",
-        "description": "Escopo da dependência (compile, runtime, test...)"
+        "description": "Classpath em que a dependência está (compile, runtime, test...)"
       },
       "resolved": {
         "type": "boolean",
@@ -752,6 +752,10 @@ export const RELATION_TYPES = {
       "declared": {
         "type": "boolean",
         "description": "Declarada no build do componente"
+      },
+      "configurations": {
+        "type": "string[]",
+        "description": "Configurações do build em que a dependência é declarada (no Gradle: implementation, api, runtimeOnly...)"
       },
       "used": {
         "type": "boolean",
