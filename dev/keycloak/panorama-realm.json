@@ -1,0 +1,67 @@
+{
+  "realm": "panorama",
+  "displayName": "Panorama Graph (exemplo)",
+  "enabled": true,
+  "groups": [{ "name": "arquitetura" }, { "name": "plataforma" }],
+  "users": [
+    {
+      "username": "maria",
+      "enabled": true,
+      "email": "maria@example.com",
+      "emailVerified": true,
+      "firstName": "Maria",
+      "lastName": "Silva",
+      "credentials": [{ "type": "password", "value": "maria", "temporary": false }],
+      "groups": ["/arquitetura"]
+    },
+    {
+      "username": "joao",
+      "enabled": true,
+      "email": "joao@example.com",
+      "emailVerified": true,
+      "firstName": "João",
+      "lastName": "Souza",
+      "credentials": [{ "type": "password", "value": "joao", "temporary": false }],
+      "groups": ["/plataforma"]
+    },
+    {
+      "username": "service-account-panorama-graph",
+      "enabled": true,
+      "serviceAccountClientId": "panorama-graph"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "panorama-graph",
+      "name": "Panorama Graph",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "panorama-graph-dev-secret",
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": true,
+      "redirectUris": ["http://localhost:3200/v1/auth/callback"],
+      "webOrigins": ["http://localhost:5180"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5180/*##http://localhost:5180"
+      },
+      "protocolMappers": [
+        {
+          "name": "groups",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-group-membership-mapper",
+          "config": { "claim.name": "groups", "full.path": "false", "id.token.claim": "true", "access.token.claim": "true", "userinfo.token.claim": "true" }
+        },
+        {
+          "name": "audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": { "included.custom.audience": "panorama-graph", "access.token.claim": "true", "id.token.claim": "false" }
+        }
+      ]
+    }
+  ]
+}

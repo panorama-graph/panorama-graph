@@ -1,6 +1,6 @@
 {
   "name": "@panorama-graph/sdk",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Tipos, receitas de chave e cliente REST do panorama-graph",
   "type": "module",
   "types": "./src/index.ts",

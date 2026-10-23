@@ -47,12 +47,27 @@ await graph.ingest(snapshot);
 
 As receitas de chave (`componentKey`, `endpointKey`, `libraryKey`...) são as mesmas em todos os produtores: com elas, fatos de fontes diferentes caem no mesmo nó. APIs e tópicos versionados seguem uma convenção, com funções próprias: `pathVersion` (o primeiro segmento do caminho), `splitServiceVersion` (o nome do serviço exposto na infraestrutura, `servico-xpto-v2`), `topicVersion` e `normalizeInterfaceVersion` (`1` e `V1` viram `v1`). `httpApiKey` recebe a versão da API; `endpointKey`, só a do código, nunca a do host (veja [Versões de APIs e tópicos](../../api/MODELO.md#versões-de-apis-e-tópicos)). `nodeTypeFromKey` diz o tipo do nó pelo prefixo, segundo o modelo (`NODE_TYPES`). Os casos de [sdks/key-recipes.json](../key-recipes.json) são o contrato das receitas: o SDK se confere contra eles, e um SDK em outra linguagem também.
 
+## Autenticação
+
+Sem SSO configurado, a instância é anônima: nada a mandar, a não ser o token de ingestão na escrita, quando a instância o exige. Com SSO, as máquinas mandam um token, e o navegador usa a sessão do login:
+
+```ts
+// Adaptador ou CI: o token de ingestão ou um JWT de um emissor confiável (ex.: o OIDC do CI).
+const graph = new PanoramaGraphClient({ baseUrl: "https://grafo.example.com", token: process.env.GRAPH_TOKEN });
+
+// Navegador, com a API em outra origem: o cookie da sessão vai junto.
+const browser = new PanoramaGraphClient({ baseUrl: "https://grafo-api.example.com", credentials: "include" });
+const { mode, identity } = await browser.me();
+if (mode === "sso" && !identity) location.href = browser.loginUrl(location.href);
+```
+
 ## Erros
 
 Todo erro da API vira `PanoramaGraphError`, com `code`, `status` e `details`. Decida pelo `code`, que é estável, e não pela mensagem:
 
 | `code` | Quando |
 |---|---|
+| `unauthorized` | Sem sessão ou token, ou token inválido |
 | `not_found` | Nó, escopo ou rota que não existe |
 | `ambiguous` | O nome casa com mais de um nó (`details.candidates`) |
 | `outdated_snapshot` | Retrato mais antigo que o último do mesmo escopo: não é gravado |

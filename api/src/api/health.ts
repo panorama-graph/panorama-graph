@@ -4,10 +4,10 @@ import type { GraphDb } from "../db/neo4j";
 export function healthRoutes(db: GraphDb) {
   return async (app: FastifyInstance) => {
     // Liveness: o processo responde. Não toca no banco.
-    app.get("/health", async () => ({ status: "ok" }));
+    app.get("/health", { config: { access: "public" } }, async () => ({ status: "ok" }));
 
     // Readiness: o Neo4j responde a uma consulta no database configurado.
-    app.get("/health/ready", async (_req, reply) => {
+    app.get("/health/ready", { config: { access: "public" } }, async (_req, reply) => {
       try {
         await db.ping();
         const server = await db.serverInfo();

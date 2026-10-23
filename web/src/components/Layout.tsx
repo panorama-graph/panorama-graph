@@ -25,6 +25,7 @@ import { useGraphQuery, useIncludeStale } from "@/lib/queries";
 import type { FoundNode, NodesFind } from "@/lib/types";
 import { displayName, nodePath, typeLabel } from "@/lib/nodes";
 import { useTo } from "@/lib/nav";
+import { UserMenu } from "./AuthGate";
 
 const DRAWER = 232;
 
@@ -105,6 +106,7 @@ export function Layout({ children }: { children: ReactNode }) {
               sx={{ mr: 0, whiteSpace: "nowrap" }}
             />
           </Tooltip>
+          <UserMenu />
         </Toolbar>
       </AppBar>
       <Drawer

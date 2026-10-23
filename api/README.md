@@ -202,8 +202,8 @@ curl -s localhost:3200/v1/queries/component_dependencies -H 'content-type: appli
 
 - Sem corpo vale como sem argumentos (ex.: `POST /v1/queries/architecture_overview`). Argumento a mais ou inválido volta `400`.
 - Erros de domínio voltam com o status e o corpo de erro único: `404` para nó não encontrado, `409` para nome ambíguo (`ambiguous`, com os candidatos em `details.candidates`) e `422` para consulta recusada (ex.: escrita no `graph_query`).
-- **CORS** só nas rotas `/v1/queries`, para as origens de `CORS_ORIGINS` (separadas por vírgula). Ingestão e MCP não aceitam chamada do navegador.
-- Sem autenticação, como o MCP (ver as perguntas em aberto do [ROADMAP](../ROADMAP.md#perguntas-em-aberto)).
+- **CORS** só nas rotas `/v1/queries` e em `/v1/auth/me`, para as origens de `CORS_ORIGINS` (separadas por vírgula), com credenciais (o cookie da sessão do console). Ingestão e MCP não aceitam chamada do navegador.
+- **Autenticação**, igual no REST e no MCP (`src/auth/`). Sem `OIDC_ISSUER`, a instância é anônima: toda requisição é da identidade anônima, e o `INGEST_TOKEN`, quando definido, passa a ser exigido na escrita (`/v1/ingest`, `/v1/scopes/retire`, `/v1/nodes/...`). Com `OIDC_ISSUER`, só `/health`, `/v1/openapi.json` e `/v1/auth/*` ficam abertos: o navegador entra pelo provedor (`GET /v1/auth/login?returnTo=`, authorization code com PKCE) e ganha uma sessão em cookie assinado, sem estado no servidor; máquinas mandam `Authorization: Bearer` com o `INGEST_TOKEN` ou um JWT de um emissor de `JWT_ISSUERS`, com a audiência `JWT_AUDIENCE`. `GET /v1/auth/me` devolve o modo e a identidade. Sem sessão ou com token inválido, `401` (`unauthorized`). O log de cada requisição traz quem a fez (`who`).
 - Ferramenta que não existe volta `404` (`unknown_tool`) com a versão do contrato em `details.contractVersion`.
 
 ## Contrato das consultas

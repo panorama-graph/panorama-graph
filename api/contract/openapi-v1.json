@@ -2,10 +2,23 @@
   "openapi": "3.0.3",
   "info": {
     "title": "panorama-graph-api",
-    "description": "Grafo da arquitetura e da estrutura organizacional, com proveniência em cada fato. Contrato das consultas: versão 1 (GET /v1/queries). Todo erro vem no esquema Error: error (mensagem), code (estável), status e details.",
+    "description": "Grafo da arquitetura e da estrutura organizacional, com proveniência em cada fato. Contrato das consultas: versão 1 (GET /v1/queries). Todo erro vem no esquema Error: error (mensagem), code (estável), status e details. Autenticação: sem SSO configurado, a instância é anônima; com SSO, o navegador usa a sessão (cookie, login em GET /v1/auth/login) e as máquinas mandam Authorization: Bearer (token de ingestão ou JWT de um emissor confiável).",
     "version": "0.1.0"
   },
   "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Token de ingestão ou JWT de um emissor confiável (JWT_ISSUERS)"
+      },
+      "session": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "pg_session",
+        "description": "Sessão do login por SSO"
+      }
+    },
     "schemas": {
       "Error": {
         "type": "object",
@@ -18,6 +31,7 @@
             "type": "string",
             "enum": [
               "invalid_request",
+              "unauthorized",
               "forbidden",
               "not_found",
               "unknown_tool",
@@ -5864,6 +5878,78 @@
         ],
         "additionalProperties": false,
         "description": "O contrato das consultas: versão, política e as ferramentas com os argumentos"
+      },
+      "AuthSession": {
+        "type": "object",
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "anonymous",
+              "sso"
+            ],
+            "description": "anonymous: instância sem autenticação; sso: login pelo provedor da organização"
+          },
+          "identity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Identity"
+              }
+            ],
+            "nullable": true,
+            "description": "Quem está na sessão; null no modo sso sem login"
+          }
+        },
+        "required": [
+          "mode",
+          "identity"
+        ],
+        "additionalProperties": false,
+        "description": "O modo de autenticação da instância e quem está na sessão"
+      },
+      "Identity": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "anonymous",
+              "person",
+              "service"
+            ],
+            "description": "anonymous: instância sem SSO; person: login pelo provedor; service: token"
+          },
+          "subject": {
+            "type": "string",
+            "description": "Identificador estável no emissor (o `sub` do provedor)"
+          },
+          "issuer": {
+            "type": "string",
+            "description": "Emissor da identidade (o `iss` do provedor ou do token)"
+          },
+          "name": {
+            "type": "string",
+            "description": "Nome para mostrar"
+          },
+          "email": {
+            "type": "string"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Grupos que o provedor afirma (claim configurável)"
+          }
+        },
+        "required": [
+          "kind",
+          "subject",
+          "name",
+          "groups"
+        ],
+        "additionalProperties": false,
+        "description": "Quem faz a requisição"
       }
     }
   },
@@ -5882,6 +5968,46 @@
         "responses": {
           "200": {
             "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/auth/me": {
+      "get": {
+        "summary": "Modo de autenticação e quem está na sessão",
+        "tags": [
+          "autenticação"
+        ],
+        "responses": {
+          "2XX": {
+            "description": "Sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthSession"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "5XX": {
+            "description": "Erro",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
@@ -7154,5 +7280,14 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "bearer": []
+    },
+    {
+      "session": []
+    },
+    {}
+  ]
 }

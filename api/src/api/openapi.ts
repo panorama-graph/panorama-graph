@@ -1,6 +1,7 @@
 import { createJsonSchemaTransformObject } from "fastify-type-provider-zod";
 import { z } from "zod";
 import type { GraphDb } from "../db/neo4j";
+import { authSessionSchema, identitySchema } from "../auth/identity";
 import { errorBodySchema } from "../errors";
 import { ingestBodySchema } from "../ingest/payload";
 import type { QueryService } from "../query/QueryService";
@@ -31,6 +32,8 @@ const REST_SCHEMAS = {
   ModelDescription: modelDescriptionSchema,
   PropSpec: propSpecSchema,
   QueryContractDocument: queryContractDocumentSchema,
+  AuthSession: authSessionSchema,
+  Identity: identitySchema,
 } satisfies Record<string, z.ZodTypeAny>;
 
 type Operation = { method: "get" | "post"; path: string; request?: string; response: string };
@@ -42,6 +45,7 @@ const REST_OPERATIONS: Operation[] = [
   { method: "post", path: "/v1/nodes/{key}/aliases", request: "AliasRequest", response: "AliasResult" },
   { method: "post", path: "/v1/nodes/merge", request: "MergeRequest", response: "MergeResult" },
   { method: "get", path: "/v1/queries", response: "QueryContractDocument" },
+  { method: "get", path: "/v1/auth/me", response: "AuthSession" },
 ];
 
 type OpenApiDoc = {

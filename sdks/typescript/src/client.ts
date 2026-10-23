@@ -2,6 +2,7 @@ import { MODEL_VERSION } from "./generated/model.js";
 import {
   API_PREFIX,
   type AliasResult,
+  type AuthSession,
   type ErrorBody,
   type IngestResult,
   type MergeRequest,
@@ -45,6 +46,10 @@ export type ClientOptions = {
   fetch?: FetchLike;
   /** Cabeçalhos enviados em toda requisição. */
   headers?: Record<string, string>;
+  /** Token de ingestão ou JWT de um emissor confiável, enviado como `Authorization: Bearer`. */
+  token?: string;
+  /** No navegador, `include` manda o cookie da sessão do SSO para a API em outra origem. */
+  credentials?: RequestCredentials;
 };
 
 /** Argumentos de uma consulta: opcionais quando nenhum é obrigatório. */
@@ -104,6 +109,21 @@ export class PanoramaGraphClient {
     return this.request("POST", "/scopes/retire", req);
   }
 
+  /** O modo de autenticação da instância (`anonymous` ou `sso`) e quem está na sessão. */
+  me(): Promise<AuthSession> {
+    return this.request("GET", "/auth/me");
+  }
+
+  /** Onde o navegador vai para entrar pelo SSO; depois do login, volta para `returnTo`. */
+  loginUrl(returnTo: string): string {
+    return `${this.base}/auth/login?returnTo=${encodeURIComponent(returnTo)}`;
+  }
+
+  /** Onde o navegador vai para sair (da sessão e do provedor); depois, volta para `returnTo`. */
+  logoutUrl(returnTo: string): string {
+    return `${this.base}/auth/logout?returnTo=${encodeURIComponent(returnTo)}`;
+  }
+
   /** Registra um apelido para o nó. */
   addAlias(key: string, alias: string, reason?: string): Promise<AliasResult> {
     return this.request("POST", `/nodes/${encodeURIComponent(key)}/aliases`, { alias, ...(reason ? { reason } : {}) });
@@ -120,8 +140,13 @@ export class PanoramaGraphClient {
     try {
       res = await this.fetchImpl(url, {
         method,
-        headers: { ...this.options.headers, ...(body !== undefined ? { "content-type": "application/json" } : {}) },
+        headers: {
+          ...this.options.headers,
+          ...(this.options.token ? { authorization: `Bearer ${this.options.token}` } : {}),
+          ...(body !== undefined ? { "content-type": "application/json" } : {}),
+        },
         body: body !== undefined ? JSON.stringify(body) : undefined,
+        ...(this.options.credentials ? { credentials: this.options.credentials } : {}),
       });
     } catch (e) {
       throw new PanoramaGraphError(`Sem resposta de ${url}: ${(e as Error).message}`, "unreachable", 0);

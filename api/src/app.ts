@@ -5,6 +5,8 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fast
 import type { Logger } from "pino";
 import { ZodError } from "zod";
 import type { GraphDb } from "./db/neo4j";
+import type { AuthConfig } from "./auth/config";
+import { Auth, installAuth } from "./auth/guard";
 import { ApiError, errorBody } from "./errors";
 import { healthRoutes } from "./api/health";
 import { openApiTransformObject } from "./api/openapi";
@@ -20,10 +22,12 @@ export type AppDeps = {
   docs?: boolean;
   /** Origens que podem chamar as consultas REST do navegador (CORS). Vazio: nenhuma. */
   corsOrigins?: string[];
+  /** Sem SSO, a instância roda no modo anônimo. */
+  auth?: AuthConfig;
 };
 
 /** Monta a aplicação sem abrir porta: o main escuta, os testes usam inject(). */
-export async function buildApp({ db, logger, docs = false, corsOrigins = [] }: AppDeps): Promise<FastifyInstance> {
+export async function buildApp({ db, logger, docs = false, corsOrigins = [], auth: authConfig = {} }: AppDeps): Promise<FastifyInstance> {
   const app = fastify({
     logger: false,
     disableRequestLogging: true,
@@ -35,7 +39,14 @@ export async function buildApp({ db, logger, docs = false, corsOrigins = [] }: A
 
   app.addHook("onResponse", (req, reply, done) => {
     logger.info(
-      { reqId: req.id, method: req.method, url: req.url, status: reply.statusCode, ms: reply.elapsedTime.toFixed(2) },
+      {
+        reqId: req.id,
+        method: req.method,
+        url: req.url,
+        status: reply.statusCode,
+        ms: reply.elapsedTime.toFixed(2),
+        ...(req.identity ? { who: req.identity.subject } : {}),
+      },
       "http.request",
     );
     done();
@@ -60,16 +71,19 @@ export async function buildApp({ db, logger, docs = false, corsOrigins = [] }: A
     reply.status(404).send(errorBody(404, `Rota ${req.method} ${req.url.split("?")[0]} não encontrada`));
   });
 
+  const auth = new Auth(authConfig, corsOrigins);
+  installAuth(app, auth);
+
   // O OpenAPI é sempre servido (GET /v1/openapi.json); a tela do Swagger, só com docs.
   await app.register(fastifySwagger, { openapi: openApiInfo, transform: jsonSchemaTransform, transformObject: openApiTransformObject() });
   if (docs) await app.register(fastifySwaggerUi, { routePrefix: "/docs" });
 
   await app.register(healthRoutes(db));
   const queries = new QueryService(db);
-  await app.register(restApi({ ingest: new IngestService(db), nodes: new NodeService(db), queries, db, corsOrigins }), {
+  await app.register(restApi({ ingest: new IngestService(db), nodes: new NodeService(db), queries, db, auth, logger }), {
     prefix: API_PREFIX,
   });
   await app.register(mcpRoutes(queries, db, logger));
-  app.get(`${API_PREFIX}/openapi.json`, { schema: { hide: true } }, async () => app.swagger());
+  app.get(`${API_PREFIX}/openapi.json`, { config: { access: "public" }, schema: { hide: true } }, async () => app.swagger());
   return app;
 }

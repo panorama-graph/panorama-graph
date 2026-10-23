@@ -3,6 +3,7 @@ import { createLogger } from "./config/logger";
 import { GraphDb } from "./db/neo4j";
 import { ensureConstraints } from "./db/constraints";
 import { buildApp } from "./app";
+import { authConfigFromEnv } from "./auth/config";
 import { RetentionService } from "./ingest/RetentionService";
 
 const logger = createLogger({ level: env.LOG_LEVEL, pretty: env.NODE_ENV !== "production", env: env.NODE_ENV });
@@ -26,7 +27,17 @@ async function bootstrap() {
     logger.warn({ err, uri: env.NEO4J_URI }, "neo4j indisponível na subida");
   }
 
-  const app = await buildApp({ db, logger, docs: env.NODE_ENV !== "production", corsOrigins: env.CORS_ORIGINS });
+  const auth = authConfigFromEnv(env);
+  if (auth.sso) logger.info({ issuer: auth.sso.issuer, clientId: auth.sso.clientId }, "login por SSO (OIDC)");
+  else {
+    logger.warn(
+      { ingestToken: Boolean(auth.ingestToken) },
+      auth.ingestToken
+        ? "sem SSO: leitura aberta a quem alcança a API (identidade anônima); a escrita exige o INGEST_TOKEN"
+        : "sem SSO e sem INGEST_TOKEN: leitura e escrita abertas a quem alcança a API (identidade anônima)",
+    );
+  }
+  const app = await buildApp({ db, logger, docs: env.NODE_ENV !== "production", corsOrigins: env.CORS_ORIGINS, auth });
 
   // Retenção: retratos congelados que saíram dos ambientes e histórico de deploys antigo.
   const retention = new RetentionService(db, {

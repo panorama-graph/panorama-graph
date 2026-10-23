@@ -21,7 +21,7 @@ O contrato é o REST da API: o `POST /v1/ingest` recebe os retratos, e o `GET /v
 | `413` | `payload_too_large` | Mais de 20 MB. Divida a fonte em escopos menores |
 | `5xx` ou falha de rede | — | Envie de novo o mesmo retrato. A carga é idempotente: o mesmo retrato, com o mesmo `observedAt`, é aceito e só dá `unchanged` |
 
-Os erros têm sempre o formato `{ "error", "code", "status", "details" }`. A API não tem autenticação: o adaptador roda na rede interna, como ela ([ADOCAO.md](../ADOCAO.md)).
+Os erros têm sempre o formato `{ "error", "code", "status", "details" }`. Uma resposta `401` (`unauthorized`) quer dizer que a instância exige autenticação: o adaptador manda `Authorization: Bearer <token>`, com o `INGEST_TOKEN` da instância ou um JWT de um emissor confiável, como o OIDC do CI ([primeiros passos](../PRIMEIROS-PASSOS.md#6-autenticação)). Sem autenticação ligada, não mande o cabeçalho: um token que a instância não reconhece é recusado com `401`.
 
 ## O retrato
 

@@ -173,7 +173,7 @@ Para conectar um agente, registre o servidor MCP no cliente. No Claude Code:
 claude mcp add --transport http panorama-graph http://localhost:3200/mcp
 ```
 
-> **Atenção:** a API ainda não tem autenticação (está no [roadmap](ROADMAP.md)). Exponha-a apenas em rede interna.
+> **Autenticação:** sem SSO configurado, a instância é anônima (o console abre sem login e quem alcança a API consulta o grafo), e um `INGEST_TOKEN` protege a escrita. Para expor fora de uma rede de confiança, ligue o login pelo SSO da organização (OIDC), como nos [primeiros passos](PRIMEIROS-PASSOS.md#6-autenticação).
 
 ## Estrutura do repositório
 

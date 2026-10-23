@@ -10,7 +10,7 @@ export type components = {
              * @description Código estável do erro: o cliente decide por ele, não pela mensagem
              * @enum {string}
              */
-            code: "invalid_request" | "forbidden" | "not_found" | "unknown_tool" | "method_not_allowed" | "conflict" | "ambiguous" | "outdated_snapshot" | "payload_too_large" | "unsupported_media_type" | "unprocessable" | "invalid_snapshot" | "internal" | "unavailable";
+            code: "invalid_request" | "unauthorized" | "forbidden" | "not_found" | "unknown_tool" | "method_not_allowed" | "conflict" | "ambiguous" | "outdated_snapshot" | "payload_too_large" | "unsupported_media_type" | "unprocessable" | "invalid_snapshot" | "internal" | "unavailable";
             /** @description Status HTTP */
             status: number;
             /** @description Dados do erro, conforme o código */
@@ -1565,6 +1565,33 @@ export type components = {
                 description: string;
             }[];
         };
+        /** @description O modo de autenticação da instância e quem está na sessão */
+        AuthSession: {
+            /**
+             * @description anonymous: instância sem autenticação; sso: login pelo provedor da organização
+             * @enum {string}
+             */
+            mode: "anonymous" | "sso";
+            /** @description Quem está na sessão; null no modo sso sem login */
+            identity: components["schemas"]["Identity"] | null;
+        };
+        /** @description Quem faz a requisição */
+        Identity: {
+            /**
+             * @description anonymous: instância sem SSO; person: login pelo provedor; service: token
+             * @enum {string}
+             */
+            kind: "anonymous" | "person" | "service";
+            /** @description Identificador estável no emissor (o `sub` do provedor) */
+            subject: string;
+            /** @description Emissor da identidade (o `iss` do provedor ou do token) */
+            issuer?: string;
+            /** @description Nome para mostrar */
+            name: string;
+            email?: string;
+            /** @description Grupos que o provedor afirma (claim configurável) */
+            groups: string[];
+        };
     };
     responses: never;
     parameters: never;
@@ -1641,6 +1668,8 @@ export type MergeResult = components["schemas"]["MergeResult"];
 export type ModelDescription = components["schemas"]["ModelDescription"];
 export type PropSpec = components["schemas"]["PropSpec"];
 export type QueryContractDocument = components["schemas"]["QueryContractDocument"];
+export type AuthSession = components["schemas"]["AuthSession"];
+export type Identity = components["schemas"]["Identity"];
 
 /** Versão do contrato das consultas que estes tipos descrevem (`GET /v1/queries`). */
 export const QUERY_CONTRACT_VERSION = 1;

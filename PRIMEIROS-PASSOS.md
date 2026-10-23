@@ -173,6 +173,43 @@ Abra o console e busque `product-api`: a ficha mostra o dono, o consumidor e o b
 
 Sem o `graph-seed`, o mesmo retrato vai em JSON para `POST /v1/ingest`: o [ADAPTADOR.md](api/ADAPTADOR.md) mostra o formato e um exemplo de carga para cada relação.
 
+## 6. Autenticação
+
+A instância sobe **anônima**: o console abre sem login, o topo mostra "Anônimo", e quem alcança a API consulta o grafo. Use assim para avaliar ou numa rede de confiança. Para proteger ao menos a escrita, defina um `INGEST_TOKEN` no `.env` (16+ caracteres, ex.: `openssl rand -base64 32`): a ingestão, os apelidos e a união de nós passam a exigi-lo em `Authorization: Bearer`.
+
+### Login pelo SSO da organização
+
+Com `OIDC_ISSUER` definido, o console pede a entrada pelo provedor da organização (Entra ID, Okta, Keycloak, Google, ADFS: qualquer um que fale OIDC), e o REST e o MCP passam a exigir sessão ou token.
+
+1. No provedor, registre um aplicativo web com o retorno `<API_PUBLIC_URL>/v1/auth/callback` (ex.: `https://grafo-api.example.com/v1/auth/callback`) e o logout voltando para o endereço do console. Para os grupos aparecerem, inclua a claim de grupos no ID token.
+2. No `.env`, preencha `API_PUBLIC_URL`, `OIDC_ISSUER`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET` e `SESSION_SECRET` (32+ caracteres, o mesmo em todas as réplicas), e ajuste `OIDC_GROUPS_CLAIM` ao nome que o provedor usa. O [.env.example](.env.example) explica cada uma.
+3. Console e API em sites diferentes (domínios registráveis diferentes) pedem `SESSION_COOKIE_SAMESITE=none` e HTTPS.
+
+Para experimentar sem um provedor, suba o Keycloak de exemplo: descomente o bloco "Keycloak de exemplo" do `.env` e rode
+
+```sh
+docker compose --profile sso up -d --build
+```
+
+Entre no console com `maria`/`maria` (grupo `arquitetura`) ou `joao`/`joao` (`plataforma`). A administração do Keycloak fica em <http://localhost:8180> (`admin`/`admin`).
+
+### Máquinas: adaptadores, CI e clientes MCP
+
+Com o SSO ligado, quem não é pessoa manda `Authorization: Bearer` com:
+
+- o `INGEST_TOKEN`; ou
+- um JWT de um emissor listado em `JWT_ISSUERS`, com a audiência `JWT_AUDIENCE` (padrão `panorama-graph`): o próprio provedor, por client credentials, ou o OIDC do CI (no GitLab, um `id_tokens` com `aud: panorama-graph`; no GitHub Actions, o token com essa audiência).
+
+No Keycloak de exemplo, o cliente `panorama-graph` emite um token de serviço:
+
+```sh
+TOKEN=$(curl -s -d grant_type=client_credentials -d client_id=panorama-graph -d client_secret=panorama-graph-dev-secret \
+  http://localhost:8180/realms/panorama/protocol/openid-connect/token | jq -r .access_token)
+claude mcp add --transport http panorama-graph http://localhost:3200/mcp --header "Authorization: Bearer $TOKEN"
+```
+
+O SDK manda o token com `new PanoramaGraphClient({ baseUrl, token })`.
+
 ## Desenvolver
 
 - **Dependências:** Node.js 22.18+ e pnpm 11 (`corepack enable`, ou `npm install -g pnpm`). `pnpm install` na raiz instala todos os projetos do workspace, com o SDK ligado ao código.

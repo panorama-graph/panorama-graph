@@ -51,4 +51,21 @@ describe("cliente REST", () => {
     await client.assertModel();
     expect(await client.assertModel().catch((e) => e)).toMatchObject({ code: "conflict", details: { sdkModelVersion: MODEL_VERSION } });
   });
+
+  test("token e credenciais: Authorization Bearer e o cookie da sessão; URLs de login e logout", async () => {
+    const inits: RequestInit[] = [];
+    const client = new PanoramaGraphClient({
+      baseUrl: "http://grafo:3200",
+      token: "abc",
+      credentials: "include",
+      fetch: async (_url, init) => {
+        inits.push(init!);
+        return json({ mode: "sso", identity: null });
+      },
+    });
+    expect(await client.me()).toEqual({ mode: "sso", identity: null });
+    expect(inits[0]).toMatchObject({ method: "GET", credentials: "include", headers: { authorization: "Bearer abc" } });
+    expect(client.loginUrl("http://console/x?y=1")).toBe("http://grafo:3200/v1/auth/login?returnTo=http%3A%2F%2Fconsole%2Fx%3Fy%3D1");
+    expect(client.logoutUrl("http://console/")).toBe("http://grafo:3200/v1/auth/logout?returnTo=http%3A%2F%2Fconsole%2F");
+  });
 });

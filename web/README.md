@@ -36,7 +36,7 @@ React 18, Vite, MUI, Tailwind, React Query, React Router e React Flow (com dagre
 
 ## Subir
 
-A API precisa estar no ar (porta 3200) com `http://localhost:5180` no `CORS_ORIGINS` dela.
+A API precisa estar no ar (porta 3200) com `http://localhost:5180` no `CORS_ORIGINS` dela. Com o SSO ligado na API, o console mostra a entrada pelo provedor antes das telas; sem ele, abre direto, como "Anônimo".
 
 ```sh
 cp .env.example .env

@@ -16,21 +16,17 @@ import { queryTools, runQueryTool, toolDescription } from "../query/tools";
  * resposta traz `Query-Contract-Version`; a de uma ferramenta obsoleta traz também `Deprecation` e o `Link`
  * para a substituta.
  *
- * CORS só nestas rotas, para as origens de `corsOrigins` (ex.: uma tela que mostra a consulta citada por um
- * agente). Ingestão e MCP continuam sem CORS.
+ * CORS só nestas rotas (`config.cors`, aplicado pelo guarda da autenticação), para as origens de `CORS_ORIGINS`
+ * (o console e, por exemplo, uma tela que mostra a consulta citada por um agente). Ingestão e MCP continuam sem CORS.
  */
-export function queryRoutes(queries: QueryService, db: GraphDb, corsOrigins: string[] = []) {
+export function queryRoutes(queries: QueryService, db: GraphDb) {
   return async (fastify: FastifyInstance) => {
     const app = fastify.withTypeProvider<ZodTypeProvider>();
-    const allowed = new Set(corsOrigins);
 
-    app.addHook("onRequest", async (req, reply) => {
-      const origin = req.headers.origin;
-      reply.header("vary", "Origin");
-      if (origin && allowed.has(origin)) {
-        reply.header("access-control-allow-origin", origin);
-        reply.header("access-control-expose-headers", "query-contract-version, deprecation, link");
-      }
+    app.addHook("onRoute", (route) => {
+      route.config = { ...route.config, cors: true };
+    });
+    app.addHook("onRequest", async (_req, reply) => {
       reply.header("query-contract-version", String(QUERY_CONTRACT_VERSION));
     });
 
@@ -39,7 +35,7 @@ export function queryRoutes(queries: QueryService, db: GraphDb, corsOrigins: str
       return reply
         .code(204)
         .header("access-control-allow-methods", "POST")
-        .header("access-control-allow-headers", "content-type")
+        .header("access-control-allow-headers", "content-type, authorization")
         .header("access-control-max-age", "600")
         .send();
     });
@@ -77,7 +73,7 @@ export function queryRoutes(queries: QueryService, db: GraphDb, corsOrigins: str
     // Ferramenta que não existe (ou que já saiu do contrato): 404 que diz isso, e não o "rota não encontrada".
     app.post("/queries/:tool", { schema: { hide: true } }, async (req) => {
       const { tool } = req.params as { tool: string };
-        throw new ApiError(
+      throw new ApiError(
         404,
         `A ferramenta ${tool} não existe na versão ${QUERY_CONTRACT_VERSION} do contrato das consultas`,
         { contractVersion: QUERY_CONTRACT_VERSION },

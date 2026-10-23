@@ -6,6 +6,7 @@ import { z } from "zod";
  */
 export const ERROR_CODES = [
   "invalid_request", // 400: forma do pedido (corpo, parâmetros, JSON)
+  "unauthorized", // 401: sem sessão ou token, ou token inválido
   "forbidden", // 403
   "not_found", // 404: nó, rota ou escopo que não existe
   "unknown_tool", // 404: ferramenta fora do contrato das consultas
@@ -25,6 +26,7 @@ export type ErrorCode = (typeof ERROR_CODES)[number];
 
 const BY_STATUS: Record<number, ErrorCode> = {
   400: "invalid_request",
+  401: "unauthorized",
   403: "forbidden",
   404: "not_found",
   405: "method_not_allowed",
