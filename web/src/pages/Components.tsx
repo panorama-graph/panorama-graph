@@ -8,7 +8,6 @@ import { PageHeader, Section } from "@/components/Section";
 import { NodePicker } from "@/components/NodePicker";
 import { NodeLink } from "@/components/NodeLink";
 import { FactsBadge } from "@/components/FactsBadge";
-import { Coverage } from "@/components/Coverage";
 
 const KINDS = ["service", "bff", "frontend", "job", "library"];
 
@@ -40,7 +39,6 @@ export function Components() {
       <QueryView query={query}>
         {(data) => (
           <Section title="Resultado" count={data.count}>
-            <Coverage coverage={[data.coverage?.owners]} />
             {data.components.length === 0 ? (
               <Typography variant="body2" color="text.secondary">
                 Nenhum componente com estes filtros.

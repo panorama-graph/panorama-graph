@@ -11,7 +11,6 @@ import { QueryView } from "@/components/QueryView";
 import { PageHeader, Section } from "@/components/Section";
 import { GraphView } from "@/components/GraphView";
 import { GraphLayers, useLayers } from "@/components/GraphLayers";
-import { Coverage } from "@/components/Coverage";
 import { NodePicker } from "@/components/NodePicker";
 import { NodeLink } from "@/components/NodeLink";
 import { FactsBadge } from "@/components/FactsBadge";
@@ -40,7 +39,6 @@ export function Overview() {
       <QueryView query={query}>
         {(data) => (
           <>
-            <Coverage notes={data.gaps} />
             <OverviewGraph data={data} />
             <Section title="Nós por tipo">
               <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>

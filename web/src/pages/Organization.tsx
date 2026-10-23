@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from "react";
-import { Autocomplete, Chip, Stack, TextField } from "@mui/material";
+import { Autocomplete, Chip, Stack, TextField, Typography } from "@mui/material";
 import { useGraphQuery } from "@/lib/queries";
 import type { OrgStructure } from "@/lib/types";
 import { displayName } from "@/lib/nodes";
@@ -7,7 +7,6 @@ import { useUrlParam } from "@/lib/nav";
 import { flatten } from "@/lib/orgLayout";
 import { QueryView } from "@/components/QueryView";
 import { PageHeader } from "@/components/Section";
-import { Coverage } from "@/components/Coverage";
 import { OrgChart } from "@/components/OrgChart";
 
 /**
@@ -40,8 +39,13 @@ export function Organization() {
       <QueryView query={query}>
         {(data) => (
           <>
-            <Coverage coverage={[data.coverage]} />
-            {data.groups.length > 0 && <OrgView data={data} />}
+            {data.groups.length > 0 ? (
+              <OrgView data={data} />
+            ) : (
+              <Typography variant="body2" color="text.secondary">
+                Nenhum grupo afirmado.
+              </Typography>
+            )}
           </>
         )}
       </QueryView>

@@ -4,7 +4,6 @@ import { useGraphQuery } from "@/lib/queries";
 import type {
   ApiConsumers,
   ComponentCompare,
-  Coverage as CoverageT,
   ComponentGet,
   ComponentLibraries,
   Dependencies,
@@ -139,9 +138,8 @@ function Sheet({ data, onLibraries }: { data: ComponentGet; onLibraries: () => v
   const runtime = (count: number) => !lib || count > 0;
   return (
     <>
-      {runtime(data.deployments.length) && <Deployments name={name} deployments={data.deployments} coverage={data.coverage?.deployments} />}
+      {runtime(data.deployments.length) && <Deployments name={name} deployments={data.deployments} />}
       <Section title="Dono" count={data.owners.length}>
-        <Coverage coverage={[data.coverage?.owners]} />
         <EdgeList edges={data.owners} owner={name} empty="Nenhum dono afirmado." />
       </Section>
       <Section title="Sistema e domínio">
@@ -205,7 +203,6 @@ function Sheet({ data, onLibraries }: { data: ComponentGet; onLibraries: () => v
       )}
       {runtime(databases.length) && (
         <Section title="Bancos de dados" count={databases.length}>
-          <Coverage coverage={[data.coverage?.resources]} />
           <EdgeList edges={databases} owner={name} empty="Nenhum banco afirmado." extra={whereItRuns} />
         </Section>
       )}
@@ -221,7 +218,6 @@ function Sheet({ data, onLibraries }: { data: ComponentGet; onLibraries: () => v
       )}
       {runtime(data.data.length) && (
         <Section title="Dados" count={data.data.length}>
-          <Coverage coverage={[data.coverage?.data]} />
           {data.data.length === 0 ? (
             <Typography variant="body2" color="text.secondary">
               Nenhum dataset afirmado.
@@ -263,11 +259,10 @@ function Sheet({ data, onLibraries }: { data: ComponentGet; onLibraries: () => v
 }
 
 /** Onde o componente roda: uma linha por ambiente e commit, em ordem até a produção, com a comparação com a linha principal. */
-function Deployments({ name, deployments, coverage }: { name: string; deployments: Deployment[]; coverage?: CoverageT }) {
+function Deployments({ name, deployments }: { name: string; deployments: Deployment[] }) {
   const setParams = useSetUrlParams();
   return (
     <Section title="Implantações" count={deployments.filter((d) => d.status === "current").length}>
-      <Coverage coverage={[coverage]} />
       {deployments.length === 0 ? (
         <Typography variant="body2" color="text.secondary">
           Nenhuma implantação afirmada.
@@ -479,7 +474,6 @@ function LibrariesTab({ nodeKey, environment }: { nodeKey: string; environment: 
       <QueryView query={query}>
         {(data) => (
           <>
-            <Coverage coverage={[data.coverage]} />
             <Section title={LIBRARY_FILTERS.find((f) => f.id === filter)?.label ?? "Bibliotecas"} count={data.libraries.length}>
               <LibraryUseTable uses={data.libraries} owner={nameOf(data.component)} header="Biblioteca" empty={filter === "sem-uso" ? "Nenhuma declarada sem uso (ou nenhuma fonte analisa o uso)." : "Nenhuma afirmada."} />
             </Section>
@@ -520,7 +514,6 @@ function NeighborhoodGraph({ data }: { data: Overview }) {
   const { nodes, edges, groups } = useMemo(() => overviewGraph(data, layers), [data, layers]);
   return (
     <>
-      <Coverage notes={data.gaps} />
       <GraphLayers layers={layers} onToggle={toggle} />
       <GraphView nodes={nodes} edges={edges} groups={groups} />
     </>
