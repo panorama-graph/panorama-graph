@@ -42,6 +42,7 @@ const snapshot: Snapshot = {
   nodes: [{ key: component, type: "Component", props: { kind: "service" }, evidence: "catalog-info.yaml" }],
   relations: [{ type: "PROVIDES", from: component, to: httpApiKey("product-api"), evidence: "openapi.json" }],
 };
+await graph.ingest(snapshot, { dryRun: true }); // confere e conta, sem gravar
 await graph.ingest(snapshot);
 ```
 

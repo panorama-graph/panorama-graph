@@ -83,6 +83,31 @@ describe("POST /ingest", () => {
     expect(load.records[0].get("source")).toBe("gitlab");
   });
 
+  test("dryRun confere e conta como uma carga de verdade, sem gravar nada", async () => {
+    const dry = (body: Record<string, unknown>) =>
+      app.inject({ method: "POST", url: "/v1/ingest?dryRun=true", payload: { observedAt: nextTime(), ...body } });
+
+    const first = await dry(gitlab());
+    expect(first.statusCode).toBe(200);
+    expect(first.json<Result & { dryRun?: boolean }>()).toMatchObject({
+      dryRun: true,
+      counts: { nodes: { created: 4 }, relations: { created: 3 } },
+    });
+    const { records } = await db.read(`MATCH (n) RETURN count(n) AS n`);
+    expect(Number(records[0].get("n"))).toBe(0);
+
+    await ingest(gitlab());
+    const partial = gitlab();
+    partial.relations = partial.relations.filter((r) => r.type !== "HOSTED_IN");
+    const gone = (await dry(partial)).json<Result>();
+    expect(gone.counts.relations).toEqual({ created: 0, updated: 0, unchanged: 2, stale: 1 });
+    expect((await relations("HOSTED_IN"))[0].status).toBe("current");
+
+    expect((await dry({ ...gitlab(), nodes: [{ key: "component:x", type: "Group" }] })).statusCode).toBe(422);
+    // O dry-run não avança o escopo: uma carga com o mesmo observedAt de antes ainda é aceita.
+    expect((await ingest(gitlab())).json<Result>().counts.relations.unchanged).toBe(3);
+  });
+
   test("400 para forma inválida, 422 para fora do modelo", async () => {
     expect((await ingest({ source: "Git Lab", nodes: [] })).statusCode).toBe(400);
     expect((await ingest({ ...gitlab(), state: "confirmed" })).statusCode).toBe(400);

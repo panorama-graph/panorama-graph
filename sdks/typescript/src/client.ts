@@ -98,10 +98,11 @@ export class PanoramaGraphClient {
 
   /**
    * Carga por retrato: o que a fonte viu no escopo. O que a mesma fonte e escopo deixaram de afirmar vira stale.
-   * Retrato mais antigo que o último do escopo é recusado com o código `outdated_snapshot`.
+   * Retrato mais antigo que o último do escopo é recusado com o código `outdated_snapshot`. Com `dryRun`, a API
+   * confere o retrato e devolve as contagens de uma carga de verdade, sem gravar nada.
    */
-  ingest(snapshot: Snapshot): Promise<IngestResult> {
-    return this.request("POST", "/ingest", snapshot);
+  ingest(snapshot: Snapshot, options: { dryRun?: boolean } = {}): Promise<IngestResult> {
+    return this.request("POST", options.dryRun ? "/ingest?dryRun=true" : "/ingest", snapshot);
   }
 
   /** Aposenta um escopo em todas as fontes. Nenhuma fonte ter carregado nele é `not_found`. */

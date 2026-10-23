@@ -15,6 +15,8 @@ export type IngestResult = {
   scope: Record<string, string>;
   observedAt: string;
   counts: { nodes: OutcomeCounts; relations: OutcomeCounts; referenced: number };
+  /** A carga foi só conferida: as contagens são as de uma carga de verdade, mas nada foi gravado. */
+  dryRun?: true;
 };
 
 /** Aposentadoria de um escopo: o que deixou de existir, por quem, por quê e onde isso está registrado. */
@@ -33,6 +35,13 @@ export type RetireResult = {
 };
 
 type Outcome = "created" | "updated" | "unchanged";
+
+/** Desfaz a transação de uma carga conferida (`dryRun`), levando o resultado para fora dela. */
+class DryRun extends Error {
+  constructor(readonly result: IngestResult) {
+    super("dry-run");
+  }
+}
 
 const zero = (): OutcomeCounts => ({ created: 0, updated: 0, unchanged: 0, stale: 0 });
 
@@ -60,7 +69,20 @@ function propsDiffer(before: Record<string, unknown>, after: Record<string, unkn
 export class IngestService {
   constructor(private readonly db: GraphDb) {}
 
-  async ingest(snapshot: Snapshot): Promise<IngestResult> {
+  /**
+   * Com `dryRun`, a carga roda inteira (as mesmas recusas e as mesmas contagens, inclusive o que viraria stale) e a
+   * transação é desfeita no fim.
+   */
+  async ingest(snapshot: Snapshot, { dryRun = false }: { dryRun?: boolean } = {}): Promise<IngestResult> {
+    try {
+      return await this.load(snapshot, dryRun);
+    } catch (err) {
+      if (err instanceof DryRun) return { ...err.result, dryRun: true };
+      throw err;
+    }
+  }
+
+  private async load(snapshot: Snapshot, dryRun: boolean): Promise<IngestResult> {
     await ensureConstraints(this.db);
     const loadId = crypto.randomUUID();
     const receivedAt = new Date().toISOString();
@@ -125,7 +147,9 @@ export class IngestService {
         },
       );
 
-      return { loadId, source: snapshot.source, scope: snapshot.scope, observedAt: snapshot.observedAt, counts };
+      const result = { loadId, source: snapshot.source, scope: snapshot.scope, observedAt: snapshot.observedAt, counts };
+      if (dryRun) throw new DryRun(result);
+      return result;
     });
   }
 

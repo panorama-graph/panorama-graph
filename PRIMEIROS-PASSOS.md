@@ -94,7 +94,7 @@ O que o grafo aceita (os tipos de nó e de relação, o que é fixo e o que é l
 
 Para o que nenhum deles lê (o diretório de pessoas, o CMDB, o inventário da infraestrutura), a organização escreve o próprio adaptador. O ponto de partida é o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed): ele lê o export do diretório e o inventário da infraestrutura, traduz com as receitas de chave do SDK, confere contra o modelo e publica, e é ele que carrega times, pessoas e infraestrutura no exemplo. Copie-o e troque a leitura dos arquivos pela das suas fontes.
 
-Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode gerar e importar a carga pela skill [panorama-graph-carga-manual](https://github.com/panorama-graph/skills).
+Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode descobrir os fatos e carregá-los pela skill [panorama-graph-ingestao](https://github.com/panorama-graph/skills#readme). A skill conhece o modelo e lê o código e os acessos que o agente tiver, como o cluster, o catálogo e o diretório. Antes de enviar, ela confere tudo pelo dry-run da ingestão.
 
 Os formatos dos artefatos estão em [`schemas/`](https://github.com/panorama-graph/adapters/tree/main/schemas) dos adaptadores, e o uso de cada um no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Para implantá-los na organização (convenções, ordem, pipeline e cluster), siga o guia de [adoção](ADOCAO.md).
 

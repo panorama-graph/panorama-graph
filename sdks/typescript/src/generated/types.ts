@@ -1428,6 +1428,11 @@ export type components = {
                 };
                 referenced: number;
             };
+            /**
+             * @description A carga foi só conferida (dryRun): nada foi gravado
+             * @enum {boolean}
+             */
+            dryRun?: true;
         };
         ScopeRetirement: {
             /** @description Escopo a aposentar, igual ao das cargas (ex.: { component: example/catalog/product-api }) */

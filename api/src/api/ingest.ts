@@ -18,6 +18,15 @@ export const retireBodySchema = z
   })
   .strict();
 
+export const ingestQuerySchema = z
+  .object({
+    dryRun: z
+      .enum(["true", "false"])
+      .optional()
+      .describe("true: confere o retrato e devolve as contagens de uma carga de verdade, sem gravar nada"),
+  })
+  .strict();
+
 export function ingestRoutes(ingest: IngestService) {
   return async (fastify: FastifyInstance) => {
     const app = fastify.withTypeProvider<ZodTypeProvider>();
@@ -30,14 +39,16 @@ export function ingestRoutes(ingest: IngestService) {
           summary: "Carga por retrato de uma source e escopo",
           description:
             "Grava o que a fonte viu no escopo e marca como stale o que ela deixou de afirmar. " +
-            "400: forma do payload; 422: fora do modelo ou sem evidência; 409: retrato mais antigo que o último do escopo.",
+            "400: forma do payload; 422: fora do modelo ou sem evidência; 409: retrato mais antigo que o último do escopo. " +
+            "Com dryRun=true, confere e conta como uma carga de verdade, sem gravar nada.",
+          querystring: ingestQuerySchema,
           body: ingestBodySchema,
         },
       },
       async (req) => {
         const v = validateSnapshot(req.body);
         if (!v.ok) throw new ApiError(422, "Carga inválida", { errors: v.errors }, "invalid_snapshot");
-        return ingest.ingest(v.snapshot);
+        return ingest.ingest(v.snapshot, { dryRun: req.query.dryRun === "true" });
       },
     );
 

@@ -5278,6 +5278,13 @@
               "referenced"
             ],
             "additionalProperties": false
+          },
+          "dryRun": {
+            "type": "boolean",
+            "enum": [
+              true
+            ],
+            "description": "A carga foi só conferida (dryRun): nada foi gravado"
           }
         },
         "required": [
@@ -6058,7 +6065,7 @@
         "tags": [
           "ingestão"
         ],
-        "description": "Grava o que a fonte viu no escopo e marca como stale o que ela deixou de afirmar. 400: forma do payload; 422: fora do modelo ou sem evidência; 409: retrato mais antigo que o último do escopo.",
+        "description": "Grava o que a fonte viu no escopo e marca como stale o que ela deixou de afirmar. 400: forma do payload; 422: fora do modelo ou sem evidência; 409: retrato mais antigo que o último do escopo. Com dryRun=true, confere e conta como uma carga de verdade, sem gravar nada.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -6069,6 +6076,21 @@
           },
           "required": true
         },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "in": "query",
+            "name": "dryRun",
+            "required": false,
+            "description": "true: confere o retrato e devolve as contagens de uma carga de verdade, sem gravar nada"
+          }
+        ],
         "responses": {
           "2XX": {
             "description": "Sucesso",

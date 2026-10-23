@@ -45,6 +45,15 @@ describe("cliente REST", () => {
     expect(await client.queryContract().catch((e) => e)).toMatchObject({ code: "unreachable", status: 0 });
   });
 
+  test("ingest com dryRun pede a conferência sem gravar", async () => {
+    const f = fakeFetch(json({ dryRun: true }), json({}));
+    const client = new PanoramaGraphClient({ baseUrl: "http://grafo:3200", fetch: f.impl });
+    const snapshot = { source: "teste", observedAt: "2026-01-01T00:00:00Z", nodes: [], relations: [] };
+    await client.ingest(snapshot, { dryRun: true });
+    await client.ingest(snapshot);
+    expect(f.calls.map((c) => c.url)).toEqual(["http://grafo:3200/v1/ingest?dryRun=true", "http://grafo:3200/v1/ingest"]);
+  });
+
   test("assertModel recusa API em outro modelo", async () => {
     const f = fakeFetch(json({ modelVersion: MODEL_VERSION }), json({ modelVersion: MODEL_VERSION + 1 }));
     const client = new PanoramaGraphClient({ baseUrl: "http://grafo:3200", fetch: f.impl });

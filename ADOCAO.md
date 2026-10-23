@@ -16,7 +16,12 @@ Todos gravam pelo `POST /v1/ingest` da API, um retrato por fonte e escopo. Cada 
 
 ## Experimentar antes de adotar
 
-Para ver o grafo com os próprios repositórios antes de mexer em pipeline ou cluster, um agente de IA pode fazer a carga: a skill [panorama-graph-carga-manual](https://github.com/panorama-graph/skills#readme) explora cada repositório sem modificá-lo, gera os mesmos arquivos que os adaptadores produzem (pelo plugin Gradle aplicado por init script, quando dá, e pela leitura do código no que faltar) e os importa pelo receptor e pelo `graph-seed`, depois de um dry-run e da confirmação de uma pessoa. O que ela não encontra no código (dono, domínio, tópico que só existe no deploy) fica numa lista de lacunas, e não é deduzido.
+Para ver o grafo com os próprios repositórios antes de mexer em pipeline ou cluster, um agente de IA pode fazer a carga. A skill [panorama-graph-ingestao](https://github.com/panorama-graph/skills#readme):
+- explora o código e os acessos que o agente tiver (cluster, catálogo, diretório), sem modificar nada;
+- monta os retratos com as mesmas fontes e escopos dos adaptadores;
+- envia os retratos pela ingestão nativa, depois do dry-run e da confirmação de uma pessoa.
+
+O que ela não encontra (dono, domínio, tópico que só existe no deploy) fica numa lista de lacunas, e não é deduzido. Para projetos Gradle, a skill `panorama-graph-carga-manual` faz o mesmo pelo receptor, com a tradução do plugin.
 
 A carga é um retrato do commit lido. Como usa as fontes e os escopos dos adaptadores, a implantação abaixo a substitui sem limpeza.
 

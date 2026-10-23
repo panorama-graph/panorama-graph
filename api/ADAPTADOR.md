@@ -8,7 +8,7 @@ O contrato é o REST da API: o `POST /v1/ingest` recebe os retratos, e o `GET /v
 
 1. **Confira o modelo.** `GET /v1/schema` devolve `modelVersion`. Se não for a versão para a qual o adaptador foi escrito, não envie: com versões diferentes, a carga seria recusada ou perderia o que um lado não conhece. Os adaptadores do produto param com erro.
 2. **Leia a fonte e monte um retrato por fonte e escopo**, com tudo o que a fonte afirma naquele escopo. O retrato é completo, e não um delta: o que ficar de fora vira `stale`.
-3. **Envie** cada retrato em `POST /v1/ingest`, com `content-type: application/json`, até 20 MB por retrato.
+3. **Envie** cada retrato em `POST /v1/ingest`, com `content-type: application/json`, até 20 MB por retrato. Para conferir antes, `POST /v1/ingest?dryRun=true` devolve as mesmas recusas e as mesmas contagens, sem gravar nada: o `stale` diz o que a carga de verdade tiraria do retrato atual.
 4. **Trate a resposta** pela tabela abaixo, pelo `code` do erro, e não pela mensagem.
 5. **Encerre o que deixou de existir.** O que a fonte não vê mais sai do retrato seguinte. Um escopo inteiro que acabou (todos os componentes de um time desativado, um namespace removido) recebe um retrato vazio, com `nodes` e `relations` vazios. Um componente removido, cujas fontes pararam de publicar, é aposentado em todas as fontes de uma vez com `POST /v1/scopes/retire` (veja o [README da API](README.md#ingestão)).
 

@@ -90,6 +90,7 @@ POST /v1/ingest
 
 - A evidência de cada fato é a sua `evidence` concatenada à `evidenceBase`, ou só uma delas. Fato sem nenhuma recusa a carga.
 - A resposta traz contagens de nós e relações `created`, `updated`, `unchanged` e `stale`, e quantos nós `referenced` foram criados. Um nó referenciado é uma ponta de relação que ainda não existia. Ele fica sem afirmação até uma fonte declará-lo.
+- Com `?dryRun=true`, a carga roda inteira e é desfeita no fim: as mesmas recusas e as mesmas contagens de uma carga de verdade (inclusive o que viraria `stale`), com `dryRun: true` na resposta, e nada gravado. O escopo não avança: a carga de verdade, depois, pode usar o mesmo `observedAt`.
 - `400` (`invalid_request`) indica payload malformado, `422` (`invalid_snapshot`) indica fato fora do modelo ou sem evidência, com a lista em `details.errors`, e `409` (`outdated_snapshot`) indica retrato mais antigo que o último do mesmo escopo.
 
 ```json

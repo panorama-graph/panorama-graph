@@ -191,7 +191,7 @@ Workspace do pnpm (Node.js) com a API, o console e o SDK. Uma mudança no modelo
 |---|---|
 | [adapters](https://github.com/panorama-graph/adapters) | Adaptadores que alimentam o grafo: `graph-publish` (a arquitetura do build, no CI de cada componente), `graph-deployments` (o que roda em cada ambiente, lido do cluster), `graph-seed` (retratos em YAML, para carga manual) e `graph-receiver` (recebe os pacotes de build do plugin Gradle). Inclui os formatos dos artefatos de build (`schemas/`), a organização de exemplo e o `example-seed`, ponto de partida para o adaptador de uma organização |
 | [gradle-plugin](https://github.com/panorama-graph/gradle-plugin) | Plugin Gradle `panorama-graph` e biblioteca de teste para Spring: geram em `build/architecture` o que o build sabe do componente e o enviam ao receptor |
-| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA. A `panorama-graph-carga-manual` alimenta o grafo com a arquitetura de repositórios que ainda não usam os adaptadores, sem modificar os projetos |
+| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA. A `panorama-graph-ingestao` conhece o modelo, explica o que pode ser importado e alimenta o grafo pela ingestão nativa, com o que o agente lê no código e nos acessos que tiver, sem modificar nada. A `panorama-graph-carga-manual` gera os artefatos de build de repositórios que ainda não usam os adaptadores e os importa pelo receptor |
 
 Os repositórios relacionados dependem apenas do SDK e do contrato da API publicados por este.
 

@@ -25,4 +25,4 @@ Este arquivo diz **como trabalhar** no repositório. **Por que o grafo existe, e
 |---|---|
 | [adapters](https://github.com/panorama-graph/adapters) | `graph-publish`, `graph-deployments`, `graph-seed`, `graph-receiver`, os formatos dos artefatos de build (`schemas/`), a organização de exemplo e o `example-seed` |
 | [gradle-plugin](https://github.com/panorama-graph/gradle-plugin) | Plugin Gradle `panorama-graph` e a biblioteca de teste para Spring |
-| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA (`panorama-graph-carga-manual`) |
+| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA: `panorama-graph-ingestao` (a carga pela ingestão nativa, que ensina o modelo com o [MODELO.md](api/MODELO.md), o [ADAPTADOR.md](api/ADAPTADOR.md), o [PROVENIENCIA.md](api/PROVENIENCIA.md) e as [receitas de chave](sdks/key-recipes.json) deste repositório, baixados na instalação) e `panorama-graph-carga-manual` (os artefatos de build, pelo receptor) |

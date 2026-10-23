@@ -16,6 +16,7 @@ export const ingestResultSchema = z
     scope,
     observedAt: z.string(),
     counts: z.object({ nodes: outcomeCounts, relations: outcomeCounts, referenced: z.number() }),
+    dryRun: z.literal(true).optional().describe("A carga foi só conferida (dryRun): nada foi gravado"),
   })
   .describe("Resultado de uma carga: o que foi criado, alterado, ficou igual e virou stale");
 
