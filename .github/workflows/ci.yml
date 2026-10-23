@@ -26,9 +26,9 @@ jobs:
           --health-cmd "cypher-shell -u neo4j -p testpassword 'RETURN 1'"
           --health-interval 5s --health-timeout 5s --health-retries 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24
           cache: pnpm
@@ -44,7 +44,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       # Uma versão staged ainda não aparece entre as publicadas, e o token do OIDC não lista as staged: sem este
@@ -56,9 +56,9 @@ jobs:
           previous=$(git show "$before:sdks/typescript/package.json" 2>/dev/null | jq -r .version || true)
           if [ "${{ github.event_name }}" = "push" ] && [ "$current" = "$previous" ]; then echo changed=false >> "$GITHUB_OUTPUT"; else echo changed=true >> "$GITHUB_OUTPUT"; fi
       - if: steps.version.outputs.changed == 'true'
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
       - if: steps.version.outputs.changed == 'true'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: 24
       # Trusted Publishing e `npm stage publish`.
