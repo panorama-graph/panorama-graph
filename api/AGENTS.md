@@ -11,7 +11,7 @@ Este arquivo diz **como trabalhar** na API. As regras do repositório inteiro es
 ## Regras
 
 - **Produto à parte.** Não depende de nenhum consumidor nem do ACME Bank. Nada específico de uma organização entra no código: o ACME Bank é só dado.
-- **Base e API, sem carga.** Leitura de fontes (GitLab, Pact, SBOM, Kubernetes...) é adaptador, em [adapters/](https://github.com/panorama-graph/adapters/blob/main/AGENTS.md). Aqui só se guarda, valida e serve fatos.
+- **Base e API, sem carga.** Leitura de fontes (GitLab, Pact, SBOM, Kubernetes...) é adaptador, em [panorama-graph-adapters/](https://github.com/panorama-graph/panorama-graph-adapters/blob/main/AGENTS.md). Aqui só se guarda, valida e serve fatos.
 - **As regras de [proveniência e ciclo de vida](PROVENIENCIA.md) são contrato.** Fato sem `source`, `evidence`, `state` e `observedAt` é recusado; `inferred` nunca derruba `observed`; só uma pessoa confirma.
 - **O modelo é fechado.** Um tipo de nó ou de relação novo é uma mudança versionada do modelo e nunca algo aceito de um adaptador. A mudança passa por `src/model/model.ts`, sobe `MODEL_VERSION`, regera o [MODELO.md](MODELO.md) (`pnpm run modelo:write`, a referência para quem adota), com a versão registrada na tabela de versões do modelo, na mesma entrega. Relação nova ou par novo ganha o exemplo de carga em `scripts/adaptador.ts` e o [ADAPTADOR.md](ADAPTADOR.md) regerado (`pnpm run adaptador:write`); o teste recusa relação ou par sem exemplo.
 - **Tipos no Cypher só pelo modelo.** Labels e tipos de relação são interpolados no Cypher (sem APOC), o que só é seguro porque vêm da lista fechada de `model.ts`. Nunca interpole texto vindo do payload.

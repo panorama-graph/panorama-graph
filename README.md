@@ -67,7 +67,7 @@ flowchart LR
     api -- REST --> console
 ```
 
-A API nunca lê uma fonte. Entre cada fonte e a API há um adaptador, que lê a fonte, traduz o que viu em nós e relações com proveniência e envia um retrato completo do seu escopo. Uma fonte nova entra com um adaptador novo, sem mudar o núcleo. O repositório [adapters](https://github.com/panorama-graph/adapters) traz os adaptadores prontos e uma organização de exemplo; o [SDK](sdks/typescript/README.md) e o [guia de adaptador](api/ADAPTADOR.md) servem para escrever os da sua organização.
+A API nunca lê uma fonte. Entre cada fonte e a API há um adaptador, que lê a fonte, traduz o que viu em nós e relações com proveniência e envia um retrato completo do seu escopo. Uma fonte nova entra com um adaptador novo, sem mudar o núcleo. O repositório [panorama-graph-adapters](https://github.com/panorama-graph/panorama-graph-adapters) traz os adaptadores prontos e uma organização de exemplo; o [SDK](sdks/typescript/README.md) e o [guia de adaptador](api/ADAPTADOR.md) servem para escrever os da sua organização.
 
 ### Fontes de dados
 
@@ -165,7 +165,7 @@ docker compose up -d --build
 | API (REST em `/v1`, MCP em `/mcp`) | <http://localhost:3200> |
 | Neo4j Browser | <http://localhost:7474> (usuário `neo4j`, senha do `.env`) |
 
-A instância sobe vazia. Para carregar a organização de exemplo e receber os builds, suba também o repositório [adapters](https://github.com/panorama-graph/adapters), conforme o [PRIMEIROS-PASSOS.md](PRIMEIROS-PASSOS.md).
+A instância sobe vazia. Para carregar a organização de exemplo e receber os builds, suba também o repositório [panorama-graph-adapters](https://github.com/panorama-graph/panorama-graph-adapters), conforme o [PRIMEIROS-PASSOS.md](PRIMEIROS-PASSOS.md).
 
 Para conectar um agente, registre o servidor MCP no cliente. No Claude Code:
 
@@ -189,9 +189,9 @@ Workspace do pnpm (Node.js) com a API, o console e o SDK. Uma mudança no modelo
 
 | Repositório | Conteúdo |
 |---|---|
-| [adapters](https://github.com/panorama-graph/adapters) | Adaptadores que alimentam o grafo: `graph-publish` (a arquitetura do build, no CI de cada componente), `graph-deployments` (o que roda em cada ambiente, lido do cluster), `graph-seed` (retratos em YAML, para carga manual) e `graph-receiver` (recebe os pacotes de build do plugin Gradle). Inclui os formatos dos artefatos de build (`schemas/`), a organização de exemplo e o `example-seed`, ponto de partida para o adaptador de uma organização |
-| [gradle-plugin](https://github.com/panorama-graph/gradle-plugin) | Plugin Gradle `panorama-graph` e biblioteca de teste para Spring: geram em `build/architecture` o que o build sabe do componente e o enviam ao receptor |
-| [skills](https://github.com/panorama-graph/skills) | Skills para agentes de IA. A `panorama-graph-ingestao` conhece o modelo, explica o que pode ser importado e alimenta o grafo pela ingestão nativa, com o que o agente lê no código e nos acessos que tiver, sem modificar nada. A `panorama-graph-carga-manual` gera os artefatos de build de repositórios que ainda não usam os adaptadores e os importa pelo receptor |
+| [panorama-graph-adapters](https://github.com/panorama-graph/panorama-graph-adapters) | Adaptadores que alimentam o grafo: `graph-publish` (a arquitetura do build, no CI de cada componente), `graph-deployments` (o que roda em cada ambiente, lido do cluster), `graph-seed` (retratos em YAML, para carga manual) e `graph-receiver` (recebe os pacotes de build do plugin Gradle). Inclui os formatos dos artefatos de build (`schemas/`), a organização de exemplo e o `example-seed`, ponto de partida para o adaptador de uma organização |
+| [panorama-graph-gradle-plugin](https://github.com/panorama-graph/panorama-graph-gradle-plugin) | Plugin Gradle `panorama-graph` e biblioteca de teste para Spring: geram em `build/architecture` o que o build sabe do componente e o enviam ao receptor |
+| [panorama-graph-skills](https://github.com/panorama-graph/panorama-graph-skills) | Skills para agentes de IA. A `panorama-graph-ingestao` conhece o modelo, explica o que pode ser importado e alimenta o grafo pela ingestão nativa, com o que o agente lê no código e nos acessos que tiver, sem modificar nada. A `panorama-graph-carga-manual` gera os artefatos de build de repositórios que ainda não usam os adaptadores e os importa pelo receptor |
 
 Os repositórios relacionados dependem apenas do SDK e do contrato da API publicados por este.
 

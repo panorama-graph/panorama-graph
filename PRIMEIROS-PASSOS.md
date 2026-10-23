@@ -5,14 +5,14 @@ Do zero a um grafo consultável: subir a instância, carregar a organização de
 ## O que é preciso
 
 - Docker com o Compose v2.
-- Git, para baixar este repositório e o dos [adaptadores](https://github.com/panorama-graph/adapters), que carrega o exemplo e recebe os builds.
+- Git, para baixar este repositório e o dos [adaptadores](https://github.com/panorama-graph/panorama-graph-adapters), que carrega o exemplo e recebe os builds.
 - Para consultar pelo MCP: um cliente MCP, como o Claude Code.
 
 ## 1. Baixar e configurar
 
 ```sh
 git clone https://github.com/panorama-graph/panorama-graph.git
-git clone https://github.com/panorama-graph/adapters.git
+git clone https://github.com/panorama-graph/panorama-graph-adapters.git
 cd panorama-graph && cp .env.example .env   # troque NEO4J_PASSWORD
 ```
 
@@ -26,7 +26,7 @@ curl -s http://localhost:3200/health/ready       # o Neo4j responde
 Com a API no ar, o repositório dos adaptadores sobe o receptor dos builds (`graph-receiver`, porta 3210) e carrega o exemplo:
 
 ```sh
-cd ../adapters
+cd ../panorama-graph-adapters
 docker compose --profile exemplo up -d --build   # chama a API em http://localhost:3200 (GRAPH_API_URL muda)
 ```
 
@@ -82,21 +82,21 @@ curl -s -X POST http://localhost:3200/v1/queries/api_consumers \
 
 ## 5. Carregar a sua organização
 
-O que o grafo aceita (os tipos de nó e de relação, o que é fixo e o que é livre, e o que fazer quando algo não cabe) está no [MODELO.md](api/MODELO.md). Os fatos chegam por adaptadores ([adapters](https://github.com/panorama-graph/adapters) e [gradle-plugin](https://github.com/panorama-graph/gradle-plugin)), cada um com a sua fonte:
+O que o grafo aceita (os tipos de nó e de relação, o que é fixo e o que é livre, e o que fazer quando algo não cabe) está no [MODELO.md](api/MODELO.md). Os fatos chegam por adaptadores ([panorama-graph-adapters](https://github.com/panorama-graph/panorama-graph-adapters) e [panorama-graph-gradle-plugin](https://github.com/panorama-graph/panorama-graph-gradle-plugin)), cada um com a sua fonte:
 
 | Adaptador | O que publica | Onde roda |
 |---|---|---|
-| Plugin Gradle `panorama-graph` | Gera o `build/architecture` de um projeto Gradle, só com o que o projeto tem de onde tirar, e o envia ao receptor (`./gradlew architecturePublish`, [gradle-plugin](https://github.com/panorama-graph/gradle-plugin)) | No build de cada componente |
+| Plugin Gradle `panorama-graph` | Gera o `build/architecture` de um projeto Gradle, só com o que o projeto tem de onde tirar, e o envia ao receptor (`./gradlew architecturePublish`, [panorama-graph-gradle-plugin](https://github.com/panorama-graph/panorama-graph-gradle-plugin)) | No build de cada componente |
 | `graph-receiver` | A arquitetura de build de um componente (`build/architecture`: manifesto, SBOM, OpenAPI, AsyncAPI, clientes HTTP, acesso a dados, pacts), recebida do build | Ao lado da instância (serviço `receptor` do compose dos adaptadores, porta 3210) |
 | `graph-publish` | O mesmo que o receptor, lendo o diretório: para builds que não são Gradle e não enviam o pacote | No CI de cada componente |
 | `graph-deployments` | O que roda em cada ambiente, com a versão e o commit | No cluster, como CronJob |
 | `graph-seed` | Retratos declarados em YAML, para o que ainda não tem adaptador (organização, catálogo, infraestrutura) | À mão |
 
-Para o que nenhum deles lê (o diretório de pessoas, o CMDB, o inventário da infraestrutura), a organização escreve o próprio adaptador. O ponto de partida é o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed): ele lê o export do diretório e o inventário da infraestrutura, traduz com as receitas de chave do SDK, confere contra o modelo e publica, e é ele que carrega times, pessoas e infraestrutura no exemplo. Copie-o e troque a leitura dos arquivos pela das suas fontes.
+Para o que nenhum deles lê (o diretório de pessoas, o CMDB, o inventário da infraestrutura), a organização escreve o próprio adaptador. O ponto de partida é o [example-seed](https://github.com/panorama-graph/panorama-graph-adapters/tree/main/example-seed): ele lê o export do diretório e o inventário da infraestrutura, traduz com as receitas de chave do SDK, confere contra o modelo e publica, e é ele que carrega times, pessoas e infraestrutura no exemplo. Copie-o e troque a leitura dos arquivos pela das suas fontes.
 
-Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode descobrir os fatos e carregá-los pela skill [panorama-graph-ingestao](https://github.com/panorama-graph/skills#readme). A skill conhece o modelo e lê o código e os acessos que o agente tiver, como o cluster, o catálogo e o diretório. Antes de enviar, ela confere tudo pelo dry-run da ingestão.
+Para experimentar com os seus repositórios sem modificá-los, um agente de IA pode descobrir os fatos e carregá-los pela skill [panorama-graph-ingestao](https://github.com/panorama-graph/panorama-graph-skills#readme). A skill conhece o modelo e lê o código e os acessos que o agente tiver, como o cluster, o catálogo e o diretório. Antes de enviar, ela confere tudo pelo dry-run da ingestão.
 
-Os formatos dos artefatos estão em [`schemas/`](https://github.com/panorama-graph/adapters/tree/main/schemas) dos adaptadores, e o uso de cada um no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme). Para implantá-los na organização (convenções, ordem, pipeline e cluster), siga o guia de [adoção](ADOCAO.md).
+Os formatos dos artefatos estão em [`schemas/`](https://github.com/panorama-graph/panorama-graph-adapters/tree/main/schemas) dos adaptadores, e o uso de cada um no [README dos adaptadores](https://github.com/panorama-graph/panorama-graph-adapters#readme). Para implantá-los na organização (convenções, ordem, pipeline e cluster), siga o guia de [adoção](ADOCAO.md).
 
 ### Primeira carga à mão
 

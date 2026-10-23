@@ -1,6 +1,6 @@
 # Escrever um adaptador sem o SDK
 
-Para quem vai alimentar o grafo a partir de uma fonte da organização (diretório de pessoas, catálogo, CMDB, inventário da infraestrutura, um build que não é Gradle) numa linguagem sem SDK, ou sem usar o SDK. Em TypeScript, o [SDK](../sdks/typescript/README.md) e o [example-seed](https://github.com/panorama-graph/adapters/tree/main/example-seed) já fazem o que está aqui. Para uma carga em YAML, sem escrever código, use o [graph-seed](https://github.com/panorama-graph/adapters#graph-seed).
+Para quem vai alimentar o grafo a partir de uma fonte da organização (diretório de pessoas, catálogo, CMDB, inventário da infraestrutura, um build que não é Gradle) numa linguagem sem SDK, ou sem usar o SDK. Em TypeScript, o [SDK](../sdks/typescript/README.md) e o [example-seed](https://github.com/panorama-graph/panorama-graph-adapters/tree/main/example-seed) já fazem o que está aqui. Para uma carga em YAML, sem escrever código, use o [graph-seed](https://github.com/panorama-graph/panorama-graph-adapters#graph-seed).
 
 O contrato é o REST da API: o `POST /v1/ingest` recebe os retratos, e o `GET /v1/schema` descreve o modelo. O OpenAPI (`GET /v1/openapi.json`, também em [contract/openapi-v1.json](contract/openapi-v1.json)) tem o corpo tipado como `Snapshot`. Este documento diz o que o OpenAPI não diz: como montar as chaves, como escolher a fonte e o escopo, como tratar cada resposta e como afirmar cada relação.
 
@@ -91,7 +91,7 @@ O escopo é livre, mas os pares fonte e escopo dos adaptadores do produto já t�
 | `build-manifest`, `sbom`, `dependency-usage`, `openapi`, `asyncapi`, `http-clients`, `data-access`, `pact` | `{ component }`; congelado, `{ component, commit }` | `graph-publish` e `graph-receiver`, a partir dos artefatos do build |
 | `k8s-deployments` | `{ cluster, namespace }` | `graph-deployments` |
 
-Outros nomes que a organização de exemplo usa, e que um adaptador próprio pode adotar, estão no [README dos adaptadores](https://github.com/panorama-graph/adapters#readme): `directory` (`{ tenant }`), `service-catalog` (`{ catalog }`), `service-config` (`{ component, environment }`), `k8s-infra` e `k8s-routes` (`{ cluster, namespace }`).
+Outros nomes que a organização de exemplo usa, e que um adaptador próprio pode adotar, estão no [README dos adaptadores](https://github.com/panorama-graph/panorama-graph-adapters#readme): `directory` (`{ tenant }`), `service-catalog` (`{ catalog }`), `service-config` (`{ component, environment }`), `k8s-infra` e `k8s-routes` (`{ cluster, namespace }`).
 
 **Do manual para o adaptador.** Um adaptador que passa a cobrir um assunto carregado à mão substitui o retrato manual se usar a mesma fonte e o mesmo escopo. Com outra fonte ou outro escopo, envie o retrato manual uma última vez, vazio, para os fatos manuais virarem `stale`.
 

@@ -5,7 +5,7 @@
 #   docker compose --profile sso up -d --build          com o Keycloak de exemplo, para experimentar o login por SSO
 # Portas (mudam por variável): API 3200 (API_PORT), console 5180 (WEB_PORT), Neo4j 7474 (NEO4J_HTTP_PORT, browser) e
 # 7687 (NEO4J_BOLT_PORT), Keycloak de exemplo 8180 (KEYCLOAK_PORT). O receptor dos builds, a carga à mão e a organização de exemplo sobem do repositório dos
-# adaptadores (github.com/panorama-graph/adapters), apontando para esta API.
+# adaptadores (github.com/panorama-graph/panorama-graph-adapters), apontando para esta API.
 name: panorama-graph
 
 services:
