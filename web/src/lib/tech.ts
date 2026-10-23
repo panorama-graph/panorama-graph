@@ -8,7 +8,7 @@ export type TechRole = "language" | "framework" | "build" | "store" | "broker";
 export type Tech = { id: string; label: string; role: TechRole; aliases: string[] };
 
 export const TECHS: Tech[] = [
-  { id: "spring", label: "Spring Boot", role: "framework", aliases: ["spring-boot", "spring"] },
+  { id: "spring", label: "Spring Boot", role: "framework", aliases: ["spring-boot"] },
   { id: "fastapi", label: "FastAPI", role: "framework", aliases: ["fastapi"] },
   { id: "fastify", label: "Fastify", role: "framework", aliases: ["fastify"] },
   { id: "react", label: "React", role: "framework", aliases: ["react"] },
@@ -53,14 +53,27 @@ function tokens(name: string): string[] {
   return [lower, last, ...last.split(/[-_./\s]+/)];
 }
 
+/**
+ * Famílias em que só o framework é tecnologia: o resto (`spring-cloud`, `spring-kafka`) são bibliotecas dela, e nenhum
+ * pedaço do nome casa com outra tecnologia (`spring-kafka` não é o Kafka nem o Spring Boot).
+ */
+const LIBRARY_FAMILIES = ["spring"];
+
+/** Biblioteca de uma família conhecida: o primeiro pedaço é a família, e o nome inteiro não é o framework. */
+export function isFamilyLibrary(name: string): boolean {
+  const [, last, first] = tokens(name);
+  return LIBRARY_FAMILIES.includes(first) && !TECHS.some((t) => t.aliases.includes(last));
+}
+
 /** A tecnologia conhecida de um nome, se houver. */
 export function techInfo(name: string): Tech | undefined {
+  if (isFamilyLibrary(name)) return undefined;
   const found = new Set(tokens(name));
   return TECHS.find((t) => t.aliases.some((a) => found.has(a)));
 }
 
 /** A de maior prioridade entre vários nomes (o ícone de um recurso: instância e nome). */
 export function techOf(names: (string | undefined)[]): string | undefined {
-  const found = new Set(names.filter((n): n is string => !!n).flatMap(tokens));
+  const found = new Set(names.filter((n): n is string => !!n && !isFamilyLibrary(n)).flatMap(tokens));
   return TECHS.find((t) => t.aliases.some((a) => found.has(a)))?.id;
 }

@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { TECHS, techInfo, techOf } from "../src/lib/tech";
+import { TECHS, isFamilyLibrary, techInfo, techOf } from "../src/lib/tech";
 import { stackOf } from "../src/lib/graphLayout";
 
 describe("techOf", () => {
@@ -39,6 +39,20 @@ describe("techInfo", () => {
     expect(techInfo("tech:spring-boot")?.role).toBe("framework");
     expect(techInfo("tech:gradle")?.role).toBe("build");
     expect(techInfo("tech:service-platform")).toBeUndefined();
+  });
+  test("do Spring, só o Spring Boot é framework; o resto da família é biblioteca", () => {
+    expect(techInfo("tech:spring-cloud")).toBeUndefined();
+    expect(techInfo("tech:spring-kafka")).toBeUndefined();
+    expect(techOf(["tech:spring-kafka"])).toBeUndefined();
+    expect(isFamilyLibrary("tech:spring-cloud")).toBe(true);
+    expect(isFamilyLibrary("tech:spring-kafka")).toBe(true);
+    expect(isFamilyLibrary("tech:spring-boot")).toBe(false);
+    expect(isFamilyLibrary("tech:service-platform")).toBe(false);
+    const stack = stackOf([{ key: "tech:spring-boot", facts: [] }, { key: "tech:spring-cloud", facts: [] }]);
+    expect(stack.map((t) => [t.name, t.tech, t.label])).toEqual([
+      ["spring-boot", "spring", "Spring Boot"],
+      ["spring-cloud", "library", undefined],
+    ]);
   });
 });
 

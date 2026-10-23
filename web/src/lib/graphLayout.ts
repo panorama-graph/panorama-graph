@@ -2,7 +2,7 @@ import dagre from "@dagrejs/dagre";
 import type { DependencyEdge, DependencyFacts, EndpointRef, Fact, InstanceOf, NodeRef, Overview, OverviewDependency, OverviewHost, Slim } from "./types";
 import { channelWords, displayName, environmentsOf } from "./nodes";
 import { COMPONENT_LAYERS, resourceLayer } from "./layers";
-import { techInfo, techOf, type TechRole } from "./tech";
+import { isFamilyLibrary, techInfo, techOf, type TechRole } from "./tech";
 
 /**
  * Nó no desenho: componente, tópico ou recurso. O recurso junta os ambientes (`keys`: uma chave por ambiente, a
@@ -43,7 +43,8 @@ export type StackItem = { key: string; name: string; tech?: string; label?: stri
 
 /**
  * Stack do componente: as conhecidas primeiro (linguagem, framework, build), depois as demais pelo nome. A que tem o
- * nome de um componente `library` do grafo (`libraries`) ganha o ícone de biblioteca.
+ * nome de um componente `library` do grafo (`libraries`) ou de uma biblioteca de família conhecida (`spring-cloud`)
+ * ganha o ícone de biblioteca.
  */
 export function stackOf(stack: Slim[], libraries: Set<string> = new Set()): StackItem[] {
   const order: (TechRole | undefined)[] = ["language", "framework", "build"];
@@ -56,7 +57,7 @@ export function stackOf(stack: Slim[], libraries: Set<string> = new Set()): Stac
       return {
         key: t.key,
         name,
-        ...(info ? { tech: info.id, label: info.label, role: info.role } : libraries.has(name) ? { tech: LIBRARY } : {}),
+        ...(info ? { tech: info.id, label: info.label, role: info.role } : libraries.has(name) || isFamilyLibrary(t.key) ? { tech: LIBRARY } : {}),
         ...(versions.length ? { version: versions.join(" / ") } : {}),
         facts: t.facts,
       };
