@@ -19,8 +19,8 @@ O que o grafo já faz e o que vem pela frente. Por que ele existe, e o que não 
 |---|---|
 | SDKs em Java e Python | Em `sdks/java` e `sdks/python`, gerados do mesmo contrato e com as mesmas receitas de chave do SDK em TypeScript |
 | Adaptadores de leitura central | `gitlab`, `directory`, `service-catalog`, `k8s-infra`, `k8s-routes` e `service-config`, e um importador do Backstage, cujo vocabulário o modelo já segue |
-| Adaptador agêntico e curadoria | Proposta de fatos inferidos pelo MCP (`fact_propose`, sempre `inferred`), e confirmação, união de nós e aposentadoria de escopo pelo console |
-| Busca semântica | Resumos de responsabilidade com embeddings gerados pela API, e busca híbrida |
+| Skills de análise e carga | Novas skills, no molde da `panorama-graph-carga-manual`, para quem quiser analisar os próprios repositórios e carregar o grafo com o próprio harness de agente, pelos caminhos de ingestão que já existem |
+| Curadoria | Confirmação de fatos inferidos, união de nós e aposentadoria de escopo pelo console |
 | Estrutura interna dos componentes | Módulos e pacotes (`Module`, `CONTAINS`), por análise estática ou SCIP |
 | Releases | CHANGELOG, imagens publicadas e CI do produto (lint, testes contra o Neo4j de teste) |
 | Operação | Backup e restauração dentro dos limites do Neo4j Community, métricas de cargas e consultas, e limites de uso |
@@ -29,5 +29,4 @@ O que o grafo já faz e o que vem pela frente. Por que ele existe, e o que não 
 
 ## Perguntas em aberto
 
-1. **Provedor de embeddings** para a busca semântica, e se o modelo de embedding fica configurável.
-2. **Autenticação:** que identidade os adaptadores e os consumidores do MCP e do REST usam (por exemplo, tokens OIDC do CI para a publicação pelo pipeline).
+1. **Autenticação:** que identidade os adaptadores e os consumidores do MCP e do REST usam (por exemplo, tokens OIDC do CI para a publicação pelo pipeline).

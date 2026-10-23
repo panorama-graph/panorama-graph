@@ -4,7 +4,7 @@ Este arquivo diz **como trabalhar** no console. As regras do repositório inteir
 
 ## Regras
 
-- **Leitura, não portal.** O console mostra o que as consultas devolvem. Template de projeto, scorecard, documentação, nota de maturidade e cadastro à mão não entram. A curadoria (confirmar inferências, unir nós, aposentar escopo) entra com o adaptador agêntico, pelo REST da API.
+- **Leitura, não portal.** O console mostra o que as consultas devolvem. Template de projeto, scorecard, documentação, nota de maturidade e cadastro à mão não entram. A curadoria (confirmar inferências, unir nós, aposentar escopo), quando vier, vai pelo REST da API.
 - **Só pelas consultas da API.** Toda chamada é `POST /v1/queries/<ferramenta>`, com os argumentos da ferramenta MCP de mesmo nome. Se a tela precisa de algo que nenhuma ferramenta responde, a ferramenta nasce no panorama-graph-api (`src/query/tools.ts`), servida também ao MCP. Nunca monte Cypher na tela, nem pelo `graph_query`.
 - **Proveniência sempre visível.** Toda relação mostrada tem o selo de fontes (`FactsBadge`), que abre as afirmações. Nunca colapse fontes, esconda divergência ou apague a diferença entre observado, inferido e confirmado para deixar a tela mais limpa. O que é `stale` só aparece com "Incluir o que sumiu", e esmaecido.
 - **Vazio com cobertura é "sem dados".** Quando a resposta traz `coverage` ou `gaps`, a tela mostra a nota, nunca "não existe".
