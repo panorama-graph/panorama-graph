@@ -132,15 +132,15 @@ snapshots:
     nodes:
       - { key: domain:catalog, name: Catálogo, evidence: domains/catalog }
       - { key: system:catalog/products, name: Produtos, evidence: systems/products }
-      - { key: component:example/catalog/product-api, kind: service, name: product-api, evidence: components/product-api }
-      - { key: component:example/checkout/checkout-api, kind: service, name: checkout-api, evidence: components/checkout-api }
+      - { key: component:product-api, kind: service, name: product-api, evidence: components/product-api }
+      - { key: component:checkout-api, kind: service, name: checkout-api, evidence: components/checkout-api }
       - { key: api:product-api/http, kind: http, name: product-api, evidence: components/product-api }
     relations:
       - { type: PART_OF, from: system:catalog/products, to: domain:catalog, evidence: systems/products }
-      - { type: PART_OF, from: component:example/catalog/product-api, to: system:catalog/products, evidence: components/product-api }
-      - { type: OWNED_BY, from: component:example/catalog/product-api, to: group:catalog-team, evidence: components/product-api }
-      - { type: PROVIDES, from: component:example/catalog/product-api, to: api:product-api/http, evidence: components/product-api }
-      - { type: CONSUMES, from: component:example/checkout/checkout-api, to: api:product-api/http, evidence: components/checkout-api }
+      - { type: PART_OF, from: component:product-api, to: system:catalog/products, evidence: components/product-api }
+      - { type: OWNED_BY, from: component:product-api, to: group:catalog-team, evidence: components/product-api }
+      - { type: PROVIDES, from: component:product-api, to: api:product-api/http, evidence: components/product-api }
+      - { type: CONSUMES, from: component:checkout-api, to: api:product-api/http, evidence: components/checkout-api }
 
   - source: k8s-infra                       # a infraestrutura de um cluster
     scope: { cluster: dev }
@@ -153,7 +153,7 @@ snapshots:
       - { type: IN_ENVIRONMENT, from: resource:dev/postgres, to: env:dev }
       - { type: RUNS, from: resource:dev/postgres, to: tech:postgresql, version: "16" }
       - { type: HOSTED_ON, from: resource:dev/postgres/products, to: resource:dev/postgres }
-      - { type: USES_RESOURCE, from: component:example/catalog/product-api, to: resource:dev/postgres/products, access: read-write }
+      - { type: USES_RESOURCE, from: component:product-api, to: resource:dev/postgres/products, access: read-write }
 ```
 
 Confira e envie, em `adapters/`:
@@ -167,7 +167,7 @@ docker compose run --rm carga             # envia; a API valida cada retrato con
 - **O tipo vem do prefixo da chave** (`group:` é `Group`). Os demais campos do item são propriedades, e uma propriedade ou um valor fora do modelo recusa o retrato inteiro (`invalid_snapshot`, com a lista dos erros, e saída `2`). Os outros retratos do envio seguem.
 - **Uma relação pode apontar para um nó que ninguém declarou** (`tech:postgresql` acima): ele é criado como referenciado, e a ordem das cargas não importa.
 - **Cada envio substitui o retrato anterior da mesma fonte e escopo.** Apagar uma linha do arquivo e enviar de novo deixa o fato `stale` (fora das consultas, mas no histórico). Um retrato mais antigo que o último do escopo é recusado (`outdated`).
-- **Use as mesmas chaves que os adaptadores.** O componente é `component:<caminho do repositório>` e a API é `api:<serviço>/http`, para que os builds publicados (pelo receptor ou pelo `graph-publish`) caiam nos mesmos nós. As receitas estão no [MODELO.md](api/MODELO.md#receitas-de-chave).
+- **Use as mesmas chaves que os adaptadores.** O componente é `component:<nome de serviço>` e a API é `api:<serviço>/http`, para que os builds publicados (pelo receptor ou pelo `graph-publish`) caiam nos mesmos nós. As receitas estão no [MODELO.md](api/MODELO.md#receitas-de-chave).
 
 Abra o console e busque `product-api`: a ficha mostra o dono, o consumidor e o banco, e o selo de fontes mostra as três fontes. Quando um adaptador passar a cobrir um assunto, o retrato correspondente sai do YAML (com as listas vazias, enviado uma última vez) e os fatos manuais viram `stale`.
 

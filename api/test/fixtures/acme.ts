@@ -14,11 +14,11 @@ export const K = {
   levelTeam: "level:time",
   teamCatalog: "group:credito/time-catalogo",
   teamSimulation: "group:credito/time-simulacao",
-  pca: "component:acme/credito/product-catalog-api",
+  pca: "component:product-catalog-api",
   pcaOld: "component:product-catalog",
-  lsa: "component:acme/credito/loan-simulation-api",
-  web: "component:acme/credito/loan-simulation-web",
-  job: "component:acme/credito/simulation-report-job",
+  lsa: "component:loan-simulation-api",
+  web: "component:loan-simulation-web",
+  job: "component:simulation-report-job",
   pcaApi: "api:product-catalog-api/http",
   lsaApi: "api:loan-simulation-api/http",
   epGetOne: "endpoint:product-catalog-api/GET /products/{id}",
@@ -41,8 +41,8 @@ export const K = {
   postgresql: "tech:postgresql",
   kafkaTech: "tech:kafka",
   platform: "lib:maven/br.com.acme:service-platform",
-  products: "dataset:acme/credito/product-catalog-api/products",
-  sequences: "dataset:acme/credito/product-catalog-api/sequences",
+  products: "dataset:product-catalog-api/products",
+  sequences: "dataset:product-catalog-api/sequences",
   ana: "person:ana",
   bruno: "person:bruno",
 } as const;
@@ -277,7 +277,7 @@ export const dependencyUsage: Load = {
 /** Datasets e acessos lidos do bytecode pelo plugin (data-access.json). */
 export const dataAccess: Load = {
   source: "data-access",
-  scope: { component: "acme/credito/product-catalog-api" },
+  scope: { component: "product-catalog-api" },
   evidenceBase: "acme/credito/product-catalog-api@a1b2c3d:",
   nodes: [
     { key: K.products, type: "Dataset", props: { name: "products", kind: "collection", store: "document" }, evidence: "src/main/java/org/acme/ProductDocument.java" },

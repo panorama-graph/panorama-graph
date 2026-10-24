@@ -33,10 +33,10 @@ import { PanoramaGraphClient, componentKey, httpApiKey, type Snapshot } from "@p
 const graph = new PanoramaGraphClient({ baseUrl: "http://localhost:3200" });
 await graph.assertModel(); // a API está no modelo deste SDK?
 
-const component = componentKey("example/catalog/product-api");
+const component = componentKey("product-api");
 const snapshot: Snapshot = {
   source: "meu-adaptador",
-  scope: { component: "example/catalog/product-api" },
+  scope: { component: "product-api" },
   observedAt: new Date().toISOString(),
   evidenceBase: "git.example.com/example/catalog/product-api@abc123:",
   nodes: [{ key: component, type: "Component", props: { kind: "service" }, evidence: "catalog-info.yaml" }],

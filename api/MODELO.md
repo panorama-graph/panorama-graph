@@ -6,7 +6,7 @@ O modelo é o mesmo que a API serve em `GET /v1/schema`, e as tabelas abaixo sã
 
 ## Como os fatos são guardados
 
-- **Nó:** uma coisa da organização (um componente, um time, um banco), identificada por uma chave `<prefixo>:<identificador>`. O prefixo diz o tipo: `component:example/catalog/product-api` é um `Component`.
+- **Nó:** uma coisa da organização (um componente, um time, um banco), identificada por uma chave `<prefixo>:<identificador>`. O prefixo diz o tipo: `component:product-api` é um `Component`.
 - **Relação:** um fato entre dois nós (`component:... OWNED_BY group:...`). Só existem os tipos de relação da tabela, e cada um só entre os pares de tipos de nó listados.
 - **Afirmação:** cada nó e cada relação é afirmado por uma **fonte** (`source`, o sistema que viu o fato) num **escopo** (`scope`, o recorte que ela leu), com uma evidência e a data. Duas fontes que afirmam a mesma relação geram duas afirmações, lado a lado; quando discordam, as duas aparecem.
 - **Retrato:** a fonte manda tudo o que viu num escopo de uma vez. O que ela afirmava antes no mesmo escopo e não afirma mais vira `stale`, e continua consultável como histórico.
@@ -126,7 +126,7 @@ Os pares são validados pelo tipo do nó, e não pelo `kind`: `ROUTES` exige um 
 
 **Livre**, definido pela organização:
 
-- **os identificadores:** os nomes dos ambientes (`env:dev`, `env:hml`, `env:prod`, quantos houver), dos domínios, sistemas, times, pessoas, componentes, tecnologias e bibliotecas. O ambiente tem nome livre e um estágio fixo (`kind`), que dá a ordem até a produção;
+- **os identificadores:** os nomes dos ambientes (`env:dev`, `env:hml`, `env:prod`, quantos houver), dos domínios, sistemas, times, pessoas, componentes, tecnologias e bibliotecas. O ambiente tem nome livre e um estágio fixo (`kind`), que dá a ordem até a produção. O nome do componente é único na organização: dois times com um `notification-service` cada precisam de nomes diferentes (`pagamentos-notification-service`);
 - **as fontes:** o nome da `source` (minúsculas, dígitos e hífen) e as chaves e valores do `scope`;
 - **a organização em grupos:** `Group PART_OF Group` aninha quantos níveis houver, e os níveis (`OrgLevel`) têm o nome que a organização usa (veja [Estrutura organizacional](#estrutura-organizacional));
 - **os textos:** `name` e `description` de qualquer nó, `role` em `MEMBER_OF`.
@@ -137,7 +137,7 @@ Fontes diferentes só falam do mesmo nó se usarem a mesma chave. O [SDK](../sdk
 
 | Nó | Chave | Exemplo |
 |---|---|---|
-| `Component` | `component:<caminho do repositório>` | `component:example/catalog/product-api` |
+| `Component` | `component:<nome>`, o nome de serviço, único na organização | `component:product-api` |
 | `Repository` | `repo:<host>/<caminho>` | `repo:git.example.com/example/catalog/product-api` |
 | `Api` | `api:<serviço>/http`; versionada, `api:<serviço>/<versão>/http` | `api:product-api/http`, `api:product-api/v1/http` |
 | `Endpoint` | `endpoint:<serviço>/<MÉTODO> <caminho>`, com os parâmetros sem nome; numa API versionada, `endpoint:<serviço>/<versão>/<MÉTODO> <caminho>` | `endpoint:product-api/GET /products/{}`, `endpoint:product-api/v1/GET /products/{}` |
@@ -145,7 +145,7 @@ Fontes diferentes só falam do mesmo nó se usarem a mesma chave. O [SDK](../sdk
 | `Contract` | `contract:openapi/<serviço>`, `contract:asyncapi/<serviço>`, `contract:pact/<consumidor>→<provedor>` | `contract:pact/checkout-api→product-api` |
 | `Library` | `lib:maven/<grupo>:<artefato>`, ou `lib:<tipo>/<namespace>/<nome>` para outros purls | `lib:npm/@fastify/fastify` |
 | `Technology` | `tech:<nome>` | `tech:spring-boot`, `tech:postgresql` |
-| `Dataset` | `dataset:<caminho do componente>/<nome>` | `dataset:example/catalog/product-api/products` |
+| `Dataset` | `dataset:<componente>/<nome>` | `dataset:product-api/products` |
 | `Resource` | instância `resource:<ambiente>/<nome>`; recurso lógico `resource:<ambiente>/<instância>/<nome>` | `resource:dev/postgres`, `resource:dev/postgres/catalog` |
 | `Environment` | `env:<ambiente>`, o mesmo nome do primeiro segmento da chave do recurso | `env:dev` |
 | `Domain`, `System`, `Group` | o identificador curto na fonte | `domain:catalog`, `system:catalog/products`, `group:catalog-team` |

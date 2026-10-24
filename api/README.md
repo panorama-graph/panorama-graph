@@ -81,8 +81,8 @@ POST /v1/ingest
   "evidenceBase": "https://pact-broker.example.com/pacts/provider/product-api/consumer/checkout-api",
   "nodes": [],
   "relations": [
-    { "type": "CONSUMES", "from": "component:example/checkout/checkout-api", "to": "api:product-api/http" },
-    { "type": "CALLS", "from": "component:example/checkout/checkout-api", "to": "endpoint:product-api/GET /products/{}",
+    { "type": "CONSUMES", "from": "component:checkout-api", "to": "api:product-api/http" },
+    { "type": "CALLS", "from": "component:checkout-api", "to": "endpoint:product-api/GET /products/{}",
       "evidence": "#interaction-1" }
   ]
 }
@@ -96,7 +96,7 @@ POST /v1/ingest
 ```json
 POST /v1/scopes/retire
 {
-  "scope": { "component": "example/catalog/legacy-api" },
+  "scope": { "component": "legacy-api" },
   "observedAt": "2026-10-06T15:40:00Z",
   "retiredBy": "portal-interno",
   "reason": "componente removido pelo portal",
@@ -113,8 +113,8 @@ POST /v1/scopes/retire
 Um retrato pode dizer de que versão de um componente ele é, com `revision`:
 
 ```json
-{ "source": "openapi", "scope": { "component": "example/catalog/product-api" },
-  "revision": { "component": "component:example/catalog/product-api", "commit": "4f2a9c1", "version": "1.5.0" }, ... }
+{ "source": "openapi", "scope": { "component": "product-api" },
+  "revision": { "component": "component:product-api", "commit": "4f2a9c1", "version": "1.5.0" }, ... }
 ```
 
 - **Linha principal:** escopo sem `commit`. É o retrato padrão das consultas, como sempre; a revisão só registra de que commit e versão ele é (`component_get.revision`).

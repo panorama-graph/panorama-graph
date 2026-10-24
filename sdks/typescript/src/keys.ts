@@ -18,8 +18,12 @@ export function nodeTypeFromKey(k: string): NodeType | undefined {
   return i > 0 ? TYPE_BY_PREFIX.get(k.slice(0, i)) : undefined;
 }
 
-/** Componente pelo caminho do repositório (ex.: `example/catalog/product-api`). */
-export const componentKey = (path: string) => key("Component", path);
+/**
+ * Componente pelo nome, único na organização: o nome de serviço com que os clientes o conhecem (o
+ * `spring.application.name`, o `service.name` da telemetria), e não o caminho do repositório, que é a chave do
+ * `Repository` (ex.: `product-api`).
+ */
+export const componentKey = (name: string) => key("Component", name);
 
 /** Repositório pelo host e caminho (ex.: `git.example.com/example/catalog/product-api`). */
 export const repositoryKey = (host: string, path: string) => key("Repository", `${host}/${path}`);
@@ -85,7 +89,7 @@ export const contractKey = (kind: "openapi" | "asyncapi" | "pact" | "schema", id
  * Dataset (coleção, tabela) pelo componente que o mapeia e o nome. O build não sabe em que banco de cada ambiente
  * ele está; por isso a identidade é do componente, e não do banco.
  */
-export const datasetKey = (componentPath: string, name: string) => key("Dataset", `${componentPath}/${name}`);
+export const datasetKey = (component: string, name: string) => key("Dataset", `${component}/${name}`);
 
 export const technologyKey = (name: string) => key("Technology", name.toLowerCase());
 

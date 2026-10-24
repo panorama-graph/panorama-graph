@@ -35,10 +35,10 @@ export type RelationGuide = {
   relations: RelationExample[];
 };
 
-const PRODUCT = "component:example/catalog/product-api";
-const CHECKOUT = "component:example/checkout/checkout-api";
-const PRODUCT_SCOPE = { component: "example/catalog/product-api" };
-const CHECKOUT_SCOPE = { component: "example/checkout/checkout-api" };
+const PRODUCT = "component:product-api";
+const CHECKOUT = "component:checkout-api";
+const PRODUCT_SCOPE = { component: "product-api" };
+const CHECKOUT_SCOPE = { component: "checkout-api" };
 const ENV_SCOPE = { cluster: "example", namespace: "catalog-dev" };
 const PRODUCT_AT = "example/catalog/product-api@4f2a9c1:";
 const CHECKOUT_AT = "example/checkout/checkout-api@9b1e0d7:";
@@ -116,7 +116,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
   },
   HOSTED_IN: {
     who: "O build de cada componente (fonte `build-manifest`, escopo `{component}`) ou o catálogo, para componentes que não publicam build.",
-    notes: ["A chave do componente é o caminho do repositório, e a do repositório leva o host: `repo:<host>/<caminho>`."],
+    notes: ["A chave do componente é o nome de serviço, único na organização; a do repositório é o caminho, com o host: `repo:<host>/<caminho>`. Num monorepo, vários componentes apontam para o mesmo repositório."],
     source: "build-manifest",
     scope: PRODUCT_SCOPE,
     nodes: [
@@ -129,7 +129,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
   PROVIDES: {
     who: "O contrato que o próprio componente gera (fonte `openapi`, escopo `{component}`) e, para a versão exposta na infraestrutura, quem lê a implantação (veja `VERSION_OF`).",
     notes: [
-      "A API é nomeada pelo **nome de serviço**, o nome com que os clientes conhecem o componente (o participante nos pacts), e não pelo caminho do repositório: `api:product-api/http`. É assim que provedor e consumidores chegam à mesma chave.",
+      "A API é nomeada pelo **nome de serviço**, o nome com que os clientes conhecem o componente (o participante nos pacts), o mesmo nome da chave do componente: `api:product-api/http`. É assim que provedor e consumidores chegam à mesma chave.",
       "Vem no mesmo retrato que os endpoints (`HAS_ENDPOINT`) e o contrato (`SPECIFIED_BY`).",
     ],
     source: "openapi",
@@ -244,7 +244,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
       "`access` é `read`, `write` ou `read-write`. O que o código lê e escreve, tabela a tabela, é `READS`/`WRITES` em `Dataset`.",
     ],
     source: "service-config",
-    scope: { component: "example/catalog/product-api", environment: "dev" },
+    scope: { component: "product-api", environment: "dev" },
     evidenceBase: `${PRODUCT_AT}deploy/values-dev.yaml`,
     relations: [{ type: "USES_RESOURCE", from: PRODUCT, to: "resource:dev/postgres/catalog", props: { access: "read-write" }, evidence: "#database" }],
   },
@@ -252,7 +252,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     who: "A configuração de implantação (fonte `service-config`) ou o inventário da infraestrutura (fonte `k8s-infra`): o banco na instância e o tópico no broker.",
     notes: ["Os dois pares: `Resource → Resource` (o recurso lógico na instância) e `Topic → Resource` (o tópico no broker)."],
     source: "service-config",
-    scope: { component: "example/catalog/product-api", environment: "dev" },
+    scope: { component: "product-api", environment: "dev" },
     evidenceBase: `${PRODUCT_AT}deploy/values-dev.yaml`,
     nodes: [{ key: "resource:dev/postgres/catalog", type: "Resource", props: { name: "catalog", kind: "database" }, evidence: "#database" }],
     relations: [
@@ -268,7 +268,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     source: "k8s-infra",
     scope: ENV_SCOPE,
     evidenceBase: "k8s://example/catalog-dev/",
-    relations: [{ type: "INSTANCE_OF", from: "resource:dev/postgres", to: "component:example/platform/postgres", evidence: "statefulsets/postgres#spec.selector.matchLabels.app" }],
+    relations: [{ type: "INSTANCE_OF", from: "resource:dev/postgres", to: "component:postgres", evidence: "statefulsets/postgres#spec.selector.matchLabels.app" }],
   },
   IN_ENVIRONMENT: {
     who: "O inventário da infraestrutura (fonte `k8s-infra`, escopo `{cluster, namespace}`).",
@@ -332,7 +332,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     who: "A configuração do consumidor que aponta para o gateway (fonte `service-config`). Nenhum adaptador do produto afirma esta relação: vem de um adaptador próprio ou da carga à mão.",
     notes: ["Completa `ROUTES`: o consumidor chega ao gateway, e o gateway encaminha ao provedor. A dependência continua em `CONSUMES`."],
     source: "service-config",
-    scope: { component: "example/checkout/checkout-api", environment: "dev" },
+    scope: { component: "checkout-api", environment: "dev" },
     evidenceBase: `${CHECKOUT_AT}deploy/values-dev.yaml`,
     relations: [{ type: "REACHES_VIA", from: CHECKOUT, to: "resource:dev/ingress", evidence: "#catalog.baseUrl" }],
   },
@@ -378,21 +378,21 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     who: "O build do componente que gera a biblioteca (fonte `build-manifest`, escopo `{component}`).",
     notes: ["Liga o repositório de uma biblioteca interna aos usos dela: `library_usage` parte do componente e chega a quem tem `DEPENDS_ON` para os pacotes que ele produz."],
     source: "build-manifest",
-    scope: { component: "example/platform/commons" },
+    scope: { component: "commons" },
     evidenceBase: "example/platform/commons@71c0e2a:build/architecture/manifest.json",
-    relations: [{ type: "PRODUCES", from: "component:example/platform/commons", to: "lib:maven/com.example:commons-web", props: { version: "3.2.0" }, evidence: "#/component/libraries/0" }],
+    relations: [{ type: "PRODUCES", from: "component:commons", to: "lib:maven/com.example:commons-web", props: { version: "3.2.0" }, evidence: "#/component/libraries/0" }],
   },
   OWNS_DATA: {
     who: "O acesso a dados lido do código (fonte `data-access`, escopo `{component}`).",
     notes: [
-      "O dataset é identificado pelo componente que o mapeia: `dataset:<caminho do componente>/<nome>`. O build não sabe em que banco de cada ambiente ele está.",
+      "O dataset é identificado pelo componente que o mapeia: `dataset:<componente>/<nome>`. O build não sabe em que banco de cada ambiente ele está.",
       "`OWNS_DATA` é de quem define a estrutura (o mapeamento ou a migração); quem só lê ou escreve tem `READS`/`WRITES`.",
     ],
     source: "data-access",
     scope: PRODUCT_SCOPE,
     evidenceBase: PRODUCT_AT,
-    nodes: [{ key: "dataset:example/catalog/product-api/products", type: "Dataset", props: { name: "products", kind: "table", store: "relational" }, evidence: "src/main/java/com/example/catalog/ProductEntity.java" }],
-    relations: [{ type: "OWNS_DATA", from: PRODUCT, to: "dataset:example/catalog/product-api/products", evidence: "src/main/java/com/example/catalog/ProductEntity.java" }],
+    nodes: [{ key: "dataset:product-api/products", type: "Dataset", props: { name: "products", kind: "table", store: "relational" }, evidence: "src/main/java/com/example/catalog/ProductEntity.java" }],
+    relations: [{ type: "OWNS_DATA", from: PRODUCT, to: "dataset:product-api/products", evidence: "src/main/java/com/example/catalog/ProductEntity.java" }],
   },
   READS: {
     who: "O acesso a dados lido do código (fonte `data-access`), no mesmo retrato do `OWNS_DATA`.",
@@ -400,7 +400,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     source: "data-access",
     scope: PRODUCT_SCOPE,
     evidenceBase: PRODUCT_AT,
-    relations: [{ type: "READS", from: PRODUCT, to: "dataset:example/catalog/product-api/products", evidence: "src/main/java/com/example/catalog/ProductService.java:24" }],
+    relations: [{ type: "READS", from: PRODUCT, to: "dataset:product-api/products", evidence: "src/main/java/com/example/catalog/ProductService.java:24" }],
   },
   WRITES: {
     who: "O acesso a dados lido do código (fonte `data-access`), no mesmo retrato do `OWNS_DATA`.",
@@ -408,7 +408,7 @@ export const RELATION_GUIDE: Record<RelationType, RelationGuide> = {
     source: "data-access",
     scope: PRODUCT_SCOPE,
     evidenceBase: PRODUCT_AT,
-    relations: [{ type: "WRITES", from: PRODUCT, to: "dataset:example/catalog/product-api/products", evidence: "src/main/java/com/example/catalog/ProductService.java:41" }],
+    relations: [{ type: "WRITES", from: PRODUCT, to: "dataset:product-api/products", evidence: "src/main/java/com/example/catalog/ProductService.java:41" }],
   },
 };
 

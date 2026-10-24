@@ -31,7 +31,7 @@ Fatos de fontes diferentes só se encontram quando chegam à mesma chave. Antes 
 
 | Convenção | Regra | Por que importa |
 |---|---|---|
-| **Chave do componente** | O caminho do repositório (`component:grupo/subgrupo/projeto`), o mesmo que o CI informa (`CI_PROJECT_PATH`, `GITHUB_REPOSITORY`) | É por ela que o build, as implantações, o catálogo e as rotas falam do mesmo componente. O catálogo e o `graph-deployments` precisam usar exatamente esse caminho |
+| **Chave do componente** | O nome de serviço (`component:product-api`), único na organização: o `spring.application.name`, o mesmo `service.name` da telemetria. O repositório é outro nó (`repo:<host>/<caminho>`), ligado ao componente por `HOSTED_IN` | É por ela que o build, as implantações, o catálogo, as rotas e a telemetria falam do mesmo componente. O catálogo e o `graph-deployments` precisam usar exatamente esse nome |
 | **Nome de serviço** | O nome com que os clientes conhecem o componente: o `spring.application.name`, o participante nos pacts e o grupo dos clientes HTTP | Nomeia a API e os endpoints (`api:<serviço>/http`). Provedor e consumidores só se ligam se usarem o mesmo nome |
 | **Branch da linha principal** | Uma branch só por componente publica, a que representa o estado vigente | Duas branches no mesmo escopo trocam os retratos uma da outra a cada build |
 | **Ambientes** | O nome de cada ambiente (livre: `dev`, `hml`, `prd`) e o estágio (fixo: `development`, `test`, `staging`, `production`) | O mesmo nome nas implantações, na infraestrutura e nas rotas (`env:<nome>`) |
@@ -113,21 +113,22 @@ Sem a imagem, o mesmo diretório vai por `curl` ao receptor ([graph-receiver](ht
 
 Para o grafo mostrar a versão que roda em cada ambiente, e não só a linha principal:
 
-1. **Guarde o pacote de cada build que vira imagem**, com o commit no caminho, num repositório de arquivos:
+1. **Guarde o pacote de cada build que vira imagem**, com o nome do componente e o commit no caminho, num repositório de arquivos. O nome é o do `application.json` do build e, sem ele, o fim do caminho do repositório, a mesma regra do `graph-publish`:
 
    ```yaml
    publish_architecture_bundle:
      needs: [{ job: tests, artifacts: true }]
      script:
+       - COMPONENT=$(jq -r '.name // empty' build/architecture/application.json 2>/dev/null); COMPONENT=${COMPONENT:-$CI_PROJECT_NAME}
        - tar -czf architecture.tar.gz -C build/architecture .
-       - curl --fail -u "$USER:$PASSWORD" --upload-file architecture.tar.gz "$BUNDLES_URL/$CI_PROJECT_PATH/$CI_COMMIT_SHA.tar.gz"
+       - curl --fail -u "$USER:$PASSWORD" --upload-file architecture.tar.gz "$BUNDLES_URL/$COMPONENT/$CI_COMMIT_SHA.tar.gz"
    ```
 
 2. **Anote os workloads e os namespaces** no chart ou no template de deploy:
 
    | Onde | Chave | Valor |
    |---|---|---|
-   | Deployment | anotação `panorama-graph.io/component` | Caminho do repositório (`$CI_PROJECT_PATH`) |
+   | Deployment | anotação `panorama-graph.io/component` | Nome do componente, o mesmo do pacote |
    | Deployment | anotação `panorama-graph.io/commit` | Commit da imagem (`$CI_COMMIT_SHA`) |
    | Deployment | label `app.kubernetes.io/version` | Versão (sem ele, a tag da imagem) |
    | Namespace | label `panorama-graph.io/environment` | Nome do ambiente |

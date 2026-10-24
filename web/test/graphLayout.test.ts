@@ -3,9 +3,9 @@ import { edgeLabel, fromDependencyEdges, fromOverview, layout, toGraphNode } fro
 import type { DependencyEdge } from "../src/lib/types";
 
 const facts = { dependent: [{ source: "pact", evidence: "e" }], provider: [{ source: "openapi", evidence: "e" }] };
-const A = "component:acme/a";
-const B = "component:acme/b";
-const C = "component:acme/c";
+const A = "component:a";
+const B = "component:b";
+const C = "component:c";
 
 describe("grafo de dependências", () => {
   test("rótulo resume as vias e conta os endpoints", () => {
@@ -48,7 +48,7 @@ describe("nome de exibição", () => {
     const { displayName } = await import("../src/lib/nodes");
     expect(displayName({ key: "endpoint:product-catalog-api/GET /products/{}" })).toBe("GET /products/{}");
     expect(displayName({ key: "api:product-catalog-api/http" })).toBe("product-catalog-api/http");
-    expect(displayName({ key: "component:acme/credito/x" })).toBe("x");
+    expect(displayName({ key: "component:x" })).toBe("x");
     expect(displayName({ key: "lib:maven/org.acme:service-platform", name: "service-platform" })).toBe("service-platform");
   });
 });

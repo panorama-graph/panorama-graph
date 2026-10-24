@@ -32,14 +32,14 @@ const gitlab = (extra: { nodes?: object[]; relations?: { type: string; from: str
   nodes: [
     { key: "domain:credito", type: "Domain", props: { name: "Crédito" }, evidence: "acme/credito" },
     { key: "system:credito/simulacao", type: "System", evidence: "acme/credito" },
-    { key: "component:acme/credito/product-catalog-api", type: "Component", props: { kind: "service" }, evidence: "acme/credito/product-catalog-api" },
+    { key: "component:product-catalog-api", type: "Component", props: { kind: "service" }, evidence: "acme/credito/product-catalog-api" },
     { key: "repo:gitlab/acme/credito/product-catalog-api", type: "Repository", evidence: "acme/credito/product-catalog-api" },
     ...(extra.nodes ?? []),
   ],
   relations: [
     { type: "PART_OF", from: "system:credito/simulacao", to: "domain:credito" },
-    { type: "PART_OF", from: "component:acme/credito/product-catalog-api", to: "system:credito/simulacao" },
-    { type: "HOSTED_IN", from: "component:acme/credito/product-catalog-api", to: "repo:gitlab/acme/credito/product-catalog-api" },
+    { type: "PART_OF", from: "component:product-catalog-api", to: "system:credito/simulacao" },
+    { type: "HOSTED_IN", from: "component:product-catalog-api", to: "repo:gitlab/acme/credito/product-catalog-api" },
     ...(extra.relations ?? []),
   ],
 });
@@ -246,22 +246,24 @@ describe("POST /ingest", () => {
 });
 
 describe("POST /scopes/retire", () => {
-  const scope = { component: "acme/sandbox/x-api" };
-  const other = { component: "acme/credito/y-api" };
+  const scope = { component: "x-api" };
+  const other = { component: "y-api" };
+  // O escopo é o nome do componente; o caminho do repositório só aparece na chave do repositório e na evidência.
+  const repository = (s: Record<string, string>) => (s === scope ? "acme/sandbox/x-api" : "acme/credito/y-api");
   const manifest = (s: Record<string, string>, name: string) => ({
     source: "build-manifest",
     scope: s,
-    evidenceBase: `${s.component}@abc:`,
+    evidenceBase: `${repository(s)}@abc:`,
     nodes: [
       { key: `component:${s.component}`, type: "Component", props: { kind: "service", name }, evidence: "manifest.json" },
-      { key: `repo:gitlab/${s.component}`, type: "Repository", evidence: "manifest.json" },
+      { key: `repo:gitlab/${repository(s)}`, type: "Repository", evidence: "manifest.json" },
     ],
-    relations: [{ type: "HOSTED_IN", from: `component:${s.component}`, to: `repo:gitlab/${s.component}` }],
+    relations: [{ type: "HOSTED_IN", from: `component:${s.component}`, to: `repo:gitlab/${repository(s)}` }],
   });
   const sbom = (s: Record<string, string>) => ({
     source: "sbom",
     scope: s,
-    evidenceBase: `${s.component}@abc:bom.json`,
+    evidenceBase: `${repository(s)}@abc:bom.json`,
     relations: [{ type: "DEPENDS_ON", from: `component:${s.component}`, to: "lib:maven/x:y", props: { version: "1.0" } }],
   });
   const retire = (over: Record<string, unknown> = {}) =>
@@ -296,14 +298,14 @@ describe("POST /scopes/retire", () => {
       ],
     });
 
-    expect(await status("component:acme/sandbox/x-api")).toBe("stale");
+    expect(await status("component:x-api")).toBe("stale");
     expect(await status("repo:gitlab/acme/sandbox/x-api")).toBe("stale");
     // A biblioteca continua: outro componente ainda depende dela.
     expect(await status("lib:maven/x:y")).toBe("current");
-    expect(await status("component:acme/credito/y-api")).toBe("current");
+    expect(await status("component:y-api")).toBe("current");
     const deps = (await relations("DEPENDS_ON")).map((r) => [r.from, r.status]);
-    expect(deps).toContainEqual(["component:acme/sandbox/x-api", "stale"]);
-    expect(deps).toContainEqual(["component:acme/credito/y-api", "current"]);
+    expect(deps).toContainEqual(["component:x-api", "stale"]);
+    expect(deps).toContainEqual(["component:y-api", "current"]);
 
     const loads = await db.read(
       `MATCH (l:Load {scopeKey: $scopeKey}) WHERE l.retiredBy IS NOT NULL RETURN l.source AS source, l.reason AS reason, l.evidence AS evidence ORDER BY source`,
@@ -319,7 +321,7 @@ describe("POST /scopes/retire", () => {
     await ingest(manifest(scope, "x-api"));
     await retire();
     await ingest(manifest(scope, "x-api"));
-    expect(await status("component:acme/sandbox/x-api")).toBe("current");
+    expect(await status("component:x-api")).toBe("current");
   });
 
   test("escopo sem carga é 404; aposentadoria mais antiga que a última carga é 409; corpo inválido é 400", async () => {
@@ -327,7 +329,7 @@ describe("POST /scopes/retire", () => {
     const before = nextTime();
     await ingest(manifest(scope, "x-api"));
     expect((await retire({ observedAt: before })).statusCode).toBe(409);
-    expect(await status("component:acme/sandbox/x-api")).toBe("current");
+    expect(await status("component:x-api")).toBe("current");
     expect((await retire({ scope: {} })).statusCode).toBe(400);
     expect((await retire({ reason: undefined })).statusCode).toBe(400);
   });

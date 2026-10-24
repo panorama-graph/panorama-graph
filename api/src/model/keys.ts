@@ -2,7 +2,7 @@ import { NODE_TYPES, type NodeType } from "./model";
 
 /**
  * Formato das chaves: `<prefixo>:<identificador>`. O prefixo determina o tipo do nó
- * (`component:example/catalog/product-api` é um Component). O identificador é livre,
+ * (`component:product-api` é um Component). O identificador é livre,
  * sem espaço nas bordas nem caracteres de controle (o de Endpoint tem espaço no meio:
  * `endpoint:product-api/GET /products/{id}`).
  */

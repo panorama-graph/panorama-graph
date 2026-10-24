@@ -11,26 +11,26 @@ const q = new QueryService(db);
 let app: FastifyInstance;
 
 // Versão no código: as duas versões são rotas do mesmo serviço.
-const provider = "component:example/catalog/product-api";
-const oldClient = "component:example/checkout/cart-api";
-const newClient = "component:example/checkout/order-api";
+const provider = "component:product-api";
+const oldClient = "component:cart-api";
+const newClient = "component:order-api";
 const v1 = httpApiKey("product-api", "v1");
 const v2 = httpApiKey("product-api", "v2");
 const topicV1 = topicKey("product-created.v1");
 const topicV2 = topicKey("product-created.v2");
 
 // Versão na infraestrutura: o código não sabe da versão; o cluster expõe o serviço como stock-api-v2.
-const stock = "component:example/stock/stock-api";
+const stock = "component:stock-api";
 const stockApi = httpApiKey("stock-api");
 const stockV2 = httpApiKey("stock-api", "v2");
 const stockV3 = httpApiKey("stock-api", "v3");
 const getItem = endpointKey("stock-api", "GET", "/items/{id}");
-const legacyClient = "component:example/checkout/legacy-api";
+const legacyClient = "component:legacy-api";
 
 const loads = [
   {
     source: "openapi",
-    scope: { component: "example/catalog/product-api" },
+    scope: { component: "product-api" },
     evidenceBase: "example/catalog/product-api@abc:",
     nodes: [
       { key: v1, type: "Api", props: { kind: "http", version: "v1" } },
@@ -47,7 +47,7 @@ const loads = [
   },
   {
     source: "asyncapi",
-    scope: { component: "example/catalog/product-api" },
+    scope: { component: "product-api" },
     evidenceBase: "example/catalog/product-api@abc:",
     nodes: [
       { key: topicV1, type: "Topic", props: { name: "product-created.v1", version: "v1" } },
@@ -60,7 +60,7 @@ const loads = [
   },
   {
     source: "openapi",
-    scope: { component: "example/stock/stock-api" },
+    scope: { component: "stock-api" },
     evidenceBase: "example/stock/stock-api@123:",
     nodes: [
       { key: stockApi, type: "Api", props: { kind: "http" } },
@@ -88,7 +88,7 @@ const loads = [
   },
   {
     source: "http-clients",
-    scope: { component: "example/checkout/cart-api" },
+    scope: { component: "cart-api" },
     evidenceBase: "example/checkout/cart-api@def:",
     relations: [
       { type: "CONSUMES", from: oldClient, to: v1 },
@@ -100,7 +100,7 @@ const loads = [
   },
   {
     source: "http-clients",
-    scope: { component: "example/checkout/order-api" },
+    scope: { component: "order-api" },
     evidenceBase: "example/checkout/order-api@fed:",
     relations: [
       { type: "CONSUMES", from: newClient, to: v2 },
@@ -109,7 +109,7 @@ const loads = [
   },
   {
     source: "http-clients",
-    scope: { component: "example/checkout/legacy-api" },
+    scope: { component: "legacy-api" },
     evidenceBase: "example/checkout/legacy-api@aaa:",
     relations: [
       { type: "CONSUMES", from: legacyClient, to: stockV2 },
@@ -245,7 +245,7 @@ test("a versão vale só para interfaces: componente não a recebe pela carga", 
     url: "/v1/ingest",
     payload: {
       source: "gitlab",
-      scope: { component: "example/catalog/product-api" },
+      scope: { component: "product-api" },
       evidenceBase: "x",
       observedAt: new Date().toISOString(),
       nodes: [{ key: provider, type: "Component", props: { kind: "service", version: "v1" } }],

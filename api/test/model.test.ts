@@ -15,7 +15,7 @@ const base = (over: Partial<IngestBody> = {}): IngestBody => ({
 
 describe("chaves", () => {
   test("prefixo determina o tipo", () => {
-    expect(checkKey("component:acme/credito/product-catalog-api")).toEqual({ ok: true, type: "Component" });
+    expect(checkKey("component:product-catalog-api")).toEqual({ ok: true, type: "Component" });
     expect(checkKey("endpoint:product-catalog-api/GET /products/{id}")).toEqual({ ok: true, type: "Endpoint" });
     expect(checkKey("repo:gitlab/acme/x")).toEqual({ ok: true, type: "Repository" });
   });

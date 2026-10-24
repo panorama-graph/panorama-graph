@@ -68,8 +68,8 @@ Um nó só precisa estar em `nodes` quando a fonte afirma alguma propriedade del
 O retrato da **linha principal** (escopo sem `commit`) é o que as consultas mostram por padrão. Um retrato pode dizer de que commit e versão de um componente ele é, com `revision`:
 
 ```json
-{ "source": "openapi", "scope": { "component": "example/catalog/product-api" },
-  "revision": { "component": "component:example/catalog/product-api", "commit": "4f2a9c1", "version": "1.5.0" }, ... }
+{ "source": "openapi", "scope": { "component": "product-api" },
+  "revision": { "component": "component:product-api", "commit": "4f2a9c1", "version": "1.5.0" }, ... }
 ```
 
 Com `commit` também no escopo (o mesmo do `revision.commit`), o retrato fica **congelado**: guarda o que aquela versão oferecia e usava, e só aparece no recorte de um ambiente em que o commit está implantado (`DEPLOYED_IN` com o mesmo `commit`). Quem congela é quem vê o commit rodando, não o pipeline. Os detalhes e a retenção estão no [README da API](README.md#versões-linha-principal-e-retrato-congelado).
@@ -101,15 +101,15 @@ Fontes diferentes só falam do mesmo nó se usarem a mesma chave. O formato é `
 
 | Nó | Chave | Regras |
 |---|---|---|
-| `Component` | `component:<caminho do repositório>` | O caminho como está no servidor git, sem host: `example/catalog/product-api` |
+| `Component` | `component:<nome>` | O nome de serviço, único na organização: o nome com que os clientes conhecem o componente (o `spring.application.name`, o `service.name` da telemetria). O caminho do repositório é a chave do `Repository` |
 | `Repository` | `repo:<host>/<caminho>` | `repo:git.example.com/example/catalog/product-api` |
-| `Api` | `api:<serviço>/http`; versionada, `api:<serviço>/<versão>/http` | `<serviço>` é o nome com que os clientes conhecem o componente (o participante nos pacts), sem a versão do host. A versão é normalizada (abaixo) |
+| `Api` | `api:<serviço>/http`; versionada, `api:<serviço>/<versão>/http` | `<serviço>` é o nome do componente, com que os clientes o conhecem (o participante nos pacts), sem a versão do host. A versão é normalizada (abaixo) |
 | `Endpoint` | `endpoint:<serviço>/<MÉTODO> <caminho>`; versionada no código, `endpoint:<serviço>/<versão>/<MÉTODO> <caminho>` | Método em maiúsculas e um espaço antes do caminho. O caminho começa com `/`, tem uma barra só entre segmentos, não termina em `/` (menos o `/` sozinho) e cada parâmetro vira `{}`: `products//{productId}/` → `/products/{}` |
 | `Topic` | `topic:<endereço do canal>` | O endereço no broker, com a versão que estiver no nome |
 | `Contract` | `contract:openapi/<serviço>`, `contract:asyncapi/<serviço>`, `contract:pact/<consumidor>→<provedor>` | A seta é o caractere `→` (U+2192) |
 | `Library` | `lib:maven/<grupo>:<artefato>`; outros purls, `lib:<tipo>/<namespace>/<nome>`, ou `lib:<tipo>/<nome>` sem namespace | As coordenadas do purl, sem versão e sem codificação (`%40fastify` é `@fastify`): `lib:npm/@fastify/fastify` |
 | `Technology` | `tech:<nome>` | O nome em minúsculas: `tech:spring-boot` |
-| `Dataset` | `dataset:<caminho do componente>/<nome>` | Pelo componente que o mapeia, e não pelo banco |
+| `Dataset` | `dataset:<componente>/<nome>` | Pelo componente que o mapeia, e não pelo banco |
 | `Resource` | instância `resource:<ambiente>/<nome>`; recurso lógico `resource:<ambiente>/<instância>/<nome>` | `resource:dev/postgres`, `resource:dev/postgres/catalog` |
 | `Environment` | `env:<ambiente>` | O mesmo nome do primeiro segmento da chave do recurso |
 | `Domain`, `System`, `Group` | `domain:<id>`, `system:<id>`, `group:<id>` | O identificador curto na fonte |
@@ -150,11 +150,11 @@ Pertence a.
   "nodes": [
     {"key":"domain:catalog","type":"Domain","props":{"name":"Catálogo"},"evidence":"domains/catalog"},
     {"key":"system:catalog/products","type":"System","props":{"name":"Produtos"},"evidence":"systems/catalog-products"},
-    {"key":"component:example/catalog/product-api","type":"Component","props":{"name":"product-api","kind":"service"},"evidence":"components/product-api"}
+    {"key":"component:product-api","type":"Component","props":{"name":"product-api","kind":"service"},"evidence":"components/product-api"}
   ],
   "relations": [
     {"type":"PART_OF","from":"system:catalog/products","to":"domain:catalog","evidence":"systems/catalog-products"},
-    {"type":"PART_OF","from":"component:example/catalog/product-api","to":"system:catalog/products","evidence":"components/product-api"}
+    {"type":"PART_OF","from":"component:product-api","to":"system:catalog/products","evidence":"components/product-api"}
   ]
 }
 ```
@@ -179,7 +179,7 @@ Pertence a.
   "relations": [
     {"type":"OWNED_BY","from":"domain:catalog","to":"group:digital-products","evidence":"domains/catalog"},
     {"type":"OWNED_BY","from":"system:catalog/products","to":"group:catalog-team","evidence":"systems/catalog-products"},
-    {"type":"OWNED_BY","from":"component:example/catalog/product-api","to":"group:catalog-team","evidence":"components/product-api"},
+    {"type":"OWNED_BY","from":"component:product-api","to":"group:catalog-team","evidence":"components/product-api"},
     {"type":"OWNED_BY","from":"api:product-api/http","to":"group:catalog-team","evidence":"apis/product-api"}
   ]
 }
@@ -247,18 +247,18 @@ Código do componente está no repositório.
 - **Liga:** `Component` → `Repository`.
 - **Propriedades:** nenhuma.
 - **Quem afirma:** O build de cada componente (fonte `build-manifest`, escopo `{component}`) ou o catálogo, para componentes que não publicam build.
-- A chave do componente é o caminho do repositório, e a do repositório leva o host: `repo:<host>/<caminho>`.
+- A chave do componente é o nome de serviço, único na organização; a do repositório é o caminho, com o host: `repo:<host>/<caminho>`. Num monorepo, vários componentes apontam para o mesmo repositório.
 
 ```json
 {
   "source": "build-manifest",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "nodes": [
     {"key":"repo:git.example.com/example/catalog/product-api","type":"Repository","props":{"url":"https://git.example.com/example/catalog/product-api"},"evidence":"example/catalog/product-api@4f2a9c1:build/architecture/manifest.json"}
   ],
   "relations": [
-    {"type":"HOSTED_IN","from":"component:example/catalog/product-api","to":"repo:git.example.com/example/catalog/product-api","evidence":"example/catalog/product-api@4f2a9c1:build/architecture/manifest.json"}
+    {"type":"HOSTED_IN","from":"component:product-api","to":"repo:git.example.com/example/catalog/product-api","evidence":"example/catalog/product-api@4f2a9c1:build/architecture/manifest.json"}
   ]
 }
 ```
@@ -270,20 +270,20 @@ Componente oferece a API.
 - **Liga:** `Component` → `Api`.
 - **Propriedades:** nenhuma.
 - **Quem afirma:** O contrato que o próprio componente gera (fonte `openapi`, escopo `{component}`) e, para a versão exposta na infraestrutura, quem lê a implantação (veja `VERSION_OF`).
-- A API é nomeada pelo **nome de serviço**, o nome com que os clientes conhecem o componente (o participante nos pacts), e não pelo caminho do repositório: `api:product-api/http`. É assim que provedor e consumidores chegam à mesma chave.
+- A API é nomeada pelo **nome de serviço**, o nome com que os clientes conhecem o componente (o participante nos pacts), o mesmo nome da chave do componente: `api:product-api/http`. É assim que provedor e consumidores chegam à mesma chave.
 - Vem no mesmo retrato que os endpoints (`HAS_ENDPOINT`) e o contrato (`SPECIFIED_BY`).
 
 ```json
 {
   "source": "openapi",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [
     {"key":"api:product-api/http","type":"Api","props":{"name":"Product API","kind":"http"},"evidence":"src/main/java/com/example/catalog/ProductController.java"}
   ],
   "relations": [
-    {"type":"PROVIDES","from":"component:example/catalog/product-api","to":"api:product-api/http","evidence":"src/main/java/com/example/catalog/ProductController.java"}
+    {"type":"PROVIDES","from":"component:product-api","to":"api:product-api/http","evidence":"src/main/java/com/example/catalog/ProductController.java"}
   ]
 }
 ```
@@ -301,7 +301,7 @@ API tem a operação.
 ```json
 {
   "source": "openapi",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [
@@ -326,12 +326,12 @@ Componente consome a API.
 ```json
 {
   "source": "http-clients",
-  "scope": {"component":"example/checkout/checkout-api"},
+  "scope": {"component":"checkout-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/checkout/checkout-api@9b1e0d7:",
   "nodes": [],
   "relations": [
-    {"type":"CONSUMES","from":"component:example/checkout/checkout-api","to":"api:product-api/http","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java"}
+    {"type":"CONSUMES","from":"component:checkout-api","to":"api:product-api/http","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java"}
   ]
 }
 ```
@@ -349,13 +349,13 @@ Componente chama a operação.
 ```json
 {
   "source": "http-clients",
-  "scope": {"component":"example/checkout/checkout-api"},
+  "scope": {"component":"checkout-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/checkout/checkout-api@9b1e0d7:",
   "nodes": [],
   "relations": [
-    {"type":"CONSUMES","from":"component:example/checkout/checkout-api","to":"api:product-api/http","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java"},
-    {"type":"CALLS","from":"component:example/checkout/checkout-api","to":"endpoint:product-api/GET /products/{}","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java#getProduct"}
+    {"type":"CONSUMES","from":"component:checkout-api","to":"api:product-api/http","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java"},
+    {"type":"CALLS","from":"component:checkout-api","to":"endpoint:product-api/GET /products/{}","evidence":"src/main/java/com/example/checkout/catalog/CatalogClient.java#getProduct"}
   ]
 }
 ```
@@ -373,14 +373,14 @@ Componente publica no tópico.
 ```json
 {
   "source": "asyncapi",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [
     {"key":"topic:catalog.product-created.v1","type":"Topic","props":{"name":"catalog.product-created.v1","kind":"topic","version":"v1"},"evidence":"build/architecture/asyncapi.json#/channels/productCreated"}
   ],
   "relations": [
-    {"type":"PUBLISHES","from":"component:example/catalog/product-api","to":"topic:catalog.product-created.v1","evidence":"src/main/java/com/example/catalog/ProductEvents.java#publishCreated"}
+    {"type":"PUBLISHES","from":"component:product-api","to":"topic:catalog.product-created.v1","evidence":"src/main/java/com/example/catalog/ProductEvents.java#publishCreated"}
   ]
 }
 ```
@@ -397,12 +397,12 @@ Componente consome do tópico.
 ```json
 {
   "source": "asyncapi",
-  "scope": {"component":"example/checkout/checkout-api"},
+  "scope": {"component":"checkout-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/checkout/checkout-api@9b1e0d7:",
   "nodes": [],
   "relations": [
-    {"type":"SUBSCRIBES","from":"component:example/checkout/checkout-api","to":"topic:catalog.product-created.v1","evidence":"src/main/java/com/example/checkout/catalog/ProductCreatedListener.java"}
+    {"type":"SUBSCRIBES","from":"component:checkout-api","to":"topic:catalog.product-created.v1","evidence":"src/main/java/com/example/checkout/catalog/ProductCreatedListener.java"}
   ]
 }
 ```
@@ -427,7 +427,7 @@ API versionada na infraestrutura (o serviço exposto com a versão no nome, serv
     {"key":"api:product-api/v2/http","type":"Api","props":{"name":"product-api-v2","kind":"http","version":"v2"},"evidence":"services/product-api-v2"}
   ],
   "relations": [
-    {"type":"PROVIDES","from":"component:example/catalog/product-api","to":"api:product-api/v2/http","evidence":"services/product-api-v2"},
+    {"type":"PROVIDES","from":"component:product-api","to":"api:product-api/v2/http","evidence":"services/product-api-v2"},
     {"type":"VERSION_OF","from":"api:product-api/v2/http","to":"api:product-api/http","evidence":"services/product-api-v2"}
   ]
 }
@@ -446,7 +446,7 @@ Especificado pelo contrato.
 ```json
 {
   "source": "openapi",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [
@@ -473,12 +473,12 @@ Componente usa o recurso.
 ```json
 {
   "source": "service-config",
-  "scope": {"component":"example/catalog/product-api","environment":"dev"},
+  "scope": {"component":"product-api","environment":"dev"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:deploy/values-dev.yaml",
   "nodes": [],
   "relations": [
-    {"type":"USES_RESOURCE","from":"component:example/catalog/product-api","to":"resource:dev/postgres/catalog","props":{"access":"read-write"},"evidence":"#database"}
+    {"type":"USES_RESOURCE","from":"component:product-api","to":"resource:dev/postgres/catalog","props":{"access":"read-write"},"evidence":"#database"}
   ]
 }
 ```
@@ -495,7 +495,7 @@ Recurso lógico está na instância; tópico está no broker.
 ```json
 {
   "source": "service-config",
-  "scope": {"component":"example/catalog/product-api","environment":"dev"},
+  "scope": {"component":"product-api","environment":"dev"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:deploy/values-dev.yaml",
   "nodes": [
@@ -525,7 +525,7 @@ Instância é a implantação, num ambiente, do componente de infraestrutura.
   "evidenceBase": "k8s://example/catalog-dev/",
   "nodes": [],
   "relations": [
-    {"type":"INSTANCE_OF","from":"resource:dev/postgres","to":"component:example/platform/postgres","evidence":"statefulsets/postgres#spec.selector.matchLabels.app"}
+    {"type":"INSTANCE_OF","from":"resource:dev/postgres","to":"component:postgres","evidence":"statefulsets/postgres#spec.selector.matchLabels.app"}
   ]
 }
 ```
@@ -577,7 +577,7 @@ Componente está implantado no ambiente, numa versão. Uma afirmação por commi
     {"key":"env:dev","type":"Environment","props":{"name":"dev","kind":"development"},"evidence":"namespace/catalog-dev"}
   ],
   "relations": [
-    {"type":"DEPLOYED_IN","from":"component:example/catalog/product-api","to":"env:dev","props":{"version":"1.5.0","commit":"4f2a9c1","image":"registry.example.com/product-api:1.5.0","replicas":"2"},"evidence":"deployments/product-api"}
+    {"type":"DEPLOYED_IN","from":"component:product-api","to":"env:dev","props":{"version":"1.5.0","commit":"4f2a9c1","image":"registry.example.com/product-api:1.5.0","replicas":"2"},"evidence":"deployments/product-api"}
   ]
 }
 ```
@@ -622,8 +622,8 @@ Gateway ou ingress encaminha para o componente.
   "evidenceBase": "k8s://example/catalog-dev/ingresses/",
   "nodes": [],
   "relations": [
-    {"type":"ROUTES","from":"resource:dev/ingress","to":"component:example/catalog/product-api","props":{"host":"product-api.dev.example.com"},"evidence":"product-api"},
-    {"type":"ROUTES","from":"resource:dev/ingress","to":"component:example/catalog/product-api","props":{"host":"api.dev.example.com","path":"/catalog"},"evidence":"public-api"}
+    {"type":"ROUTES","from":"resource:dev/ingress","to":"component:product-api","props":{"host":"product-api.dev.example.com"},"evidence":"product-api"},
+    {"type":"ROUTES","from":"resource:dev/ingress","to":"component:product-api","props":{"host":"api.dev.example.com","path":"/catalog"},"evidence":"public-api"}
   ]
 }
 ```
@@ -640,12 +640,12 @@ Componente chega a outros pelo gateway ou ingress.
 ```json
 {
   "source": "service-config",
-  "scope": {"component":"example/checkout/checkout-api","environment":"dev"},
+  "scope": {"component":"checkout-api","environment":"dev"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/checkout/checkout-api@9b1e0d7:deploy/values-dev.yaml",
   "nodes": [],
   "relations": [
-    {"type":"REACHES_VIA","from":"component:example/checkout/checkout-api","to":"resource:dev/ingress","evidence":"#catalog.baseUrl"}
+    {"type":"REACHES_VIA","from":"component:checkout-api","to":"resource:dev/ingress","evidence":"#catalog.baseUrl"}
   ]
 }
 ```
@@ -662,13 +662,13 @@ Componente é construído com a tecnologia.
 ```json
 {
   "source": "build-manifest",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:build/architecture/manifest.json",
   "nodes": [],
   "relations": [
-    {"type":"BUILT_WITH","from":"component:example/catalog/product-api","to":"tech:java","props":{"version":"25"},"evidence":"#/component/technologies/0"},
-    {"type":"BUILT_WITH","from":"component:example/catalog/product-api","to":"tech:spring-boot","props":{"version":"4.0.1"},"evidence":"#/component/technologies/1"}
+    {"type":"BUILT_WITH","from":"component:product-api","to":"tech:java","props":{"version":"25"},"evidence":"#/component/technologies/0"},
+    {"type":"BUILT_WITH","from":"component:product-api","to":"tech:spring-boot","props":{"version":"4.0.1"},"evidence":"#/component/technologies/1"}
   ]
 }
 ```
@@ -687,13 +687,13 @@ Componente depende da biblioteca.
 ```json
 {
   "source": "sbom",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:build/architecture/bom.json",
   "nodes": [],
   "relations": [
-    {"type":"DEPENDS_ON","from":"component:example/catalog/product-api","to":"lib:maven/org.springframework.boot:spring-boot-starter-web","props":{"version":"4.0.1","scope":"runtime","resolved":true,"direct":true},"evidence":"#pkg:maven/org.springframework.boot/spring-boot-starter-web@4.0.1"},
-    {"type":"DEPENDS_ON","from":"component:example/catalog/product-api","to":"lib:maven/com.fasterxml.jackson.core:jackson-databind","props":{"version":"2.20.0","scope":"runtime","resolved":true,"direct":false,"via":["lib:maven/org.springframework.boot:spring-boot-starter-web"]},"evidence":"#pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.20.0"}
+    {"type":"DEPENDS_ON","from":"component:product-api","to":"lib:maven/org.springframework.boot:spring-boot-starter-web","props":{"version":"4.0.1","scope":"runtime","resolved":true,"direct":true},"evidence":"#pkg:maven/org.springframework.boot/spring-boot-starter-web@4.0.1"},
+    {"type":"DEPENDS_ON","from":"component:product-api","to":"lib:maven/com.fasterxml.jackson.core:jackson-databind","props":{"version":"2.20.0","scope":"runtime","resolved":true,"direct":false,"via":["lib:maven/org.springframework.boot:spring-boot-starter-web"]},"evidence":"#pkg:maven/com.fasterxml.jackson.core/jackson-databind@2.20.0"}
   ]
 }
 ```
@@ -710,12 +710,12 @@ O build do componente gera a biblioteca: o pacote que os outros componentes usam
 ```json
 {
   "source": "build-manifest",
-  "scope": {"component":"example/platform/commons"},
+  "scope": {"component":"commons"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/platform/commons@71c0e2a:build/architecture/manifest.json",
   "nodes": [],
   "relations": [
-    {"type":"PRODUCES","from":"component:example/platform/commons","to":"lib:maven/com.example:commons-web","props":{"version":"3.2.0"},"evidence":"#/component/libraries/0"}
+    {"type":"PRODUCES","from":"component:commons","to":"lib:maven/com.example:commons-web","props":{"version":"3.2.0"},"evidence":"#/component/libraries/0"}
   ]
 }
 ```
@@ -727,20 +727,20 @@ Componente define a estrutura do dataset (mapeamento ou migração).
 - **Liga:** `Component` → `Dataset`.
 - **Propriedades:** nenhuma.
 - **Quem afirma:** O acesso a dados lido do código (fonte `data-access`, escopo `{component}`).
-- O dataset é identificado pelo componente que o mapeia: `dataset:<caminho do componente>/<nome>`. O build não sabe em que banco de cada ambiente ele está.
+- O dataset é identificado pelo componente que o mapeia: `dataset:<componente>/<nome>`. O build não sabe em que banco de cada ambiente ele está.
 - `OWNS_DATA` é de quem define a estrutura (o mapeamento ou a migração); quem só lê ou escreve tem `READS`/`WRITES`.
 
 ```json
 {
   "source": "data-access",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [
-    {"key":"dataset:example/catalog/product-api/products","type":"Dataset","props":{"name":"products","kind":"table","store":"relational"},"evidence":"src/main/java/com/example/catalog/ProductEntity.java"}
+    {"key":"dataset:product-api/products","type":"Dataset","props":{"name":"products","kind":"table","store":"relational"},"evidence":"src/main/java/com/example/catalog/ProductEntity.java"}
   ],
   "relations": [
-    {"type":"OWNS_DATA","from":"component:example/catalog/product-api","to":"dataset:example/catalog/product-api/products","evidence":"src/main/java/com/example/catalog/ProductEntity.java"}
+    {"type":"OWNS_DATA","from":"component:product-api","to":"dataset:product-api/products","evidence":"src/main/java/com/example/catalog/ProductEntity.java"}
   ]
 }
 ```
@@ -757,12 +757,12 @@ Componente lê o dataset.
 ```json
 {
   "source": "data-access",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [],
   "relations": [
-    {"type":"READS","from":"component:example/catalog/product-api","to":"dataset:example/catalog/product-api/products","evidence":"src/main/java/com/example/catalog/ProductService.java:24"}
+    {"type":"READS","from":"component:product-api","to":"dataset:product-api/products","evidence":"src/main/java/com/example/catalog/ProductService.java:24"}
   ]
 }
 ```
@@ -779,12 +779,12 @@ Componente escreve no dataset.
 ```json
 {
   "source": "data-access",
-  "scope": {"component":"example/catalog/product-api"},
+  "scope": {"component":"product-api"},
   "observedAt": "2026-10-01T12:00:00Z",
   "evidenceBase": "example/catalog/product-api@4f2a9c1:",
   "nodes": [],
   "relations": [
-    {"type":"WRITES","from":"component:example/catalog/product-api","to":"dataset:example/catalog/product-api/products","evidence":"src/main/java/com/example/catalog/ProductService.java:41"}
+    {"type":"WRITES","from":"component:product-api","to":"dataset:product-api/products","evidence":"src/main/java/com/example/catalog/ProductService.java:41"}
   ]
 }
 ```

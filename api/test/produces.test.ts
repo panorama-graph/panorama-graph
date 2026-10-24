@@ -10,12 +10,12 @@ const q = new QueryService(db);
 let app: FastifyInstance;
 
 /** Um framework interno de vários módulos: o repositório gera o pacote da biblioteca e um de testes. */
-const FRAMEWORK = "component:example/platform/framework";
+const FRAMEWORK = "component:framework";
 const TEST_LIB = "lib:maven/br.com.acme:service-platform-test";
 
 const frameworkManifest: Load = {
   source: "build-manifest",
-  scope: { component: "example/platform/framework" },
+  scope: { component: "framework" },
   evidenceBase: "example/platform/framework@abc123:build/architecture/manifest.json",
   producer: { name: "graph-publish", version: "0.2.0" },
   nodes: [
@@ -105,7 +105,7 @@ describe("componente que gera bibliotecas", () => {
 
 test("o escopo guarda quem montou o retrato", async () => {
   const status = await q.sourcesStatus({ source: "build-manifest" });
-  const scope = status.sources[0].scopes.find((s) => s.scope.component === "example/platform/framework")!;
+  const scope = status.sources[0].scopes.find((s) => s.scope.component === "framework")!;
   expect(scope.producer).toEqual({ name: "graph-publish", version: "0.2.0" });
   // Retrato sem produtor (o da fixture) não ganha um.
   const sbom = await q.sourcesStatus({ source: "sbom" });

@@ -9,7 +9,7 @@ import { createTestDb, resetDatabase, silentLogger } from "./setup";
 const db = createTestDb();
 const q = new QueryService(db);
 let app: FastifyInstance;
-const svc = "component:acme/credito/servico";
+const svc = "component:servico";
 
 beforeAll(async () => {
   app = await buildApp({ db, logger: silentLogger });

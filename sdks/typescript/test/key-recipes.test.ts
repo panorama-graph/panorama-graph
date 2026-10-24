@@ -34,7 +34,7 @@ const cases = JSON.parse(readFileSync(join(import.meta.dirname, "..", "..", "key
 const s = (v: Input[string]) => v as string;
 
 const RECIPES: Record<string, (i: Input) => string> = {
-  component: (i) => componentKey(s(i.path)),
+  component: (i) => componentKey(s(i.name)),
   repository: (i) => repositoryKey(s(i.host), s(i.path)),
   httpApi: (i) => httpApiKey(s(i.service), i.version as string | undefined),
   endpoint: (i) => endpointKey(s(i.service), s(i.method), s(i.path), i.version as string | undefined),
@@ -42,7 +42,7 @@ const RECIPES: Record<string, (i: Input) => string> = {
   contract: (i) => contractKey(s(i.kind) as Parameters<typeof contractKey>[0], s(i.id)),
   library: (i) => libraryKey(s(i.type), i.namespace as string | undefined, s(i.name)),
   technology: (i) => technologyKey(s(i.name)),
-  dataset: (i) => datasetKey(s(i.componentPath), s(i.name)),
+  dataset: (i) => datasetKey(s(i.component), s(i.name)),
   domain: (i) => domainKey(s(i.id)),
   system: (i) => systemKey(s(i.id)),
   group: (i) => groupKey(s(i.id)),

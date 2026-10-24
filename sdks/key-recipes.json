@@ -1,7 +1,7 @@
 {
   "description": "Casos das receitas de chave e das convenções de versão. Todo SDK, e todo adaptador que monta chaves sem SDK, precisa produzir exatamente estas saídas: fontes diferentes só falam do mesmo nó com a mesma chave. As regras estão em api/ADAPTADOR.md (Receitas de chave); o SDK em TypeScript se confere contra este arquivo.",
   "keys": [
-    { "recipe": "component", "input": { "path": "example/catalog/product-api" }, "key": "component:example/catalog/product-api" },
+    { "recipe": "component", "input": { "name": "product-api" }, "key": "component:product-api" },
     { "recipe": "repository", "input": { "host": "git.example.com", "path": "example/catalog/product-api" }, "key": "repo:git.example.com/example/catalog/product-api" },
     { "recipe": "httpApi", "input": { "service": "product-api" }, "key": "api:product-api/http" },
     { "recipe": "httpApi", "input": { "service": "product-api", "version": "v1" }, "key": "api:product-api/v1/http" },
@@ -23,7 +23,7 @@
     { "recipe": "library", "input": { "type": "golang", "namespace": "github.com/google", "name": "uuid" }, "key": "lib:golang/github.com/google/uuid" },
     { "recipe": "technology", "input": { "name": "Spring-Boot" }, "key": "tech:spring-boot" },
     { "recipe": "technology", "input": { "name": "postgresql" }, "key": "tech:postgresql" },
-    { "recipe": "dataset", "input": { "componentPath": "example/catalog/product-api", "name": "products" }, "key": "dataset:example/catalog/product-api/products" },
+    { "recipe": "dataset", "input": { "component": "product-api", "name": "products" }, "key": "dataset:product-api/products" },
     { "recipe": "domain", "input": { "id": "catalog" }, "key": "domain:catalog" },
     { "recipe": "system", "input": { "id": "catalog/products" }, "key": "system:catalog/products" },
     { "recipe": "group", "input": { "id": "catalog-team" }, "key": "group:catalog-team" },

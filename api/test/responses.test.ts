@@ -107,20 +107,20 @@ describe("Respostas das demais rotas conforme o OpenAPI", () => {
     const at = "2027-01-01T00:00:00.000Z";
     const snapshot = {
       source: "teste",
-      scope: { component: "teste/a" },
+      scope: { component: "a" },
       observedAt: at,
       nodes: [
-        { key: "component:teste/a", type: "Component", props: { name: "a" }, evidence: "x" },
-        { key: "component:teste/b", type: "Component", evidence: "x" },
+        { key: "component:a", type: "Component", props: { name: "a" }, evidence: "x" },
+        { key: "component:b", type: "Component", evidence: "x" },
       ],
-      relations: [{ type: "OWNED_BY", from: "component:teste/a", to: K.teamCatalog, evidence: "x" }],
+      relations: [{ type: "OWNED_BY", from: "component:a", to: K.teamCatalog, evidence: "x" }],
     };
     await check("IngestResult", await post("/v1/ingest", snapshot));
-    await check("AliasResult", await post(`/v1/nodes/${encodeURIComponent("component:teste/a")}/aliases`, { alias: "component:teste/apelido" }));
-    await check("MergeResult", await post("/v1/nodes/merge", { from: "component:teste/b", into: "component:teste/a", reason: "teste", actor: "teste" }));
+    await check("AliasResult", await post(`/v1/nodes/${encodeURIComponent("component:a")}/aliases`, { alias: "component:apelido" }));
+    await check("MergeResult", await post("/v1/nodes/merge", { from: "component:b", into: "component:a", reason: "teste", actor: "teste" }));
     await check(
       "RetireResult",
-      await post("/v1/scopes/retire", { scope: { component: "teste/a" }, observedAt: "2027-01-02T00:00:00.000Z", retiredBy: "teste", reason: "teste", evidence: "x" }),
+      await post("/v1/scopes/retire", { scope: { component: "a" }, observedAt: "2027-01-02T00:00:00.000Z", retiredBy: "teste", reason: "teste", evidence: "x" }),
     );
   });
 });

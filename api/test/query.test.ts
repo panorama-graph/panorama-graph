@@ -597,7 +597,7 @@ describe("vigência dos nós (escreve no grafo)", () => {
     expect(pca.provides[0].contracts).toEqual([K.pact]);
   });
 
-  test("renomeado: o nome antigo sai da lista e não disputa com o novo", async () => {
+  test("chave trocada: a antiga sai da lista e não disputa com a nova", async () => {
     const load = (key: string, at: string) =>
       post("POST", "/v1/ingest", {
         source: "gitlab",
@@ -606,24 +606,25 @@ describe("vigência dos nós (escreve no grafo)", () => {
         evidenceBase: "https://gitlab.acmebank.example/",
         nodes: [{ key, type: "Component", props: { name: "renomeado", kind: "service" }, evidence: "acme/outro/renomeado" }],
       });
-    expect((await load("component:acme/outro/antigo/renomeado", "2026-09-29T14:00:00Z")).statusCode).toBe(200);
-    expect((await load("component:acme/outro/renomeado", "2026-09-29T14:01:00Z")).statusCode).toBe(200);
+    // A chave antiga, com o caminho do repositório; a nova, só com o nome.
+    expect((await load("component:acme/outro/renomeado", "2026-09-29T14:00:00Z")).statusCode).toBe(200);
+    expect((await load("component:renomeado", "2026-09-29T14:01:00Z")).statusCode).toBe(200);
 
     const list = await q.componentsList({});
-    expect(keys(list.components)).toContain("component:acme/outro/renomeado");
-    expect(keys(list.components)).not.toContain("component:acme/outro/antigo/renomeado");
+    expect(keys(list.components)).toContain("component:renomeado");
+    expect(keys(list.components)).not.toContain("component:acme/outro/renomeado");
     const withStale = await q.componentsList({ includeStale: true });
-    const old = withStale.components.find((c) => c.key === "component:acme/outro/antigo/renomeado")!;
+    const old = withStale.components.find((c) => c.key === "component:acme/outro/renomeado")!;
     expect(old.status).toBe("stale");
 
-    // "renomeado" casa com os dois pelo último segmento; só o current conta.
-    expect((await q.componentGet("renomeado")).component.key).toBe("component:acme/outro/renomeado");
+    // "renomeado" casa com os dois (pelo nome e pelo último segmento); só o current conta.
+    expect((await q.componentGet("renomeado")).component.key).toBe("component:renomeado");
   });
 });
 
 describe("infraestrutura implantável (escreve no grafo)", () => {
   test("o banco usado chega ao componente de infraestrutura pela instância (HOSTED_ON → INSTANCE_OF)", async () => {
-    const infra = "component:acme/infra/postgresql";
+    const infra = "component:postgresql";
     const catalog = await post("POST", "/v1/ingest", {
       source: "service-catalog",
       scope: { catalog: "acme-infra" },
@@ -650,7 +651,7 @@ describe("infraestrutura implantável (escreve no grafo)", () => {
   });
 
   test("o tópico chega ao componente do broker pela instância", async () => {
-    const infra = "component:acme/infra/kafka";
+    const infra = "component:kafka";
     await post("POST", "/v1/ingest", {
       source: "service-catalog",
       scope: { catalog: "acme-infra-kafka" },

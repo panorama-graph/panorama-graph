@@ -5,9 +5,9 @@ import type { Overview, OverviewComponent } from "../src/lib/types";
 
 const f = (source: string, props?: Record<string, unknown>) => ({ source, evidence: "e", ...(props ? { props } : {}) });
 const facts = { dependent: [f("pact")], provider: [f("openapi")] };
-const A = "component:acme/a";
-const B = "component:acme/b";
-const L = "component:acme/lib";
+const A = "component:a";
+const B = "component:b";
+const L = "component:lib";
 const T = "topic:t.created";
 
 const component = (key: string, kind: string, resources: OverviewComponent["resources"] = []): OverviewComponent => ({
@@ -42,7 +42,7 @@ const data: Overview = {
     { from: A, to: L, packages: [{ key: "lib:maven/br.com.acme:lib-core", version: "1.2.0", facts: [f("sbom")] }] },
     {
       from: B,
-      to: "component:acme/framework",
+      to: "component:framework",
       packages: [
         { key: "lib:maven/br.com.acme:fw-bom", version: "3.0.0", facts: [f("sbom")] },
         { key: "lib:maven/br.com.acme:fw-web", version: "3.0.0", facts: [f("sbom")] },
@@ -113,12 +113,12 @@ describe("grafo da visão geral por camadas", () => {
 
   test("library: quem usa liga ao componente que gera a biblioteca, com o pacote e a versão; o de fora entra como biblioteca", () => {
     const g = overviewGraph(data, new Set(["service", "library"]));
-    expect(keys(g.nodes)).toEqual([A, B, L, "component:acme/framework"].sort());
+    expect(keys(g.nodes)).toEqual([A, B, L, "component:framework"].sort());
     expect(g.edges.map((e) => [e.id, e.label])).toEqual([
       [`biblioteca:${A}->${L}`, "lib-core 1.2.0"],
-      [`biblioteca:${B}->component:acme/framework`, "2 pacotes · 3.0.0"],
+      [`biblioteca:${B}->component:framework`, "2 pacotes · 3.0.0"],
     ]);
-    expect(g.nodes.find((n) => n.key === "component:acme/framework")!.tech).toBe("library");
+    expect(g.nodes.find((n) => n.key === "component:framework")!.tech).toBe("library");
     expect(g.edges[1].facts!.sections.map((x) => x.label)).toEqual(["fw-bom 3.0.0", "fw-web 3.0.0"]);
     // Sem a camada, nenhuma; quem usa numa camada desligada não puxa a seta.
     expect(overviewGraph(data, parseLayers("")).edges.some((e) => e.id.startsWith("biblioteca:"))).toBe(false);
@@ -133,7 +133,7 @@ describe("grafo da visão geral por camadas", () => {
 
 describe("agrupamento por domínio", () => {
   const sys = (key: string, ...domains: string[]) => ({ key, facts: [], domains: domains.map((d) => ({ key: d, name: d.slice(7), facts: [] })) });
-  const C = "component:acme/c";
+  const C = "component:c";
   const grouped: Overview = {
     ...data,
     components: [
@@ -183,9 +183,9 @@ describe("agrupamento por domínio", () => {
 });
 
 describe("componentes de infraestrutura", () => {
-  const MONGO = "component:acme/infra/mongodb";
-  const KAFKA = "component:acme/infra/kafka";
-  const PG = "component:acme/infra/postgresql";
+  const MONGO = "component:mongodb";
+  const KAFKA = "component:kafka";
+  const PG = "component:postgresql";
   const infraSys = { key: "system:bancos", facts: [], domains: [{ key: "domain:infra", name: "Infraestrutura", facts: [] }] };
   const inst = (key: string, name: string) => ({ key, name, facts: [f("k8s-infra")] });
   const dbOn = (env: string) => ({

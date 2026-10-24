@@ -23,7 +23,7 @@ const INSTRUCTIONS =
   "APIs e tópicos versionados são um nó por versão, com `version` (v1, v2): \"quem consome a v1 da API de X?\" → " +
   "api_consumers com a API daquela versão (allVersions: de todas); \"quem assina a v2 do evento Y?\" → topic_get " +
   "com o tópico daquela versão (com o nome sem a versão, ou allVersions: todas, cada assinante com a versão). " +
-  "Nós são identificados por chave `<prefixo>:<id>` (ex.: component:example/catalog/product-api); " +
+  "Nós são identificados por chave `<prefixo>:<id>` (ex.: component:product-api); " +
   "as ferramentas também aceitam apelido, nome ou o último segmento da chave, e devolvem os candidatos quando há " +
   `ambiguidade. ${PROVENANCE_NOTE} Por padrão só vem o retrato atual; includeStale traz o que a fonte deixou de afirmar. ` +
   "O retrato padrão é o da linha principal (o código mais recente publicado); para perguntas sobre o que roda num " +

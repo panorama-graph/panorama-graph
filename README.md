@@ -82,7 +82,7 @@ A API nunca lê uma fonte. Entre cada fonte e a API há um adaptador, que lê a 
 
 ### Conceitos centrais
 
-- **Chave com prefixo.** Todo nó é identificado por `<prefixo>:<identificador>`, como `component:acme/credito/loan-simulation-api` ou `group:credito`. O prefixo diz o tipo, então uma relação pode apontar para um nó que ninguém declarou ainda, e a ordem das cargas não importa. As receitas de chave estão no SDK, para que fontes diferentes cheguem ao mesmo nó.
+- **Chave com prefixo.** Todo nó é identificado por `<prefixo>:<identificador>`, como `component:loan-simulation-api` ou `group:credito`. O prefixo diz o tipo, então uma relação pode apontar para um nó que ninguém declarou ainda, e a ordem das cargas não importa. As receitas de chave estão no SDK, para que fontes diferentes cheguem ao mesmo nó.
 - **Afirmação.** A unidade de informação não é o nó nem a relação: é a afirmação de uma fonte sobre eles, com escopo, evidência (`repo@sha:caminho`), data, estado (`observed`, `inferred`, `confirmed`) e vigência (`current`, `stale`). A mesma relação afirmada por duas fontes são duas afirmações, devolvidas lado a lado.
 - **Retrato por fonte e escopo.** Cada carga envia tudo o que a fonte afirma sobre um escopo (um componente, um namespace do cluster). O que estava no retrato anterior e não veio no novo vira `stale`, com a última data em que foi visto.
 
@@ -136,7 +136,7 @@ Exemplo: trecho da resposta de `api_consumers` para o `product-catalog-api` da o
 
 ```json
 {
-  "component": { "key": "component:acme/credito/loan-simulation-api", "name": "loan-simulation-api" },
+  "component": { "key": "component:loan-simulation-api", "name": "loan-simulation-api" },
   "consumes": [{
     "type": "CONSUMES",
     "node": { "key": "api:product-catalog/http", "name": "Product Catalog API" },

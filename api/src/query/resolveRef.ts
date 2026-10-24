@@ -11,7 +11,7 @@ const MAX_CANDIDATES = 10;
 /**
  * Resolve o que o consumidor informou para um nó de um dos tipos esperados, nesta ordem:
  * chave ou apelido; nome (sem diferenciar maiúsculas); último segmento da chave ou de um apelido, depois de `/` ou `:`
- * (`product-api` acha `component:example/catalog/product-api`; `platform-starter` acha `lib:maven/com.example:platform-starter`).
+ * (`products` acha `system:catalog/products`; `platform-starter` acha `lib:maven/com.example:platform-starter`).
  * Nenhum → 404. Mais de um → 409 com os candidatos, para o consumidor escolher pela chave; se só um dos
  * candidatos está current (os outros ficaram stale), fica ele.
  */

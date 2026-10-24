@@ -24,7 +24,7 @@ const alias = (key: string, alias: string) =>
 const merge = (from: string, into: string) =>
   app.inject({ method: "POST", url: "/v1/nodes/merge", payload: { from, into, reason: "mesmo serviço", actor: "claude" } });
 
-const PCA = "component:acme/credito/product-catalog-api";
+const PCA = "component:product-catalog-api";
 const OLD = "component:product-catalog";
 
 async function seedGitlab() {
